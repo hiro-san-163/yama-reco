@@ -1,1 +1,147 @@
+---
+layout: default
+title: 山行記録一覧
+permalink: /records/
+custom_css: records
+custom_js: records
+---
 
+<main class="records-page">
+
+  {% include breadcrumb.html %}
+
+  <section class="page-header">
+
+    <h1>山行記録一覧</h1>
+
+    <p class="page-description">
+      hiro-sanの山行記録アーカイブです。年・山域・ジャンルで絞り込みできます。
+    </p>
+
+  </section>
+
+  <section class="records-filter">
+
+    <div class="filter-group">
+
+      <label for="record-filter-year">
+        年
+      </label>
+
+      <select id="record-filter-year">
+        <option value="">すべて</option>
+      </select>
+
+    </div>
+
+    <div class="filter-group">
+
+      <label for="record-filter-area">
+        山域
+      </label>
+
+      <select id="record-filter-area">
+        <option value="">すべて</option>
+      </select>
+
+    </div>
+
+    <div class="filter-group">
+
+      <label for="record-filter-genre">
+        ジャンル
+      </label>
+
+      <select id="record-filter-genre">
+        <option value="">すべて</option>
+      </select>
+
+    </div>
+
+    <div class="filter-actions">
+
+      <button
+        type="button"
+        id="record-search-button"
+        class="filter-button search-button">
+        検索
+      </button>
+
+      <button
+        type="button"
+        id="record-reset-button"
+        class="filter-button reset-button">
+        条件をクリア
+      </button>
+
+    </div>
+
+  </section>
+
+  <section class="records-toolbar">
+
+    <h2 id="record-list-title">
+      最新の山行記録
+    </h2>
+
+    <p id="record-result-count">
+      5件表示
+    </p>
+
+  </section>
+
+  <p
+    id="record-empty-message"
+    class="record-empty-message"
+    hidden>
+    条件に一致する山行記録はありません。
+  </p>
+
+  <section
+    id="records-list"
+    class="records-list">
+
+    {% for post in site.posts %}
+
+    <article
+      class="record-card"
+      data-url="{{ post.url }}"
+      data-record-year="{{ post.date_s | slice: 0,4 }}"
+      data-record-area="{{ post.area }}"
+      data-record-genre="{{ post.genre }}">
+
+      <div class="record-date">
+        {{ post.date_s }}
+      </div>
+
+      <h3 class="record-title">
+        {{ post.title }}
+      </h3>
+
+      <div class="record-meta">
+
+        <span class="record-area">
+          {{ post.area }}
+        </span>
+
+        <span class="record-meta-separator">
+          ｜ 
+        </span>
+
+        <span class="record-genre">
+          {{ post.genre }}
+        </span>
+
+      </div>
+
+      <p class="record-summary">
+        {{ post.sm2 }}
+      </p>
+
+    </article>
+
+    {% endfor %}
+
+  </section>
+
+</main>
