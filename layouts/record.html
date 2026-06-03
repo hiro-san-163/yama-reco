@@ -1,1 +1,214 @@
+---
+layout: default
+---
 
+<main class="record-page">
+
+  {% include breadcrumb.html %}
+
+  <article class="record-article">
+
+    <header class="record-header">
+
+      <h1 class="record-title">
+        {{ page.title }}
+      </h1>
+
+      <div class="record-meta">
+
+        <div class="record-meta-item">
+          <span class="meta-label">山行日</span>
+          <span class="meta-value">{{ page.date_s }}</span>
+        </div>
+
+        <div class="record-meta-item">
+          <span class="meta-label">山域</span>
+          <span class="meta-value">{{ page.area }}</span>
+        </div>
+
+        <div class="record-meta-item">
+          <span class="meta-label">ジャンル</span>
+          <span class="meta-value">{{ page.genre }}</span>
+        </div>
+
+        <div class="record-meta-item">
+          <span class="meta-label">日数</span>
+          <span class="meta-value">
+            {% assign duration_num = page.duration | plus: 0 %}
+
+            {% if duration_num == 1 %}
+              日帰り
+            {% elsif duration_num > 1 %}
+              {{ duration_num | minus: 1 }}泊{{ duration_num }}日
+            {% endif %}
+          </span>
+        </div>
+
+        {% if page.members and page.members != "" %}
+        <div class="record-meta-item">
+          <span class="meta-label">同行者</span>
+          <span class="meta-value">{{ page.members }}</span>
+        </div>
+        {% endif %}
+
+        {% if page.weather and page.weather != "" %}
+        <div class="record-meta-item">
+          <span class="meta-label">天候</span>
+          <span class="meta-value">{{ page.weather }}</span>
+        </div>
+        {% endif %}
+
+      </div>
+
+    </header>
+
+    {% if page.tm %}
+    <figure class="record-main-image">
+
+      <img
+        src="{{ page.tm | relative_url }}"
+        alt="{{ page.title }}"
+        loading="eager">
+
+      {% if page.tmfg and page.tmfg != "" %}
+      <figcaption>
+        {{ page.tmfg }}
+      </figcaption>
+      {% endif %}
+
+    </figure>
+    {% endif %}
+
+    {% if page.sm2 and page.sm2 != "" %}
+    <section class="record-section">
+
+      <h2 class="record-section-title">
+        山行概要
+      </h2>
+
+      <div class="record-summary">
+        {{ page.sm2 | newline_to_br }}
+      </div>
+
+    </section>
+    {% endif %}
+
+    {% assign gallery_exists = false %}
+
+    {% if page.gp1 %}{% assign gallery_exists = true %}{% endif %}
+    {% if page.gp2 %}{% assign gallery_exists = true %}{% endif %}
+    {% if page.gp3 %}{% assign gallery_exists = true %}{% endif %}
+
+    {% if gallery_exists %}
+    <section class="record-section">
+
+      <h2 class="record-section-title">
+        フォトギャラリー
+      </h2>
+
+      <div class="record-gallery">
+
+        {% if page.gp1 %}
+        <figure class="gallery-item">
+          <img src="{{ page.gp1 | relative_url }}" alt="">
+          {% if page.gpfg1 and page.gpfg1 != "" %}
+          <figcaption>{{ page.gpfg1 }}</figcaption>
+          {% endif %}
+        </figure>
+        {% endif %}
+
+        {% if page.gp2 %}
+        <figure class="gallery-item">
+          <img src="{{ page.gp2 | relative_url }}" alt="">
+          {% if page.gpfg2 and page.gpfg2 != "" %}
+          <figcaption>{{ page.gpfg2 }}</figcaption>
+          {% endif %}
+        </figure>
+        {% endif %}
+
+        {% if page.gp3 %}
+        <figure class="gallery-item">
+          <img src="{{ page.gp3 | relative_url }}" alt="">
+          {% if page.gpfg3 and page.gpfg3 != "" %}
+          <figcaption>{{ page.gpfg3 }}</figcaption>
+          {% endif %}
+        </figure>
+        {% endif %}
+
+      </div>
+
+    </section>
+    {% endif %}
+
+    {% if page.course_time and page.course_time != "" %}
+    <section class="record-section">
+
+      <h2 class="record-section-title">
+        コースタイム
+      </h2>
+
+      <div class="record-course-time">
+        {{ page.course_time | newline_to_br }}
+      </div>
+
+    </section>
+    {% endif %}
+
+    {% if page.yamareco_url and page.yamareco_url != "" %}
+    <section class="record-section">
+
+      <div class="record-yamareco">
+
+        <a
+          href="{{ page.yamareco_url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="yamareco-link">
+
+          ヤマレコで見る
+
+        </a>
+
+      </div>
+
+    </section>
+    {% endif %}
+
+    <nav class="record-navigation">
+
+      {% assign prev_post = page.previous %}
+      {% assign next_post = page.next %}
+
+      <div class="nav-prev">
+
+        {% if prev_post %}
+          <a href="{{ prev_post.url | relative_url }}">
+            ← 前の記事
+          </a>
+        {% endif %}
+
+      </div>
+
+      <div class="nav-index">
+
+        <a href="{{ '/records/' | relative_url }}">
+          一覧へ戻る
+        </a>
+
+      </div>
+
+      <div class="nav-next">
+
+        {% if next_post %}
+          <a href="{{ next_post.url | relative_url }}">
+            次の記事 →
+          </a>
+        {% endif %}
+
+      </div>
+
+    </nav>
+
+  </article>
+
+</main>
