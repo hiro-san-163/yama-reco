@@ -1,311 +1,407 @@
-V5_SPEC.md
+DATA_SPEC.md
 
-hiro-san 山歩きサイト V5 仕様書
+hiro-san 山歩きサイト V5 データ仕様書
 
 ⸻
 
 概要
 
-V5は GitHub Pages + Jekyll を利用した山行記録サイトである。
+V5では山行データをJSONで管理する。
 
-データ駆動型設計を採用し、
+主データは records_master.json とし、個別記事(md)生成の元データとして利用する。
 
-* records_master.json
-* SBrecords.json
-* STrecords.json
-
-を中心として運用する。
+外部協力者データとして SBrecords.json および STrecords.json を利用する。
 
 ⸻
 
-データフロー
-
-hiro-san データ
+データファイル一覧
 
 records_master.json
 
-↓
+hiro-san の山行データ。
 
-md生成
+用途
 
-↓
-
-_posts
-
-↓
-
-site.posts
-
-↓
-
-records/index
-
-↓
-
-record.html
+* md生成元データ
+* records/index表示元
+* logs/index検索対象
 
 ⸻
-
-共同管理データ
 
 SBrecords.json
 
+silverboyさんの山行データ。
+
+用途
+
+* logs/index検索対象
+
+制約
+
+* md生成しない
+* site.postsへ変換しない
+
+⸻
+
 STrecords.json
 
-↓
-
-JSONのまま利用
-
-↓
-
-logs/index
-
-⸻
-
-ページ構成
-
-主要ページ
-
-* index.html
-* records/index.html
-* record.html
-* logs/index.html
-* blog.html
-* about.html
-* other.html
-
-⸻
-
-将来拡張ページ
-
-* area/index.html
-* genre/index.html
-
-⸻
-
-アーキテクチャ概要
-
-V5では用途に応じてデータ取得方法を分離する。
-
-⸻
-
-records系
-
-利用データ
-
-site.posts
+ショウタンさんの山行データ。
 
 用途
 
-* 記事一覧
-* 記事検索
-* 個別記事表示
+* logs/index検索対象
+
+制約
+
+* md生成しない
+* site.postsへ変換しない
 
 ⸻
 
-logs系
+records_master.json スキーマ
 
-利用データ
-
-* records_master.json
-* SBrecords.json
-* STrecords.json
-
-用途
-
-* 横断検索
-* 山行データ検索
-
-site.posts は利用しない。
-
-⸻
-
-records/index
-
-目的
-
-山行記録一覧および検索ページ
-
-⸻
-
-データソース
-
-site.posts
-
-⸻
-
-データ取得
-
-Liquidで site.posts を取得する。
+{
+  "date_s": "",
+  "date_e": "",
+  "duration": "",
+  "record_id": "",
+  "title": "",
+  "area": "",
+  "genre": "",
+  "members": "",
+  "weather": "",
+  "course_time": "",
+  "course_note": "",
+  "summary": "",
+  "sm2": "",
+  "yamareco_url": "",
+  "map": "",
+  "tm": "",
+  "tmfg": "",
+  "gp1": "",
+  "gpfg1": "",
+  "gp2": "",
+  "gpfg2": "",
+  "gp3": "",
+  "gpfg3": "",
+  "slug": ""
+}
 
 ⸻
 
-検索
+項目定義
 
-JavaScriptによるクライアントサイド検索を行う。
+date_s
 
-⸻
+型
 
-検索対象
+string
 
-* title
-* area
-* genre
-* members
-* summary
+形式
 
-⸻
+YYYY-MM-DD
 
-表示内容
+説明
 
-* タイトル
-* 山行日
-* エリア
-* ジャンル
-* サムネイル
-* 概要
+山行開始日
 
 ⸻
 
-機能
+date_e
 
-* キーワード検索
-* ソート
-* ページネーション
+型
 
-⸻
+string
 
-record.html
+形式
 
-目的
+YYYY-MM-DD
 
-山行記事表示ページ
+説明
 
-⸻
+山行終了日
 
-データソース
-
-front matter
+日帰りの場合は date_s と同じ値を設定する。
 
 ⸻
 
-表示順序
+duration
 
-1. パンくず
-2. タイトル
-3. メタ情報
-4. メイン画像
-5. 本文
-6. 前後記事ナビ
+型
 
-⸻
+string
 
-メタ情報
+説明
 
-表示対象
+山行期間
 
-* 山行日
-* エリア
-* ジャンル
-* 同行者
-* 天候
+例
+
+* 日帰り
+* 1泊2日
+* 2泊3日
 
 ⸻
 
-logs/index
+record_id
 
-目的
+型
 
-全山行データ横断検索
+string
 
-⸻
+説明
 
-データソース
-
-* records_master.json
-* SBrecords.json
-* STrecords.json
+レコード識別ID
 
 ⸻
 
-データ取得
+title
 
-JavaScriptでJSONを直接読み込む。
+型
 
-site.posts は利用しない。
+string
 
-⸻
+説明
 
-検索
-
-JavaScriptによるクライアントサイド検索を行う。
+山行タイトル
 
 ⸻
 
-検索対象
+area
 
-* title
-* area
-* genre
-* members
-* summary
+型
 
-⸻
+string
 
-検索結果表示
+説明
 
-* タイトル
-* 山行日
-* エリア
-* ジャンル
-* メンバー
-* 概要
+山域・エリア名
 
 ⸻
 
-blog.html
+genre
 
-目的
+型
 
-山行記録以外の記事を表示する。
+string
 
-⸻
+説明
 
-状態
-
-仕様策定中
+山行ジャンル
 
 ⸻
 
-about.html
+members
 
-目的
+型
 
-サイトおよび運営者紹介ページ
+string
 
-⸻
+説明
 
-状態
-
-仕様策定中
+同行者
 
 ⸻
 
-other.html
+weather
 
-目的
+型
 
-山行記録以外のコンテンツを表示する。
+string
 
-⸻
+説明
 
-状態
-
-仕様策定中
+天候
 
 ⸻
 
-md生成
+course_time
+
+型
+
+string
+
+説明
+
+コースタイム
+
+⸻
+
+course_note
+
+型
+
+string
+
+説明
+
+コースに関する補足情報
+
+⸻
+
+summary
+
+型
+
+string
+
+説明
+
+山行記録の全文検索用テキスト
+
+logs/index の全文検索対象として利用する。
+
+一覧表示には利用しない。
+
+⸻
+
+sm2
+
+型
+
+string
+
+説明
+
+山行概要
+
+records/index および logs/index の一覧表示に利用する。
+
+⸻
+
+yamareco_url
+
+型
+
+string
+
+説明
+
+ヤマレコ記録URL
+
+⸻
+
+map
+
+型
+
+string
+
+説明
+
+地図URLまたは地図情報
+
+⸻
+
+tm
+
+型
+
+string
+
+説明
+
+メイン画像パス
+
+⸻
+
+tmfg
+
+型
+
+string
+
+説明
+
+メイン画像キャプション
+
+⸻
+
+gp1
+
+型
+
+string
+
+説明
+
+ギャラリー画像1
+
+⸻
+
+gpfg1
+
+型
+
+string
+
+説明
+
+ギャラリー画像1キャプション
+
+⸻
+
+gp2
+
+型
+
+string
+
+説明
+
+ギャラリー画像2
+
+⸻
+
+gpfg2
+
+型
+
+string
+
+説明
+
+ギャラリー画像2キャプション
+
+⸻
+
+gp3
+
+型
+
+string
+
+説明
+
+ギャラリー画像3
+
+⸻
+
+gpfg3
+
+型
+
+string
+
+説明
+
+ギャラリー画像3キャプション
+
+⸻
+
+slug
+
+型
+
+string
+
+説明
+
+URL生成用スラッグ
+
+⸻
+
+md生成ルール
 
 元データ
 
@@ -333,109 +429,173 @@ yamareco_urlから記録ID部分を抽出して使用する。
 
 front matter
 
-records_master.json の各項目を利用する。
-
-詳細は DATA_SPEC.md を参照。
+records_master.json の全項目をfront matterへ出力する。
 
 ⸻
 
-records_master.json
+利用ルール
 
-用途
+records/index
 
-* md生成元データ
-* records/index表示元
-* logs/index検索対象
+利用データ
 
-詳細は DATA_SPEC.md を参照。
+site.posts
 
 ⸻
 
-SBrecords.json
+検索方式
 
-用途
-
-logs/index専用
+JavaScriptによるクライアントサイド検索
 
 ⸻
 
-制約
+検索対象
 
-* md化しない
-* site.postsへ変換しない
-
-⸻
-
-STrecords.json
-
-用途
-
-logs/index専用
+* title
+* area
+* genre
 
 ⸻
 
-制約
+一覧表示
 
-* md化しない
-* site.postsへ変換しない
-
-⸻
-
-共通デザイン方針
-
-対応環境
-
-* PC
-* タブレット
-* スマートフォン
+* title
+* date_s
+* area
+* genre
+* tm
+* sm2
 
 ⸻
 
-CSS
+record.html
 
-共通CSSを利用する。
+利用データ
 
-ページ単位で必要最小限の追加CSSのみ許可する。
+front matter
 
 ⸻
 
-開発ルール
+logs/index
 
-設計変更は禁止。
+利用データ
 
-既存V5アーキテクチャの範囲で実装すること。
+* records_master.json
+* SBrecords.json
+* STrecords.json
 
-仕様変更が必要な場合は実装を行わず、
+site.posts は利用しない。
 
-* 変更理由
-* メリット
-* デメリット
-* 影響範囲
+JavaScriptでJSONを直接検索する。
 
-を提示し提案のみ行うこと。
+⸻
+
+全文検索対象
+
+* title
+* summary
+
+⸻
+
+プルダウン検索対象
+
+* area
+* genre
+* year
+* month
+
+⸻
+
+year
+
+date_s から生成する。
+
+⸻
+
+month
+
+date_s から生成する。
+
+⸻
+
+一覧表示
+
+* title
+* date_s
+* area
+* genre
+* members
+* sm2
+
+⸻
+
+データ管理ルール
+
+records_master.json はV5の基幹データである。
+
+⸻
+
+既存項目名の変更は禁止。
+
+⸻
+
+既存項目の削除は禁止。
+
+⸻
+
+新規項目追加は可能。
+
+ただし追加時は
+
+* DATA_SPEC.md
+* V5_SPEC.md
+
+を同時に更新すること。
 
 ⸻
 
 最重要ルール
 
+records_master.json
+
+↓
+
+md生成
+
+↓
+
+_posts
+
+↓
+
+site.posts
+
+↓
+
 records/index
 
-→ site.posts を利用する
+↓
 
-→ JavaScript検索を行う
+record.html
+
+⸻
+
+SBrecords.json
+
+STrecords.json
+
+↓
+
+JSONのまま利用
+
+↓
 
 logs/index
 
-→ site.posts を利用しない
-
-→ records_master.json
-→ SBrecords.json
-→ STrecords.json
-
-を直接検索する
-
-→ JavaScript検索を行う
+⸻
 
 SBrecords.json と STrecords.json は md化しない。
 
-このルールはV5アーキテクチャの中核であり変更してはならない。
+site.postsへ変換しない。
+
+この構造はV5アーキテクチャの中核であり変更してはならない。
