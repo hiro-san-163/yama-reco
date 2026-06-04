@@ -1,448 +1,109 @@
-DATA_SPEC.md
+V5_SPEC.md
+
+hiro-san 山歩きサイト V5 仕様書
+
+⸻
 
 概要
 
-V5では山行データをJSONで管理する。
+V5は GitHub Pages + Jekyll を利用した山行記録サイトである。
 
-主データは records_master.json とし、個別記事(md)生成の元データとして利用する。
+データ駆動型設計を採用し、
 
-外部協力者データとして SBrecords.json および STrecords.json を利用する。
+* records_master.json
+* SBrecords.json
+* STrecords.json
+
+を中心として運用する。
 
 ⸻
 
-データファイル一覧
+データフロー
+
+hiro-san データ
 
 records_master.json
 
-hiro-san の山行データ。
+↓
 
-用途
+md生成
 
-* md生成元データ
-* records/index表示元
-* logs/index検索対象
+↓
+
+_posts
+
+↓
+
+site.posts
+
+↓
+
+records/index
+
+↓
+
+record.html
 
 ⸻
+
+共同管理データ
 
 SBrecords.json
 
-silverboyさんの山行データ。
-
-用途
-
-* logs/index検索対象
-
-注意
-
-* md生成しない
-* site.postsへ変換しない
-
-⸻
-
 STrecords.json
 
-ショウタンさんの山行データ。
+↓
 
-用途
+JSONのまま利用
 
-* logs/index検索対象
+↓
 
-注意
-
-* md生成しない
-* site.postsへ変換しない
+logs/index
 
 ⸻
 
-records_master.json スキーマ
+ページ構成
 
-{
-  "date_s": "",
-  "date_e": "",
-  "duration": "",
-  "record_id": "",
-  "title": "",
-  "area": "",
-  "genre": "",
-  "members": "",
-  "weather": "",
-  "course_time": "",
-  "course_note": "",
-  "summary": "",
-  "sm2": "",
-  "yamareco_url": "",
-  "map": "",
-  "tm": "",
-  "tmfg": "",
-  "gp1": "",
-  "gpfg1": "",
-  "gp2": "",
-  "gpfg2": "",
-  "gp3": "",
-  "gpfg3": "",
-  "slug": ""
-}
+主要ページ
+
+* index.html
+* records/index.html
+* record.html
+* logs/index.html
+* blog.html
+* about.html
+* other.html
 
 ⸻
 
-項目定義
+将来拡張ページ
 
-date_s
-
-型
-
-string
-
-形式
-
-YYYY-MM-DD
-
-説明
-
-山行開始日
+* area/index.html
+* genre/index.html
 
 ⸻
 
-date_e
+アーキテクチャ概要
 
-型
-
-string
-
-形式
-
-YYYY-MM-DD
-
-説明
-
-山行終了日
-
-日帰りの場合は date_s と同じ値を設定する。
+V5では用途に応じてデータ取得方法を分離する。
 
 ⸻
 
-duration
-
-型
-
-string
-
-説明
-
-山行日数
-
-例
-
-日帰り
-
-1泊2日
-
-2泊3日
-
-⸻
-
-record_id
-
-型
-
-string
-
-説明
-
-山行識別ID
-
-⸻
-
-title
-
-型
-
-string
-
-説明
-
-山行タイトル
-
-⸻
-
-area
-
-型
-
-string
-
-説明
-
-山域・エリア
-
-⸻
-
-genre
-
-型
-
-string
-
-説明
-
-ジャンル分類
-
-例
-
-* 日帰り登山
-* テント泊
-* 小屋泊
-* 縦走
-
-⸻
-
-members
-
-型
-
-string
-
-説明
-
-同行者
-
-⸻
-
-weather
-
-型
-
-string
-
-説明
-
-天候
-
-⸻
-
-course_time
-
-型
-
-string
-
-説明
-
-コースタイム
-
-⸻
-
-course_note
-
-型
-
-string
-
-説明
-
-コース補足情報
-
-⸻
-
-summary
-
-型
-
-string
-
-説明
-
-感想本文
-
-/logs\indexで全文検索の対象データ
-
-⸻
-
-sm2
-
-型
-
-string
-
-説明
-
-山行概要
-
-一覧表示や検索結果にも利用する。
-
-⸻
-
-yamareco_url
-
-型
-
-string
-
-説明
-
-ヤマレコ記録URL
-
-⸻
-
-map
-
-型
-
-string
-
-説明
-
-地図URLまたは地図情報
-
-⸻
-
-tm
-
-型
-
-string
-
-説明
-
-代表画像
-
-Thumbnail Main
-
-⸻
-
-tmfg
-
-型
-
-string
-
-説明
-
-代表画像フラグ
-
-⸻
-
-gp1
-
-型
-
-string
-
-説明
-
-ギャラリー画像1
-
-⸻
-
-gpfg1
-
-型
-
-string
-
-説明
-
-ギャラリー画像1フラグ
-
-⸻
-
-gp2
-
-型
-
-string
-
-説明
-
-ギャラリー画像2
-
-⸻
-
-gpfg2
-
-型
-
-string
-
-説明
-
-ギャラリー画像2フラグ
-
-⸻
-
-gp3
-
-型
-
-string
-
-説明
-
-ギャラリー画像3
-
-⸻
-
-gpfg3
-
-型
-
-string
-
-説明
-
-ギャラリー画像3フラグ
-
-⸻
-
-slug
-
-型
-
-string
-
-説明
-
-記事URL生成用スラッグ
-
-⸻
-
-md生成ルール
-
-records_master.json から md ファイルを生成する。
-
-生成先
-
-_posts/
-
-ファイル名形式
-
-YYYY-MM-DD-slug.md
-
-例
-
-2025-08-15-tsubakurodake.md
-
-⸻
-
-利用ルール
-
-records/index
+records系
 
 利用データ
 
 site.posts
 
-⸻
+用途
 
-record.html
-
-利用データ
-
-front matter
+* 記事一覧
+* 記事検索
+* 個別記事表示
 
 ⸻
 
-logs/index
+logs系
 
 利用データ
 
@@ -450,16 +111,331 @@ logs/index
 * SBrecords.json
 * STrecords.json
 
+用途
+
+* 横断検索
+* 山行データ検索
+
 site.posts は利用しない。
 
-JavaScriptでJSONを直接検索する。
+⸻
+
+records/index
+
+目的
+
+山行記録一覧および検索ページ
+
+⸻
+
+データソース
+
+site.posts
+
+⸻
+
+データ取得
+
+Liquidで site.posts を取得する。
+
+⸻
+
+検索
+
+JavaScriptによるクライアントサイド検索を行う。
+
+⸻
+
+検索対象
+
+* title
+* area
+* genre
+* members
+* summary
+
+⸻
+
+表示内容
+
+* タイトル
+* 山行日
+* エリア
+* ジャンル
+* サムネイル
+* 概要
+
+⸻
+
+機能
+
+* キーワード検索
+* ソート
+* ページネーション
+
+⸻
+
+record.html
+
+目的
+
+山行記事表示ページ
+
+⸻
+
+データソース
+
+front matter
+
+⸻
+
+表示順序
+
+1. パンくず
+2. タイトル
+3. メタ情報
+4. メイン画像
+5. 本文
+6. 前後記事ナビ
+
+⸻
+
+メタ情報
+
+表示対象
+
+* 山行日
+* エリア
+* ジャンル
+* 同行者
+* 天候
+
+⸻
+
+logs/index
+
+目的
+
+全山行データ横断検索
+
+⸻
+
+データソース
+
+* records_master.json
+* SBrecords.json
+* STrecords.json
+
+⸻
+
+データ取得
+
+JavaScriptでJSONを直接読み込む。
+
+site.posts は利用しない。
+
+⸻
+
+検索
+
+JavaScriptによるクライアントサイド検索を行う。
+
+⸻
+
+検索対象
+
+* title
+* area
+* genre
+* members
+* summary
+
+⸻
+
+検索結果表示
+
+* タイトル
+* 山行日
+* エリア
+* ジャンル
+* メンバー
+* 概要
+
+⸻
+
+blog.html
+
+目的
+
+山行記録以外の記事を表示する。
+
+⸻
+
+状態
+
+仕様策定中
+
+⸻
+
+about.html
+
+目的
+
+サイトおよび運営者紹介ページ
+
+⸻
+
+状態
+
+仕様策定中
+
+⸻
+
+other.html
+
+目的
+
+山行記録以外のコンテンツを表示する。
+
+⸻
+
+状態
+
+仕様策定中
+
+⸻
+
+md生成
+
+元データ
+
+records_master.json
+
+⸻
+
+出力先
+
+_posts
+
+⸻
+
+ファイル名
+
+YYYY-MM-DD-yamareco_url.md
+
+例
+
+2025-08-15-1234567.md
+
+yamareco_urlから記録ID部分を抽出して使用する。
+
+⸻
+
+front matter
+
+records_master.json の各項目を利用する。
+
+詳細は DATA_SPEC.md を参照。
+
+⸻
+
+records_master.json
+
+用途
+
+* md生成元データ
+* records/index表示元
+* logs/index検索対象
+
+詳細は DATA_SPEC.md を参照。
+
+⸻
+
+SBrecords.json
+
+用途
+
+logs/index専用
+
+⸻
+
+制約
+
+* md化しない
+* site.postsへ変換しない
+
+⸻
+
+STrecords.json
+
+用途
+
+logs/index専用
+
+⸻
+
+制約
+
+* md化しない
+* site.postsへ変換しない
+
+⸻
+
+共通デザイン方針
+
+対応環境
+
+* PC
+* タブレット
+* スマートフォン
+
+⸻
+
+CSS
+
+共通CSSを利用する。
+
+ページ単位で必要最小限の追加CSSのみ許可する。
 
 ⸻
 
 開発ルール
 
-records_master.json の項目名はV5の基本データ構造である。
+設計変更は禁止。
 
-既存項目名の変更は禁止。
+既存V5アーキテクチャの範囲で実装すること。
 
-項目追加は可能だが、既存機能への影響を確認した上で実施すること。
+仕様変更が必要な場合は実装を行わず、
+
+* 変更理由
+* メリット
+* デメリット
+* 影響範囲
+
+を提示し提案のみ行うこと。
+
+⸻
+
+最重要ルール
+
+records/index
+
+→ site.posts を利用する
+
+→ JavaScript検索を行う
+
+logs/index
+
+→ site.posts を利用しない
+
+→ records_master.json
+→ SBrecords.json
+→ STrecords.json
+
+を直接検索する
+
+→ JavaScript検索を行う
+
+SBrecords.json と STrecords.json は md化しない。
+
+このルールはV5アーキテクチャの中核であり変更してはならない。
