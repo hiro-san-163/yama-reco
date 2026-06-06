@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   const cards = Array.from(document.querySelectorAll(".record-card"));
+  const list = document.getElementById("records-list");
 
-  const yearFilter = document.getElementById("record-filter-year");
+  const titleFilter = document.getElementById("record-filter-title");
   const areaFilter = document.getElementById("record-filter-area");
   const genreFilter = document.getElementById("record-filter-genre");
+  const sortSelect = document.getElementById("record-sort");
 
   const searchButton = document.getElementById("record-search-button");
   const resetButton = document.getElementById("record-reset-button");
@@ -12,164 +13,214 @@ document.addEventListener("DOMContentLoaded", () => {
   const listTitle = document.getElementById("record-list-title");
   const resultCount = document.getElementById("record-result-count");
   const emptyMessage = document.getElementById("record-empty-message");
+  const pagination = document.getElementById("record-pagination");
 
-  const INITIAL_COUNT = 5;
+  const PAGE_SIZE = 12;
 
-  /* -----------------------------
-     初期化
-  ----------------------------- */
+  let filteredCards = [];
+  let currentPage = 1;
 
   initializeFilters();
-  initializeCards();
-  showLatestRecords();
+  bindEvents();
+  applyRecords({ resetPage: true, initial: true });
 
-  /* -----------------------------
-     イベント
-  ----------------------------- */
-
-  searchButton.addEventListener("click", searchRecords);
-
-  resetButton.addEventListener("click", () => {
-
-    yearFilter.value = "";
-    areaFilter.value = "";
-    genreFilter.value = "";
-
-    showLatestRecords();
-
-  });
-
-  /* -----------------------------
-     カードクリック
-  ----------------------------- */
-
-  cards.forEach(card => {
-
-    card.addEventListener("click", () => {
-
-      const url = card.dataset.url;
-
-      if (url) {
-        window.location.href = url;
-      }
-
+  function bindEvents() {
+    searchButton.addEventListener("click", () => {
+      applyRecords({ resetPage: true });
     });
 
-  });
+    resetButton.addEventListener("click", () => {
+      titleFilter.value = "";
+      areaFilter.value = "";
+      genreFilter.value = "";
+      sortSelect.value = "desc";
+      applyRecords({ resetPage: true, initial: true });
+    });
 
-  /* -----------------------------
-     フィルター生成
-  ----------------------------- */
+    titleFilter.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        applyRecords({ resetPage: true });
+      }
+    });
+
+    sortSelect.addEventListener("change", () => {
+      applyRecords({ resetPage: true });
+    });
+
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        const url = card.dataset.url;
+
+        if (url) {
+          window.location.href = url;
+        }
+      });
+    });
+  }
 
   function initializeFilters() {
-
-    populateSelect(
-      yearFilter,
-      getUniqueValues(cards, "recordYear").sort().reverse()
-    );
-
     populateSelect(
       areaFilter,
-      getUniqueValues(cards, "recordArea").sort()
+      getUniqueValues(cards, "recordArea").sort((a, b) => a.localeCompare(b, "ja"))
     );
 
     populateSelect(
       genreFilter,
-      getUniqueValues(cards, "recordGenre").sort()
+      getUniqueValues(cards, "recordGenre").sort((a, b) => a.localeCompare(b, "ja"))
     );
-
   }
 
   function getUniqueValues(cardList, key) {
-
     return [...new Set(
       cardList
         .map(card => card.dataset[key])
         .filter(Boolean)
     )];
-
   }
 
   function populateSelect(selectElement, values) {
-
     values.forEach(value => {
-
       const option = document.createElement("option");
 
       option.value = value;
       option.textContent = value;
 
       selectElement.appendChild(option);
-
     });
-
   }
 
-  /* -----------------------------
-     初期表示
-  ----------------------------- */
+  function applyRecords({ resetPage = false, initial = false } = {}) {
+    if (resetPage) {
+      currentPage = 1;
+    }
 
-  function showLatestRecords() {
+    filteredCards = cards
+      .filter(matchesFilters)
+      .sort(compareCards);
 
+    renderCards();
+    renderPagination();
+    updateStatus(initial);
+  }
+
+  function matchesFilters(card) {
+    const titleQuery = normalize(titleFilter.value);
+    const selectedArea = areaFilter.value;
+    const selectedGenre = genreFilter.value;
+
+    const titleMatch =
+      !titleQuery ||
+      normalize(card.dataset.recordTitle).includes(titleQuery);
+
+    const areaMatch =
+      !selectedArea ||
+      card.dataset.recordArea === selectedArea;
+
+    const genreMatch =
+      !selectedGenre ||
+      card.dataset.recordGenre === selectedGenre;
+
+    return titleMatch && areaMatch && genreMatch;
+  }
+
+  function compareCards(a, b) {
+    const aDate = a.dataset.recordDate || "";
+    const bDate = b.dataset.recordDate || "";
+
+    if (sortSelect.value === "asc") {
+      return aDate.localeCompare(bDate);
+    }
+
+    return bDate.localeCompare(aDate);
+  }
+
+  function renderCards() {
     cards.forEach(card => {
       card.hidden = true;
     });
 
-    cards.slice(0, INITIAL_COUNT).forEach(card => {
+    filteredCards.forEach(card => {
+      list.appendChild(card);
+    });
+
+    const pageCards = getCurrentPageCards();
+
+    pageCards.forEach(card => {
       card.hidden = false;
     });
-
-    listTitle.textContent = "最新の山行記録";
-    resultCount.textContent = `${Math.min(INITIAL_COUNT, cards.length)}件表示`;
-
-    emptyMessage.hidden = true;
-
   }
 
-  /* -----------------------------
-     検索
-  ----------------------------- */
+  function getCurrentPageCards() {
+    const start = (currentPage - 1) * PAGE_SIZE;
+    return filteredCards.slice(start, start + PAGE_SIZE);
+  }
 
-  function searchRecords() {
+  function renderPagination() {
+    const pageCount = Math.ceil(filteredCards.length / PAGE_SIZE);
 
-    const selectedYear = yearFilter.value;
-    const selectedArea = areaFilter.value;
-    const selectedGenre = genreFilter.value;
+    pagination.innerHTML = "";
+    pagination.hidden = pageCount <= 1;
 
-    let visibleCount = 0;
+    if (pageCount <= 1) {
+      return;
+    }
 
-    cards.forEach(card => {
+    pagination.appendChild(createPageButton("前へ", currentPage - 1, currentPage === 1));
 
-      const yearMatch =
-        !selectedYear ||
-        card.dataset.recordYear === selectedYear;
+    for (let page = 1; page <= pageCount; page++) {
+      if (shouldShowPage(page, pageCount)) {
+        pagination.appendChild(createPageButton(String(page), page, false, page === currentPage));
+      }
+    }
 
-      const areaMatch =
-        !selectedArea ||
-        card.dataset.recordArea === selectedArea;
+    pagination.appendChild(createPageButton("次へ", currentPage + 1, currentPage === pageCount));
+  }
 
-      const genreMatch =
-        !selectedGenre ||
-        card.dataset.recordGenre === selectedGenre;
+  function shouldShowPage(page, pageCount) {
+    return (
+      page === 1 ||
+      page === pageCount ||
+      Math.abs(page - currentPage) <= 2
+    );
+  }
 
-      const matched =
-        yearMatch &&
-        areaMatch &&
-        genreMatch;
+  function createPageButton(label, page, disabled, current = false) {
+    const button = document.createElement("button");
 
-      card.hidden = !matched;
+    button.type = "button";
+    button.className = "pagination-button";
+    button.textContent = label;
+    button.disabled = disabled;
 
-      if (matched) {
-        visibleCount++;
+    if (current) {
+      button.classList.add("is-current");
+      button.setAttribute("aria-current", "page");
+    }
+
+    button.addEventListener("click", () => {
+      if (disabled || current) {
+        return;
       }
 
+      currentPage = page;
+      renderCards();
+      renderPagination();
+      updateStatus(false);
     });
 
-    listTitle.textContent = "検索結果";
-    resultCount.textContent = `${visibleCount}件表示`;
-
-    emptyMessage.hidden = visibleCount !== 0;
-
+    return button;
   }
 
+  function updateStatus(initial) {
+    const visibleCount = getCurrentPageCards().length;
+    const totalCount = filteredCards.length;
+
+    listTitle.textContent = initial ? "最新の山行記録" : "検索結果";
+    resultCount.textContent = `${totalCount}件中 ${visibleCount}件表示`;
+    emptyMessage.hidden = totalCount !== 0;
+  }
+
+  function normalize(value) {
+    return (value || "").trim().toLowerCase();
+  }
 });

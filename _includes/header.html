@@ -1,0 +1,16 @@
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-title" href="{{ '/' | relative_url }}">
+      {{ site.title | default: 'hiro-san 山歩きサイト' }}
+    </a>
+
+    <nav class="site-nav" aria-label="主要ページ">
+      <a href="{{ '/' | relative_url }}">ホーム</a>
+      <a href="{{ '/records/' | relative_url }}">山行記録</a>
+      <a href="{{ '/logs/' | relative_url }}">検索</a>
+      <a href="{{ '/about.html' | relative_url }}">紹介</a>
+      <a href="{{ '/blog.html' | relative_url }}">ブログ</a>
+      <a href="{{ '/other.html' | relative_url }}">その他</a>
+    </nav>
+  </div>
+</header>

@@ -15,7 +15,7 @@ custom_js: records
     <h1>山行記録一覧</h1>
 
     <p class="page-description">
-      hiro-sanの山行記録アーカイブです。年・山域・ジャンルで絞り込みできます。
+      hiro-sanの山行記録アーカイブです。タイトル・山域・ジャンルで絞り込みできます。
     </p>
 
   </section>
@@ -24,13 +24,14 @@ custom_js: records
 
     <div class="filter-group">
 
-      <label for="record-filter-year">
-        年
+      <label for="record-filter-title">
+        タイトル
       </label>
 
-      <select id="record-filter-year">
-        <option value="">すべて</option>
-      </select>
+      <input
+        type="search"
+        id="record-filter-title"
+        placeholder="山行タイトルで検索">
 
     </div>
 
@@ -54,6 +55,19 @@ custom_js: records
 
       <select id="record-filter-genre">
         <option value="">すべて</option>
+      </select>
+
+    </div>
+
+    <div class="filter-group">
+
+      <label for="record-sort">
+        並び順
+      </label>
+
+      <select id="record-sort">
+        <option value="desc">新しい順</option>
+        <option value="asc">古い順</option>
       </select>
 
     </div>
@@ -85,7 +99,7 @@ custom_js: records
     </h2>
 
     <p id="record-result-count">
-      5件表示
+      0件表示
     </p>
 
   </section>
@@ -104,11 +118,21 @@ custom_js: records
     {% for post in site.posts %}
 
     <article
-      class="record-card"
-      data-url="{{ post.url }}"
-      data-record-year="{{ post.date_s | slice: 0,4 }}"
-      data-record-area="{{ post.area }}"
-      data-record-genre="{{ post.genre }}">
+      class="record-card{% if post.tm and post.tm != "" %} has-thumb{% endif %}"
+      data-url="{{ post.url | relative_url }}"
+      data-record-date="{{ post.date_s }}"
+      data-record-title="{{ post.title | escape }}"
+      data-record-area="{{ post.area | escape }}"
+      data-record-genre="{{ post.genre | escape }}">
+
+      {% if post.tm and post.tm != "" %}
+      <div class="record-thumb">
+        <img
+          src="{{ post.tm | escape }}"
+          alt="{{ post.title }}"
+          loading="lazy">
+      </div>
+      {% endif %}
 
       <div class="record-date">
         {{ post.date_s }}
@@ -143,5 +167,11 @@ custom_js: records
     {% endfor %}
 
   </section>
+
+  <nav
+    id="record-pagination"
+    class="record-pagination"
+    aria-label="山行記録ページ送り">
+  </nav>
 
 </main>

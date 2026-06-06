@@ -1,1 +1,13 @@
+title: hiro-san 山歩きサイト
+description: hiro-sanの山行記録サイト
+lang: ja
+timezone: Asia/Tokyo
 
+permalink: /records/:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
