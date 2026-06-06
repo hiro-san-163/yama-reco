@@ -1,0 +1,16 @@
+/* =====================================
+   SB theme
+===================================== */
+
+:root{
+  --brand:#1e6df0;
+  --muted:#5a6b7c;
+
+  --color-heading:#1e6df0;
+  --color-heading-secondary:#1e6df0;
+
+  --color-text-body:#0d4db3;
+  --color-text-muted:#5a6b7c;
+
+
+}

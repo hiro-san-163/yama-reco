@@ -1,1 +1,1355 @@
+/* ======================================
+ 01 ROOT VARIABLES 
+====================================== */
+:root { 
+  --color-heading: #144b33;
+  --color-heading-secondary: #1c6b4f; 
+  --color-text-body: #333;
+  --color-text-muted: #567;
+
+  --color-brand: #245d44;
+
+  /* search.css互換 */
+  --brand: #1c6b4f;
+  --muted: #567;
+
+  /* フォントサイズ */
+  --size-h1: 2rem;
+  --size-h2: 1.4rem;
+  --size-h3: 1.05rem;
+  --size-body: 1rem;
+  --size-small: 0.9rem;
+  --size-muted: 0.85rem;
+}
+
+/* ====================================== 
+ 02 BASE
+====================================== */ 
+
+*, 
+*::before, 
+*::after{
+  box-sizing:border-box; 
+} 
+body{ 
+  margin:0; 
+  font-family:"Hiragino Sans","Noto Sans JP",sans-serif; 
+  color:var(--color-text-body); 
+  background:#f0f7f3 url('../data/IMG_4781.JPG') no-repeat center center; 
+  background-size:cover; 
+  line-height:1.6; 
+  padding-top: 60px; 
+} 
+body::before{ 
+  content:""; 
+  position:fixed; 
+  inset:0; 
+  background:rgba(240,247,243,0.45); 
+  z-index:-1; 
+} 
+/* 見出しの統一スタイル */ 
+h1 { 
+    font-size: var(--size-h1); 
+    color: var(--color-heading); 
+    font-weight: 700; 
+    margin: 0 0 16px 0; 
+   } 
+h2 { 
+    font-size: var(--size-h2); 
+    color: var(--color-heading-secondary);
+    font-weight: 700; 
+    margin: 24px 0 12px 0;
+    } 
+h3 { 
+    font-size: var(--size-h3);
+    color: var(--color-heading-secondary);
+    font-weight: 700;
+    margin: 18px 0 10px 0;
+    }
+/* 本文の統一スタイル */ 
+p {
+    color: var(--color-text-body);
+    margin: 0 0 16px 0;
+  }
+/* 補助テキスト */ 
+.muted { color: var(--color-text-muted); 
+    } 
+  a{ 
+    color:var(--color-brand);
+    text-decoration:none;
+    }
+  a:hover{
+    text-decoration:underline;
+    }
+  
+/* ======================================
+ 03 HEADER
+====================================== */
+.pc-nav{
+  display:block;
+}
+
+.mobile-nav{
+  display:none;
+}
+
+.site-header{
+  position:fixed;
+  top:0;
+  z-index:1000;
+ 
+  width:100%;
+ 
+  background:#357f67;
+ 
+  color:#fff;
+}
+
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  max-width:1300px;
+ 
+  margin:0 auto;
+  padding:12px 20px;
+}
+
+/* ロゴ */
+.site-logo a{
+  font-size:1.8rem;
+  font-weight:700;
+  letter-spacing:.05em;
+  color:#ffffff;
+  text-decoration:none;
+ } 
+
+/* ======================================
+ 04 HOME NAVIGATION 
+====================================== */
+.pc-nav ul{
+  display:flex;
+  gap:28px;
+ 
+  margin:0;
+  padding:0;
+
+  list-style:none; 
+}
+
+.pc-nav a{
+  display:inline-block;
+
+  color:#fff;
+ 
+  font-weight:500;
+  text-decoration:none;
+}
+
+/* ハンバーガー（デフォルト非表示） */
+.nav-toggle{
+  display:none;
+
+  border:none;
+ 
+  background:none;
+ 
+  color:#fff;
+  font-size:28px;
+   
+  cursor:pointer;
+}
+ 
+/* ======================================
+ 05 BREADCRUMB
+====================================== */
+
+.breadcrumb{
+  margin:0 0 12px;
+
+  font-size:0.8rem;
+  color:#666;
+}
+
+.breadcrumb ol{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+
+  margin:0;
+  padding:0;
+
+  list-style:none;
+}
+
+.breadcrumb li::after{
+  content:"›";
+
+  margin-left:8px;
+
+  color:#888;
+}
+
+.breadcrumb li:last-child::after{
+  content:"";
+}
+
+/* ======================================
+ 06 FOOTER 
+====================================== */
+.site-footer{
+  margin-top:60px;  
+  padding:30px 0;
+  
+  background:#567e74;
+  
+ color:#fff;
+}
+
+.footer-inner{
+  max-width:1300px;
+ 
+  margin:0 auto;
+  padding:0 20px;
+
+  text-align:center;
+}
+
+.footer-nav ul{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  gap:24px;
+ 
+  margin:0 0 16px 0;
+  padding:0;
+
+ list-style:none;
+}
+
+.footer-nav a{
+  display:inline-block;
+
+  color:#fff;
+
+  font-size:.9rem;
+
+  text-decoration:none;
+} 
+
+/* ★ 現在ページ強調（追加部分） */ 
+.footer-nav a.active{
+  background:#ffffff;
+  color:#357f67;
+  padding:6px 10px;
+  border-radius:6px;
+  font-weight:700;
+}
+
+/* ======================================
+ 07 LAYOUT
+====================================== */
+/* -----------------------------------------
+ container
+----------------------------------------- */
+.container{ 
+   max-width:1300px;
+ 
+   margin:20px auto;
+   padding:0 20px;
+  }
+
+/* -----------------------------------------
+ top layout
+----------------------------------------- */
+.top-layout{
+  display:flex;
+  align-items:flex-start;
+  gap:80px;
+ }
+
+/* -----------------------------------------
+ sidebar
+----------------------------------------- */
+.sidebar{
+  flex:0 0 380px;
+ 
+  padding-top:30px;
+}
+
+/* -----------------------------------------
+ main content
+----------------------------------------- */
+.main-content{
+  flex:1;
+ 
+  padding-top:30px;
+}
+
+/* ======================================
+ page header
+====================================== */
+
+.page-header{
+  margin-bottom:24px;
+}
+
+.page-header h1{
+  margin:0;
+}
+
+/* ======================================
+ 08 PAGINATION（追加） 
+====================================== */ 
+/* -----------------------------------------
+ pagination container
+----------------------------------------- */
+#pagination{
+  margin:40px 0;
+  text-align:center;
+}
+
+/* -----------------------------------------
+ pagination button
+----------------------------------------- */
+#pagination button{
+  margin:0 6px;
+  padding:8px 14px;
+  border-radius:6px;
+  border:1px solid #357f67;
+  background:#fff;
+  color:#357f67;
+  cursor:pointer;
+  transition:
+  background .2s,
+  color .2s,
+  transform .2s;
+} 
+
+/* -----------------------------------------
+ pagination active
+----------------------------------------- */
+#pagination button.active{
+  background:#357f67;
+  color:#fff;
+  font-weight:700;
+  transform:scale(1.05);
+}
+
+/* ======================================
+ 09 TOP
+====================================== */
+@media (min-width:961px){
+
+/* -----------------------------------------
+ intro
+----------------------------------------- */
+
+.intro{
+  margin-bottom:40px;
+}
+
+.site-description{
+  margin:0 0 36px 0;
+
+  color:#555;
+
+  font-size:1.3rem;
+  font-weight:600;
+  line-height:1.8;
+}
+
+/* -----------------------------------------
+ home nav
+----------------------------------------- */
+
+.home-nav{
+  display:flex;
+  flex-direction:column;
+
+  gap:24px;
+}
+
+/* -----------------------------------------
+ primary nav
+----------------------------------------- */
+
+.nav-primary{
+  display:flex;
+  flex-direction:column;
+
+  gap:16px;
+}
+
+.nav-primary a{
+  display:block;
+
+  padding:18px 20px;
+
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.7);
+
+  background:rgba(255,255,255,0.55);
+
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+
+  transition:all .3s ease;
+}
+
+/* -----------------------------------------
+ secondary nav
+----------------------------------------- */
+
+.nav-secondary{
+  display:flex;
+  flex-direction:column;
+
+  margin-top:28px;
+
+  gap:12px;
+}
+
+.nav-secondary a{
+  display:block;
+
+  padding:10px 14px;
+
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.7);
+
+  background:rgba(255,255,255,0.34);
+
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+
+  box-shadow:
+    0 10px 28px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+
+  font-size:0.92rem;
+
+  transition:all .3s ease;
+}
+
+/* -----------------------------------------
+ nav typography
+----------------------------------------- */
+
+.nav-label{
+  display:block;
+
+  color:var(--color-heading);
+
+  font-size:1.6rem;
+  font-weight:700;
+  line-height:1.3;
+}
+
+.nav-sub{
+  display:block;
+
+  margin-top:6px;
+
+  color:var(--color-text-muted);
+
+  font-size:0.95rem;
+  font-weight:500;
+  line-height:1.5;
+}
+
+/* -----------------------------------------
+ interaction
+----------------------------------------- */
+
+.nav-primary a:hover,
+.nav-secondary a:hover{
+  background:rgba(255,255,255,0.8);
+
+  transform:translateY(-2px);
+}
+
+}
+
+/* ======================================
+ 09.5 RECORDS UI（補助ナビ）
+====================================== */
+
+/* -----------------------------------------
+ records note
+----------------------------------------- */
+.records-note{
+  margin-bottom: 24px;
+  color: var(--color-text-muted);
+}
+
+/* -----------------------------------------
+ records sub navigation
+----------------------------------------- */
+.records-sub-nav{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+.records-sub-nav a{
+  display:block;
+
+  padding:12px 16px;
+  margin-bottom:8px;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,0.22);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+
+  color:var(--color-text-body);
+  text-decoration:none;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+
+  transition:all .25s ease;
+}
+
+.records-sub-nav a:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,0.35);
+}
+
+/* ======================================
+ 10 RECORD CARD
+====================================== */
+
+/* -----------------------------------------
+ latest section
+----------------------------------------- */
+
+.latest{
+  display:flex;
+  flex-direction:column;
+ 
+  gap:10px;
+}
+
+/* -----------------------------------------
+ records list
+----------------------------------------- */
+
+.latest-records{
+  display:flex;
+  flex-direction:column;
+ 
+  gap:10px;
+}
+
+.latest h2{
+  margin:0 0 24px 0;
+}
+
+ /* -----------------------------------------
+ record card Layout
+ ----------------------------------------- */
+
+.record-card{
+  display:grid;
+  grid-template-columns:140px 1fr;
+ 
+  column-gap:20px;
+  row-gap:10px;
+
+  padding:8px;
+ 
+  background:rgba(255,255,255,0.92);
+ 
+  border-radius:12px;
+   
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease;
+
+  /* ★ここに追加 */
+  -webkit-tap-highlight-color: transparent; 
+}
+
+.record-card:hover{
+  transform:translateY(-3px);
+}
+
+.record-card:active{
+  transform:translateY(-1px);
+}
+
+/* -----------------------------------------
+ record image
+----------------------------------------- */
+
+.record-thumb{
+  grid-column:1;
+  grid-row:1 / 4;
+ 
+  width:140px;
+  height:140px;
+ 
+  object-fit:cover;
+ 
+  border-radius:10px;
+}
+
+/* -----------------------------------------
+ typography
+----------------------------------------- */
+
+.record-title{
+  grid-column:2;
+ 
+  margin:0;
+
+  color: var(--color-heading-secondary);
+ 
+  font-size: var(--size-h3);
+  font-weight:700;
+ }
+
+.record-detail{
+  grid-column:2;
+ 
+  color: var(--color-text-muted);
+ 
+  font-size: var(--size-muted);
+  
+  opacity:0.78;
+}
+
+.record-summary{
+  grid-column:2;
+ 
+ color: var(--color-text-body);
+ 
+ font-size: var(--size-small);
+ line-height:1.6;
+}
+
+/* -----------------------------------------
+ records list title
+----------------------------------------- */
+
+#list-title{
+  margin:0 0 20px;
+
+  color:var(--color-heading);
+
+  font-size:1.4rem;
+  font-weight:700;
+
+  line-height:1.4;
+}
+
+/* -----------------------------------------
+ more link
+----------------------------------------- */
+
+#more-link{
+  display:inline-block;
+
+  margin-top:18px;
+
+  color:var(--color-brand);
+
+  font-weight:600;
+
+  text-decoration:none;
+
+  transition:opacity .2s ease;
+}
+
+
+#more-link:hover{
+  opacity:0.7;
+}
+
+/* -----------------------------------------
+ list box
+----------------------------------------- */
+
+.list-box{
+  margin-top:32px;
+}
+
+/* -----------------------------------------
+ loading / placeholder
+----------------------------------------- */
+
+.loading,
+.label-placeholder{
+  display:block;
+
+  padding:18px 20px;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,0.45);
+
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+
+  color:var(--color-text-muted);
+
+  font-size:0.95rem;
+  font-weight:500;
+
+  text-align:center;
+}
+
+/* ======================================
+ 11 LABEL BUTTON
+====================================== */
+
+/* -----------------------------------------
+ label buttons layout
+----------------------------------------- */
+
+.label-buttons{
+  display:flex;
+  flex-wrap:wrap;
+ 
+  gap:22px;
+  margin-top:40px;
+}
+
+/* -----------------------------------------
+ button base
+----------------------------------------- */
+
+.label-buttons a{
+  display:inline-block;
+
+  padding:16px 30px;
+ 
+  background:rgba(255,255,255,0.18);
+ 
+  border:1px solid rgba(255,255,255,0.45);
+  border-radius:40px;
+
+  box-shadow:
+    0 8px 28px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.75);
+
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+
+  color:#1c3d33;
+
+  font-size:1.25rem;
+  font-weight:700;
+  letter-spacing:.05em;
+ 
+  text-decoration:none;
+
+  transition:all .25s ease;
+}
+
+.label-buttons button{
+  padding:16px 34px;
+
+  background:rgba(255,255,255,0.18);
+  
+  border:none;
+  border-radius:40px;
+  
+  outline:none;
+  cursor:pointer;
+
+  box-shadow:
+    0 8px 28px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.75);
+
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+
+  color:#1c3d33;
+
+  font-size:1.25rem;
+  font-weight:700;
+  letter-spacing:.05em;
+
+  border:1px solid rgba(255,255,255,0.45);
+
+  transition:all .25s ease;
+}
+
+/* -----------------------------------------
+ interaction
+----------------------------------------- */
+
+.label-buttons a:hover,
+.label-buttons button:hover{
+  transform:translateY(-5px);
+
+  box-shadow:
+    0 14px 40px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+/* -----------------------------------------
+ records sub nav
+----------------------------------------- */
+
+.records-sub{
+  margin-top:48px;
+}
+
+.records-sub-nav{
+  margin:20px 0 0;
+  padding:0;
+
+  list-style:none;
+}
+
+.records-sub-nav a{
+  display:block;
+
+  padding:18px 20px;
+
+  border-radius:16px;
+
+  background:rgba(255,255,255,0.45);
+
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.08);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.records-sub-nav a:hover{
+  transform:translateY(-2px);
+}
+
+.records-sub-nav .note{
+  display:block;
+
+  margin-top:6px;
+
+  color:var(--color-text-muted);
+
+  font-size:0.9rem;
+}
+
+/* =========================================
+ 90 MOBILE LAYOUT 
+========================================= */
+@media screen and (max-width:768px){
+
+  .pc-nav{
+    display:none;
+  }
+
+  .mobile-nav{
+  display:none;
+   
+  position:fixed;
+   
+  top:50%;
+  right:20px;
+  transform:translateY(-50%);
+  background:rgba(20,60,45,0.96);
+  padding:18px 20px;
+  border-radius:14px;
+  box-shadow:0 14px 30px rgba(0,0,0,.35);
+  z-index:1002;
+}
+
+  .mobile-nav ul{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+
+.mobile-nav a{
+  color:#ffffff;
+ 
+  font-size:1rem;
+  font-weight:700;
+  text-decoration:none;
+  line-height:1.5;
+}
+
+ .mobile-nav a:hover{
+  color:#ffe082;
+}
+ 
+ .mobile-nav.nav-active{
+    display:block;
+}
+
+ .record-card:active{
+    transform: scale(0.98);
+    transition: transform .1s ease;
+    box-shadow:0 2px 10px rgba(0,0,0,0.12);
+}
+
+ .site-description{
+  text-align:left;
+}
+ 
+ /* =========================================
+ 91 HEADER 
+========================================= */
+
+  .nav-toggle{
+    display:block;
+
+    position:fixed;
+        
+    top:50%;
+    right:20px;
+   
+    transform:translateY(-50%);
+
+    font-size:34px;
+   
+    background:none;
+    border:none;
+   
+    color:#ffa500;
+   
+    cursor:pointer;
+   
+    z-index:1001;
+   
+    text-shadow:
+      -1px -1px 2px rgba(0,0,0,0.3),
+       1px  1px 2px rgba(255,255,255,0.3);
+  }
+
+  /* =========================================
+   93 TOP LAYOUT
+  ========================================= */ 
+  .top-layout{
+    display:block;
+  }
+  .sidebar{
+    text-align:center;
+  }
+ 
+ .main-content{
+   margin-top:48px;
+  }
+
+  .site-title{
+    font-size:1.6rem;
+    margin-bottom:12px;
+  }
+ 
+  .site-description{ 
+    font-size:1rem;
+    line-height:1.7;
+    margin-bottom:28px;
+  }
+
+ /* =========================================
+ 94 TOP NAV
+========================================= */
+
+/* -----------------------------------------
+ layout
+----------------------------------------- */
+
+.home-nav{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* -----------------------------------------
+ primary
+----------------------------------------- */
+
+.nav-primary{
+  display:flex;
+  gap:10px;
+  margin-bottom:0;
+}
+
+/* -----------------------------------------
+ secondary
+----------------------------------------- */
+
+.nav-secondary{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:24px;
+}
+
+/* 3個目を中央 */
+
+.nav-secondary a:last-child{
+  grid-column:1 / -1;
+  max-width:220px;
+  margin:0 auto;
+}
+
+/* -----------------------------------------
+ primary
+----------------------------------------- */
+
+.nav-primary a{
+  flex:1;
+
+  padding:14px 8px;
+
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.35);
+
+  background:rgba(255,255,255,0.22);
+
+  box-shadow:0 6px 16px rgba(0,0,0,0.08);
+
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+
+  text-align:center;
+  color:#1c3d33;
+
+  transition:.2s;
+}
+
+/* -----------------------------------------
+ secondary
+----------------------------------------- */
+
+.nav-secondary a{
+  width:100%;
+
+  padding:10px 6px;
+
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.35);
+
+  background:rgba(255,255,255,0.22);
+
+  box-shadow:0 6px 16px rgba(0,0,0,0.08);
+
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+
+  text-align:center;
+
+  color:#1c3d33;
+
+  font-size:0.9rem;
+  line-height:1.2;
+
+  transition:.2s;
+}
+
+/* -----------------------------------------
+ typography
+----------------------------------------- */
+
+.nav-label{
+  display:block;
+
+  font-size:1.25rem;
+  line-height:1.3;
+}
+
+.nav-sub{
+  display:block;
+
+  margin-top:4px;
+
+  font-size:0.88rem;
+  font-weight:500;
+
+  color:var(--color-text-muted);
+  opacity:0.72;
+}
+
+/* -----------------------------------------
+ interaction
+----------------------------------------- */
+
+.home-nav a:active{
+  transform:scale(0.96);
+}
+
+/* -----------------------------------------
+ hidden
+----------------------------------------- */
+
+.nav-hidden-group{
+  display:none;
+}
+ 
+/* =========================================
+   95 RECORD CARD
+========================================= */
+
+/* -----------------------------------------
+ latest section
+----------------------------------------- */
+
+.latest{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+ .latest-records{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.latest h2{
+  display:inline-block;
+
+  margin-bottom:16px;
+  padding-bottom:6px;
+
+  font-size:2rem;
+ 
+  border-bottom:2px solid rgba(20,75,51,0.15);
+
+ }
+
+/* -----------------------------------------
+ record card layout
+----------------------------------------- */
+
+.record-card{
+  display:block;
+
+  padding:16px;
+
+  border-radius:14px;
+}
+
+.record-thumb{
+  width:100%;
+  height:auto;
+
+  margin-bottom:10px;
+}
+
+/* -----------------------------------------
+ label buttons
+----------------------------------------- */
+
+.label-buttons{
+  gap:12px;
+  margin-top:28px;
+}
+
+.label-buttons button{
+  min-height:44px;
+
+  padding:10px 18px;
+
+  border-radius:28px;
+
+  font-size:1rem;
+  letter-spacing:.04em;
+}
+
+.label-buttons button:hover{
+  transform:translateY(-3px);
+}
+
+/* -----------------------------------------
+ typography
+----------------------------------------- */
+
+.record-title{
+  margin:0 0 6px;
+
+  line-height:1.45;
+}
+
+.record-detail{
+  margin-bottom:8px;
+
+  font-size:0.85rem;
+
+  opacity:0.78;
+}
+
+.record-summary{
+  line-height:1.75;
+}
+
+/* -----------------------------------------
+ records ui spacing
+----------------------------------------- */
+
+.records-sub{
+  margin-top:36px;
+}
+
+.list-box{
+  margin-top:24px;
+}
+
+.loading,
+.label-placeholder{
+  padding:14px 16px;
+
+  font-size:0.9rem;
+}
+
+#more-link{
+  margin-top:14px;
+}
+ 
+/* =========================================
+   96 FOOTER
+========================================= */
+
+/* -----------------------------------------
+ footer layout
+----------------------------------------- */
+
+.site-footer{
+  padding:18px 10px 14px;
+}
+
+/* -----------------------------------------
+ footer nav layout
+----------------------------------------- */
+
+/* ulを基準に制御 */
+
+.footer-nav ul{
+  display:flex !important;
+  flex-direction:row !important;
+
+  justify-content:space-between;
+  align-items:center;
+
+  flex-wrap:nowrap;
+
+  gap:4px;
+
+  margin-bottom:10px;
+
+  padding:0;
+}
+
+.footer-nav li{
+  flex:1;
+
+  min-width:0;
+
+  text-align:center;
+}
+
+/* スマホ版：5番目以降を非表示 */
+
+.footer-nav li:nth-child(n+5){
+  display:none;
+}
+
+/* -----------------------------------------
+ footer typography
+----------------------------------------- */
+
+.footer-nav a{
+  display:block;
+
+  padding:6px 2px;
+
+  font-size:0.72rem;
+  line-height:1.15;
+
+  white-space:nowrap;
+}
+
+/* -----------------------------------------
+ hidden
+----------------------------------------- */
+
+.footer-note,
+.copyright{
+  display:none;
+}
+}
+
+/* ======================================
+ 99 SMALL MOBILE
+====================================== */ 
+/* どうしても入らない端末用 */
+@media (max-width:380px){
+  .footer-nav ul{
+    flex-wrap:wrap;
+  }
+ }
+
+/* ======================================
+ ABOUTページ専用（安全追加） 
+====================================== */ 
+/* コンテンツ幅と余白 */
+.about{
+  max-width:960px;
+  margin:40px auto;
+}
+/* 見出し（共通スタイルから継承） */ 
+.about h2{
+  margin-top:32px;
+  margin-bottom:10px;
+/* font-size, font-weight, color は h2 共通スタイルから継承 */ 
+}
+/* 本文 */
+.about p{
+  font-size: var(--size-body);
+  line-height:1.9;
+  margin-bottom:16px;
+  color: var(--color-text-body);
+}
+/* ======================================
+ ABOUT スマホ最適化（最小限）
+====================================== */
+@media (max-width:768px){
+ 
+  .about{
+   margin:20px auto;
+    padding:0 14px;
+  }
+  .about p{
+    font-size:14px;
+    line-height:1.85;
+  }
+  .about h2{
+    margin-top:28px;
+  }
+}
+
+/* ======================================
+ HEADER ACTIVE（追加） 
+====================================== */
+.pc-nav a.active,
+.mobile-nav a.active{
+  border-bottom:2px solid #ffffff;
+  padding-bottom:4px;
+}
+
+.nav-secondary a.nav-hidden{
+  display:none !important;
+}
 

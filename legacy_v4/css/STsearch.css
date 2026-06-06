@@ -1,0 +1,16 @@
+/* =====================================
+   検索ページ専用（ショウタン版）
+   配色のみ差し替え
+===================================== */
+:root {
+  --brand: #8a6a3f;
+  --muted: #74614b;
+
+  --color-heading: #8a6a3f;
+  --color-heading-secondary: #8a6a3f;
+
+  --color-text-body: #5b4630;
+  --color-text-muted: #74614b;
+}
+
+
