@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <base href="/hiro-san-z-reco/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>山行記録 - 年別</title>
+
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <main class="container main-content">
+    <nav class="breadcrumb"></nav>
+
+    <h1>山行記録 - 年別</h1>
+    <p>
+      年ごとに分類された山行記録です。
+      ラベルをクリックすると該当年の最新記録が表示されます。
+    </p>
+
+    <div class="label-buttons" id="year-labels">
+      <span class="label-placeholder">年データを取得中…</span>
+    </div>
+
+    <div class="list-box" id="latest-list" style="display:none;">
+      <h3 id="list-title"></h3>
+
+      <div class="latest-records"></div>
+      
+      <p><a id="more-link" href="#" target="_blank">▶ もっと見る</a></p>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="JS/include.js"></script>
+  <script src="JS/record_common.js"></script>
+
+  <script>
+    loadHeaderFooter();
+    initNavToggle();
+
+    /* ブレッドクラム（共通定義） */
+    setBreadcrumb("records-year");
+
+    const RECORD_CONFIG = {
+      pageType: "year",
+      labelContainerId: "year-labels",
+      listBoxId: "latest-list",
+      excludeLabel: label => !/^\d{4}$/.test(label)
+    };
+
+    initRecordPage(RECORD_CONFIG);
+  </script>
+</body>
+</html>
+
+
+
+
