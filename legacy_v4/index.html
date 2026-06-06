@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <base href="/hiro-san-z-reco/">
 
+  <title>トップページ - hiro-sanの山歩き</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="icon" href="favicon.ico">
+</head>
+
+<body>
+
+  <div id="header"></div>
+
+  <div class="container">
+
+    <nav class="breadcrumb" aria-label="breadcrumb"></nav>
+
+    <div class="top-layout">
+
+      <!-- 左側：サイト名、説明、ナビ -->
+      <aside class="sidebar">
+
+  <!-- 導入 -->
+  <section class="intro">
+    
+        <!-- ページ説明 -->
+<p class="site-description">
+  山を歩いた日。<br>
+  そこにあった道のりと、残された記録。<br>
+  足どりを、あとからたどれるように。
+</p>
+        <!-- ナビゲーション -->
+        <nav class="home-nav">
+
+          <!-- 大きめカード：歩いた日、足どりの記録 -->
+        <div class="nav-primary">
+
+        <a href="records/index.html">
+        <span class="nav-label">歩いた日</span>
+        <span class="nav-sub">その日のみちのり</span>
+       </a>
+
+  <a href="logs/index.html">
+    <span class="nav-label">足あとをたどる</span>
+    <span class="nav-sub">条件からみつける</span>
+  </a>
+
+</div>
+
+           <!-- 標準カード -->
+          <div class="nav-secondary">
+
+           <!-- 非表示グループ -->
+           <div class="nav-hidden-group">
+           <a href="logs/SBindex.html" class="nav-hidden">SilverBoyさんの記録</a>
+           <a href="logs/STindex.html" class="nav-hidden">ショウタンさんの記録</a>
+           <a href="test/index.html" class="nav-hidden">データについて</a>
+           </div>
+
+           <!-- 表示 -->
+           <a href="blog.html">ひびのこと</a>
+           <a href="about.html">わたしのこと</a>
+           <a href="other.html">その他</a>
+           </div>
+        </nav>
+
+      </aside>
+
+      <!-- 右側：最新の山行記録 -->
+      <main class="main-content">
+
+        <section class="latest">
+          <h2>この頃の山歩き</h2>
+
+          <div id="latest-loading" class="loading">
+            最新の山行記録を読み込み中…
+          </div>
+
+          <div id="latest-records" class="latest-records"></div>
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <div id="footer"></div>
+
+  <script src="JS/include.js"></script>
+  <script src="JS/blogfeed.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      setBreadcrumb("home");
+
+      renderLatestBlogPosts({
+        target: "#latest-records",
+        max: 5
+      });
+    });
+  </script>
+
+</body>
+</html>

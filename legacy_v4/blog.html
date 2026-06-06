@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- ★ GitHub Pages のリポジトリ名 -->
+  <base href="/hiro-san-z-reco/">
+
+  <title>ブログ・ひびのこと - hiro-sanの山歩き</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="icon" href="favicon.ico">
+
+  <!-- スマホ対応 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+  <!-- ▼ 共通ヘッダー読み込み位置 ▼ -->
+  <div id="header"></div>
+
+  <!-- ▼ ページ内容 ▼ -->
+  <div class="container">
+    <!-- ブレッドクラム -->
+    <nav class="breadcrumb" aria-label="breadcrumb"></nav>
+
+    <h1>ブログ・ひびのことリンク</h1>
+    <p>以下のリンクからブログ記事一覧にアクセスできます。</p>
+
+    <ul>
+      <li>
+        <a href="https://hiro-san-163-daily.blogspot.com/" target="_blank" rel="noopener">
+          hiro-sanのひびのこと ブログトップ
+        </a>
+      </li>
+    </ul>
+
+    <!-- 最新のブログ記事 -->
+    <section class="latest-blog">
+      <h2>最新のブログ記事</h2>
+      <!-- ★ IDをJSと一致させる -->
+      <div class="blog-cards" id="daily-cards"></div>
+    </section>
+  </div>
+  <!-- ▲ ページ内容ここまで ▲ -->
+
+  <!-- ▼ 共通フッター読み込み ▼ -->
+  <div id="footer"></div>
+
+  <!-- 共通include -->
+  <script src="JS/include.js"></script>
+
+  <!-- Bloggerフィード（JSONP） -->
+  <script src="JS/blogfeed-daily.js"></script>
+  <script>
+    // ブレッドクラム設定
+    document.addEventListener("DOMContentLoaded", () => {
+      setBreadcrumb("blog");
+      loadDailyBlogFeed("daily-cards");
+    });
+  </script>
+
+</body>
+</html>
