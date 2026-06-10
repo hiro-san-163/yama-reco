@@ -1,177 +1,112 @@
 ---
-
-title: 山行記録一覧
-permalink: /records/
-custom_css: records
-custom_js: records
+layout: default
+title: 山行記録
+breadcrumb: 山行記録
 ---
 
-<main class="records-page">
+<section class="records-page container">
 
-  {% include breadcrumb.html %}
+  <header class="page-header">
 
-  <section class="page-header">
-
-    <h1>山行記録一覧</h1>
+    <h1>山行記録</h1>
 
     <p class="page-description">
-      hiro-sanの山行記録アーカイブです。タイトル・山域・ジャンルで絞り込みできます。
+      山行記録の一覧です。エリア・ジャンル・年度で絞り込みできます。
     </p>
 
-  </section>
+  </header>
+
+  <!-- ======================================
+       FILTER
+  ======================================= -->
 
   <section class="records-filter">
 
-    <div class="filter-group">
+    <div class="form-group">
 
-      <label for="record-filter-title">
-        タイトル
+      <label for="areaFilter">
+        エリア
       </label>
 
-      <input
-        type="search"
-        id="record-filter-title"
-        placeholder="山行タイトルで検索">
-
-    </div>
-
-    <div class="filter-group">
-
-      <label for="record-filter-area">
-        山域
-      </label>
-
-      <select id="record-filter-area">
+      <select id="areaFilter">
         <option value="">すべて</option>
       </select>
 
     </div>
 
-    <div class="filter-group">
+    <div class="form-group">
 
-      <label for="record-filter-genre">
+      <label for="genreFilter">
         ジャンル
       </label>
 
-      <select id="record-filter-genre">
+      <select id="genreFilter">
         <option value="">すべて</option>
       </select>
 
     </div>
 
-    <div class="filter-group">
+    <div class="form-group">
 
-      <label for="record-sort">
-        並び順
+      <label for="yearFilter">
+        年度
       </label>
 
-      <select id="record-sort">
-        <option value="desc">新しい順</option>
-        <option value="asc">古い順</option>
+      <select id="yearFilter">
+        <option value="">すべて</option>
       </select>
 
     </div>
 
-    <div class="filter-actions">
-
-      <button
-        type="button"
-        id="record-search-button"
-        class="filter-button search-button">
-        検索
-      </button>
-
-      <button
-        type="button"
-        id="record-reset-button"
-        class="filter-button reset-button">
-        条件をクリア
-      </button>
-
-    </div>
-
   </section>
 
-  <section class="records-toolbar">
+  <!-- ======================================
+       RESULT COUNT
+  ======================================= -->
 
-    <h2 id="record-list-title">
-      最新の山行記録
-    </h2>
+  <div class="records-count">
 
-    <p id="record-result-count">
-      0件表示
-    </p>
+    <span id="recordsCount">
+      0件
+    </span>
 
-  </section>
+  </div>
 
-  <p
-    id="record-empty-message"
-    class="record-empty-message"
-    hidden>
-    条件に一致する山行記録はありません。
-  </p>
+  <!-- ======================================
+       RECORDS LIST
+  ======================================= -->
 
-  <section
-    id="records-list"
-    class="records-list">
+  <div id="recordsList" class="records-list"></div>
 
-    {% for post in site.posts %}
+</section>
 
-    <article
-      class="record-card{% if post.tm and post.tm != "" %} has-thumb{% endif %}"
-      data-url="{{ post.url | relative_url }}"
-      data-record-date="{{ post.date_s }}"
-      data-record-title="{{ post.title | escape }}"
-      data-record-area="{{ post.area | escape }}"
-      data-record-genre="{{ post.genre | escape }}">
+<!-- ======================================
+     POSTS DATA
+====================================== -->
 
-      {% if post.tm and post.tm != "" %}
-      <div class="record-thumb">
-        <img
-          src="{{ post.tm | escape }}"
-          alt="{{ post.title }}"
-          loading="lazy">
-      </div>
-      {% endif %}
+<script>
 
-      <div class="record-date">
-        {{ post.date_s }}
-      </div>
+const recordsData = [
 
-      <h3 class="record-title">
-        {{ post.title }}
-      </h3>
+{% for post in site.posts %}
 
-      <div class="record-meta">
+{
+  title: {{ post.title | jsonify }},
+  url: {{ post.url | relative_url | jsonify }},
+  date_s: {{ post.date_s | jsonify }},
+  area: {{ post.area | jsonify }},
+  genre: {{ post.genre | jsonify }},
+  summary: {{ post.sm2 | strip_html | strip_newlines | jsonify }},
+  thumbnail: {{ post.tm | relative_url | jsonify }},
+  year: {{ post.date_s | slice: 0, 4 | jsonify }}
+}
 
-        <span class="record-area">
-          {{ post.area }}
-        </span>
+{% unless forloop.last %},{% endunless %}
 
-        <span class="record-meta-separator">
-          ｜ 
-        </span>
+{% endfor %}
 
-        <span class="record-genre">
-          {{ post.genre }}
-        </span>
+];
 
-      </div>
+</script>
 
-      <p class="record-summary">
-        {{ post.sm2 }}
-      </p>
-
-    </article>
-
-    {% endfor %}
-
-  </section>
-
-  <nav
-    id="record-pagination"
-    class="record-pagination"
-    aria-label="山行記録ページ送り">
-  </nav>
-
-</main>
+<script src="{{ '/assets/js/records.js' | relative_url }}"></script>
