@@ -1,33 +1,124 @@
-<!doctype html>
-<html lang="{{ site.lang | default: 'ja' }}">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>
-      {% if page.title %}
-        {{ page.title }} | {{ site.title | default: 'hiro-san 山歩きサイト' }}
-      {% else %}
-        {{ site.title | default: 'hiro-san 山歩きサイト' }}
-      {% endif %}
-    </title>
+<div class="header-inner">
 
-    <meta
-      name="description"
-      content="{{ page.description | default: site.description | default: 'hiro-sanの山行記録サイト' }}">
+  <a href="{{ '/' | relative_url }}" class="site-brand">
 
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  </head>
-
-  <body>
-    {% include header.html %}
-
-    {{ content }}
-
-    {% include footer.html %}
-
-    {% if page.custom_js %}
-      <script src="{{ '/assets/js/' | append: page.custom_js | append: '.js' | relative_url }}"></script>
+    {% if site.logo %}
+    <img
+      src="{{ site.logo | relative_url }}"
+      alt="{{ site.title }}"
+      class="site-logo">
     {% endif %}
-  </body>
-</html>
+
+    <span class="site-title">
+      {{ site.title }}
+    </span>
+
+  </a>
+
+</div>
+<div class="nav-inner">
+
+  <button
+    class="nav-toggle"
+    id="navToggle"
+    aria-label="メニューを開く"
+    aria-expanded="false"
+    aria-controls="navMenu">
+
+    ☰
+
+  </button>
+
+  <ul
+    class="nav-menu"
+    id="navMenu">
+
+    <li><a href="{{ '/' | relative_url }}">HOME</a></li>
+    <li><a href="{{ '/records/' | relative_url }}">山行記録</a></li>
+    <li><a href="{{ '/logs/' | relative_url }}">山行検索</a></li>
+    <li><a href="{{ '/about/' | relative_url }}">自己紹介</a></li>
+    <li><a href="{{ '/blog/' | relative_url }}">ブログ</a></li>
+    <li><a href="{{ '/others/' | relative_url }}">その他</a></li>
+
+  </ul>
+
+</div>
+
+{% unless page.is_home %}
+
+{% if page.breadcrumb %}
+
+<div class="breadcrumb-wrap">
+
+  <nav class="breadcrumb">
+
+    <a href="{{ '/' | relative_url }}">
+      HOME
+    </a>
+
+    <span class="breadcrumb-separator">
+      &gt;
+    </span>
+
+    <span class="breadcrumb-current">
+      {{ page.breadcrumb }}
+    </span>
+
+  </nav>
+
+</div>
+
+{% endif %}
+
+{% endunless %}
+
+{{ content }}
+<div class="footer-inner">
+
+  <nav class="footer-nav footer-nav-desktop">
+
+    <a href="{{ '/' | relative_url }}">HOME</a>
+    <span>｜</span>
+
+    <a href="{{ '/records/' | relative_url }}">山行記録</a>
+    <span>｜</span>
+
+    <a href="{{ '/logs/' | relative_url }}">山行検索</a>
+    <span>｜</span>
+
+    <a href="{{ '/about/' | relative_url }}">自己紹介</a>
+    <span>｜</span>
+
+    <a href="{{ '/blog/' | relative_url }}">ブログ</a>
+    <span>｜</span>
+
+    <a href="{{ '/others/' | relative_url }}">その他</a>
+
+  </nav>
+
+  <nav class="footer-nav footer-nav-mobile">
+
+    <a href="{{ '/' | relative_url }}">HOME</a>
+    <span>｜</span>
+
+    <a href="{{ '/records/' | relative_url }}">山行記録</a>
+    <span>｜</span>
+
+    <a href="{{ '/logs/' | relative_url }}">山行検索</a>
+
+  </nav>
+
+  <div class="footer-top">
+
+    <a href="#top">
+      ↑ TOP
+    </a>
+
+  </div>
+
+  <p class="footer-copyright">
+    © 2026 hiro-san 山歩き
+  </p>
+
+</div>
