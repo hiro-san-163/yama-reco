@@ -1256,3 +1256,49 @@ textarea:focus {
   }
 
 }
+
+/* ======================================
+   17 BLOG
+====================================== */
+
+.blog-page {
+
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+}
+
+.blog-intro {
+
+  max-width: 800px;
+
+}
+
+.blog-intro p {
+
+  margin-bottom: 1rem;
+
+  line-height: 1.9;
+
+}
+
+.blog-intro p:last-child {
+
+  margin-bottom: 0;
+
+}
+
+/* ======================================
+   BLOG RESPONSIVE
+====================================== */
+
+@media (max-width: 768px) {
+
+  .blog-page {
+
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+
+  }
+
+}
