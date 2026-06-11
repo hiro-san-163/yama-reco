@@ -116,7 +116,7 @@
   <!-- ======================================
        BREADCRUMB
   ======================================= -->
-  {% unless page.is_home %}
+  {% unless page.url == "/" %}
 
     {% if page.breadcrumb %}
 
@@ -213,35 +213,7 @@
 
   </footer>
 
-  <!-- ======================================
-       MOBILE MENU
-  ======================================= -->
-  <script>
-
-    document.addEventListener('DOMContentLoaded', () => {
-
-      const toggle = document.getElementById('navToggle');
-      const menu = document.getElementById('navMenu');
-
-      if (!toggle || !menu) return;
-
-      toggle.addEventListener('click', () => {
-
-        menu.classList.toggle('is-open');
-
-        const expanded =
-          toggle.getAttribute('aria-expanded') === 'true';
-
-        toggle.setAttribute(
-          'aria-expanded',
-          !expanded
-        );
-
-      });
-
-    });
-
-  </script>
+  <script src="{{ '/assets/js/navigation.js' | relative_url }}"></script>
 
 </body>
 
