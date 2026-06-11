@@ -206,16 +206,6 @@ small {
 
 }
 
-.card {
-
-  background: var(--color-card);
-
-  border-radius: var(--radius-md);
-
-  box-shadow: var(--shadow-card);
-
-}
-
 .text-center {
   text-align: center;
 }
