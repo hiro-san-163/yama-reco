@@ -1,13 +1,34 @@
-title: hiro-san 山歩きサイト
-description: hiro-sanの山行記録サイト
+title: "hiro-sanの山歩き"
+
+description: >
+  わたし、hiro-sanが歩いたり登ったり、泊まったりした山歩きをまとめています。
+
+url: ""
+baseurl: "/yama-reco"
+
 lang: ja
 timezone: Asia/Tokyo
+encoding: utf-8
 
-permalink: /records/:year/:month/:day/:title/
+markdown: kramdown
 
-defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "default"
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+logo: /assets/images/logo.png
+
+# slugは保持するがURL生成には未使用
+# permalinkは現状未設定（postsデフォルト）
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# future:
+# collections:
+#   records:
+#   logs:
