@@ -1,1 +1,213 @@
+---
+layout: default
+title: 山行検索
+breadcrumb: 山行検索
+---
 
+<section class="logs-page container">
+
+  <header class="page-header">
+
+    <h1>山行検索</h1>
+
+    <p class="page-description">
+      hiro-san、silverboy、ショウタンの山行記録を横断検索できます。
+    </p>
+
+  </header>
+
+  <!-- ======================================
+       DATA SOURCE
+  ======================================= -->
+
+  <section class="logs-filter">
+
+    <div class="form-group">
+
+      <label>対象データ</label>
+
+      <div class="checkbox-group">
+
+        <label>
+          <input
+            type="checkbox"
+            id="sourceHiro"
+            value="hiro"
+            checked>
+          hiro-san
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            id="sourceSB"
+            value="sb"
+            checked>
+          silverboy
+        </label>
+
+        <label>
+          <input
+            type="checkbox"
+            id="sourceST"
+            value="st"
+            checked>
+          ショウタン
+        </label>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================
+         KEYWORD
+    ======================================= -->
+
+    <div class="form-group">
+
+      <label for="keywordFilter">
+        キーワード
+      </label>
+
+      <input
+        type="search"
+        id="keywordFilter"
+        placeholder="タイトル・概要を検索">
+
+    </div>
+
+    <!-- ======================================
+         AREA
+    ======================================= -->
+
+    <div class="form-group">
+
+      <label for="areaFilter">
+        エリア
+      </label>
+
+      <select id="areaFilter">
+
+        <option value="">
+          すべて
+        </option>
+
+      </select>
+
+    </div>
+
+    <!-- ======================================
+         GENRE
+    ======================================= -->
+
+    <div class="form-group">
+
+      <label for="genreFilter">
+        ジャンル
+      </label>
+
+      <select id="genreFilter">
+
+        <option value="">
+          すべて
+        </option>
+
+      </select>
+
+    </div>
+
+    <!-- ======================================
+         YEAR
+    ======================================= -->
+
+    <div class="form-group">
+
+      <label for="yearFilter">
+        年度
+      </label>
+
+      <select id="yearFilter">
+
+        <option value="">
+          すべて
+        </option>
+
+      </select>
+
+    </div>
+
+    <!-- ======================================
+         MONTH
+    ======================================= -->
+
+    <div class="form-group">
+
+      <label for="monthFilter">
+        月
+      </label>
+
+      <select id="monthFilter">
+
+        <option value="">
+          すべて
+        </option>
+
+      </select>
+
+    </div>
+
+    <!-- ======================================
+         SORT
+    ======================================= -->
+
+    <div class="form-group">
+
+      <label for="sortFilter">
+        並び順
+      </label>
+
+      <select id="sortFilter">
+
+        <option value="date_desc">
+          日付降順
+        </option>
+
+        <option value="date_asc">
+          日付昇順
+        </option>
+
+        <option value="title_asc">
+          タイトル昇順
+        </option>
+
+        <option value="title_desc">
+          タイトル降順
+        </option>
+
+      </select>
+
+    </div>
+
+  </section>
+
+  <!-- ======================================
+       RESULT COUNT
+  ======================================= -->
+
+  <div class="logs-count">
+
+    <span id="logsCount">
+      0件
+    </span>
+
+  </div>
+
+  <!-- ======================================
+       RESULT LIST
+  ======================================= -->
+
+  <div id="logsList" class="logs-list"></div>
+
+</section>
+
+<script src="{{ '/assets/js/logs.js' | relative_url }}"></script>
