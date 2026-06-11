@@ -68,6 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const filtered = recordsData.filter(record => {
 
+　　　filtered.sort((a, b) =>
+  b.date_s.localeCompare(a.date_s)
+);
+      
       if (area && record.area !== area) return false;
       if (genre && record.genre !== genre) return false;
       if (year && record.year !== year) return false;
