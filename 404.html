@@ -1,0 +1,42 @@
+---
+layout: default
+title: ページが見つかりません
+breadcrumb: 404
+permalink: /404.html
+---
+
+<section class="container error-page">
+
+  <div class="error-content">
+
+    <h1>404</h1>
+
+    <h2>ページが見つかりません</h2>
+
+    <p>
+      お探しのページは移動または削除された可能性があります。
+    </p>
+
+    <p>
+      ナビゲーションメニュー、または下記リンクからお探しください。
+    </p>
+
+    <div class="error-links">
+
+      <a href="{{ '/' | relative_url }}" class="button">
+        HOMEへ戻る
+      </a>
+
+      <a href="{{ '/records/' | relative_url }}" class="button">
+        山行記録
+      </a>
+
+      <a href="{{ '/logs/' | relative_url }}" class="button">
+        山行検索
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
