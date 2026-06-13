@@ -23,11 +23,20 @@ document.addEventListener('DOMContentLoaded', async () => {
       sbData,
       stData
     ] = await Promise.all([
-      fetch('/data/records_master.json').then(r => r.json()),
-      fetch('/data/SBrecords.json').then(r => r.json()),
-      fetch('/data/STrecords.json').then(r => r.json())
+      fetch(`${BASE_URL}/data/records_master.json`).then(r => {
+        if (!r.ok) throw new Error('records_master.json');
+        return r.json();
+      }),
+      fetch(`${BASE_URL}/data/SBrecords.json`).then(r => {
+        if (!r.ok) throw new Error('SBrecords.json');
+        return r.json();
+      }),
+      fetch(`${BASE_URL}/data/STrecords.json`).then(r => {
+        if (!r.ok) throw new Error('STrecords.json');
+        return r.json();
+      })
     ]);
-
+    
     allRecords = [
   ...hiroData.map(item => ({
     ...item,
