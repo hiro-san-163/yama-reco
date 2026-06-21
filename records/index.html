@@ -86,9 +86,11 @@ breadcrumb: 山行記録
 
 <script>
 
+{% assign records = site.posts | where_exp: "post", "post.tags contains '山行記録'" %}
+
 const recordsData = [
 
-{% for post in site.posts %}
+{% for post in records %}
 
 {
   title: {{ post.title | jsonify }},
@@ -106,7 +108,6 @@ const recordsData = [
 {% endfor %}
 
 ];
-
 </script>
 
 <script src="{{ '/assets/js/records.js' | relative_url }}"></script>
