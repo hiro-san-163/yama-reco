@@ -69,40 +69,65 @@ title: HOME
               {{ post.title }}
             </h3>
 
-            <div class="home-record-meta">
+            <div class="home-records">
 
-              {% if post.date_s %}
-                <span>{{ post.date_s }}</span>
-              {% endif %}
+  {% assign records = site.posts | where_exp: "post", "post.tags contains '山行記録'" %}
 
-              {% if post.area %}
-                <span>｜ {{ post.area }}</span>
-              {% endif %}
+  {% for post in records limit:6 %}
 
-              {% if post.genre %}
-                <span>｜ {{ post.genre }}</span>
-              {% endif %}
+  <article class="home-record-card">
 
-            </div>
+    <a href="{{ post.url | relative_url }}">
 
-            {% if post.sm2 %}
+      {% if post.tm %}
 
-            <p class="home-record-summary">
-              {{ post.sm2 }}
-            </p>
+      <div class="home-record-image">
 
-            {% endif %}
+        <img
+          src="{{ post.tm | relative_url }}"
+          alt="{{ post.title }}">
 
-          </div>
+      </div>
 
-        </a>
+      {% endif %}
 
-      </article>
+      <div class="home-record-content">
 
-      {% endfor %}
+        <h3>
+          {{ post.title }}
+        </h3>
 
-    </div>
+        <div class="home-record-meta">
 
-  </section>
+          {% if post.date_s %}
+            <span>{{ post.date_s }}</span>
+          {% endif %}
 
-</section>
+          {% if post.area %}
+            <span>｜ {{ post.area }}</span>
+          {% endif %}
+
+          {% if post.genre %}
+            <span>｜ {{ post.genre }}</span>
+          {% endif %}
+
+        </div>
+
+        {% if post.sm2 %}
+
+        <p class="home-record-summary">
+          {{ post.sm2 }}
+        </p>
+
+        {% endif %}
+
+      </div>
+
+    </a>
+
+  </article>
+
+  {% endfor %}
+
+</div>
+    
