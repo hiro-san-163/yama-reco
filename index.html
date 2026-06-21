@@ -45,7 +45,9 @@ title: HOME
 
     <div class="home-records">
 
-      {% for post in site.posts limit:6 %}
+      {% assign records = site.posts | where_exp: "post", "post.tags contains '山行記録'" %}
+
+      {% for post in records limit:6 %}
 
       <article class="home-record-card">
 
@@ -69,65 +71,40 @@ title: HOME
               {{ post.title }}
             </h3>
 
-            <div class="home-records">
+            <div class="home-record-meta">
 
-  {% assign records = site.posts | where_exp: "post", "post.tags contains '山行記録'" %}
+              {% if post.date_s %}
+                <span>{{ post.date_s }}</span>
+              {% endif %}
 
-  {% for post in records limit:6 %}
+              {% if post.area %}
+                <span>｜ {{ post.area }}</span>
+              {% endif %}
 
-  <article class="home-record-card">
+              {% if post.genre %}
+                <span>｜ {{ post.genre }}</span>
+              {% endif %}
 
-    <a href="{{ post.url | relative_url }}">
+            </div>
 
-      {% if post.tm %}
+            {% if post.sm2 %}
 
-      <div class="home-record-image">
+            <p class="home-record-summary">
+              {{ post.sm2 }}
+            </p>
 
-        <img
-          src="{{ post.tm | relative_url }}"
-          alt="{{ post.title }}">
+            {% endif %}
 
-      </div>
+          </div>
 
-      {% endif %}
+        </a>
 
-      <div class="home-record-content">
+      </article>
 
-        <h3>
-          {{ post.title }}
-        </h3>
+      {% endfor %}
 
-        <div class="home-record-meta">
+    </div>
 
-          {% if post.date_s %}
-            <span>{{ post.date_s }}</span>
-          {% endif %}
+  </section>
 
-          {% if post.area %}
-            <span>｜ {{ post.area }}</span>
-          {% endif %}
-
-          {% if post.genre %}
-            <span>｜ {{ post.genre }}</span>
-          {% endif %}
-
-        </div>
-
-        {% if post.sm2 %}
-
-        <p class="home-record-summary">
-          {{ post.sm2 }}
-        </p>
-
-        {% endif %}
-
-      </div>
-
-    </a>
-
-  </article>
-
-  {% endfor %}
-
-</div>
-    
+</section>
