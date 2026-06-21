@@ -1,38 +1,65 @@
+```html
 ---
 layout: default
 title: ブログ
-breadcrumb: ブログ
+permalink: /blog/
 ---
 
-<section class="container blog-page">
+<h1>ブログ</h1>
 
-  <header class="page-header">
+<p class="page-description">
+日々の出来事や山歩き以外の話題を気軽に綴っています。
+</p>
 
-    <h1>ブログ</h1>
+{% assign posts = site.posts %}
 
-  </header>
+{% if posts.size > 0 %}
 
-  <section class="blog-intro">
+<div class="post-list">
+
+  {% for post in posts %}
+
+  <article class="post-card">
+
+    <h2>
+      <a href="{{ post.url | relative_url }}">
+        {{ post.title }}
+      </a>
+    </h2>
+
+    <div class="post-meta">
+      {{ post.date | date: "%Y-%m-%d" }}
+
+      {% if post.tags %}
+      <span class="tags">
+        {% for tag in post.tags %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </span>
+      {% endif %}
+    </div>
+
+    {% if post.excerpt %}
+    <p class="post-excerpt">
+      {{ post.excerpt | strip_html | truncate: 120 }}
+    </p>
+    {% endif %}
 
     <p>
-      現在準備中です。
+      <a href="{{ post.url | relative_url }}">
+        続きを読む →
+      </a>
     </p>
 
-    <p>
-      このブログでは、山歩きのことだけでなく、
-      日々の出来事やサイト運営の記録なども掲載していく予定です。
-    </p>
+  </article>
 
-    <p>
-      V5では Jekyll の Markdown 記事を利用した
-      ブログ機能を構想しています。
-    </p>
+  {% endfor %}
 
-    <p>
-      記事テンプレートや運用方法の検討がまとまり次第、
-      順次公開していきます。
-    </p>
+</div>
 
-  </section>
+{% else %}
 
-</section>
+<p>まだ記事はありません。</p>
+
+{% endif %}
+```
