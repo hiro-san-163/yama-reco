@@ -10,7 +10,7 @@ permalink: /blog/
 日々の出来事や山歩き以外の話題を気軽に綴っています。
 </p>
 
-{% assign posts = site.posts %}
+{% assign posts = site.posts | where_exp: "post", "post.tags contains '日常'" %}
 
 {% if posts.size > 0 %}
 
