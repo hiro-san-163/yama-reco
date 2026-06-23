@@ -98,6 +98,13 @@ pageItems.forEach(record => {
 
 });
 
+
+renderPagination(
+  pager,
+  document.getElementById('pagination'),
+  renderRecords
+);
+
 }    
 
   function createRecordCard(record) {
