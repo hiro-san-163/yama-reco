@@ -83,3 +83,73 @@ class Pagination {
 }
 
 window.Pagination = Pagination;
+
+function renderPagination(pager, container, onPageChange) {
+
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  const totalPages = pager.getTotalPages();
+
+  if (totalPages <= 1) return;
+
+  const current = pager.getCurrentPage();
+
+  function createButton(label, page, disabled = false, active = false) {
+
+    const button = document.createElement('button');
+
+    button.textContent = label;
+    button.type = 'button';
+
+    button.className = 'pagination-button';
+
+    if (active) {
+      button.classList.add('active');
+    }
+
+    if (disabled) {
+      button.disabled = true;
+      return button;
+    }
+
+    button.addEventListener('click', () => {
+
+      pager.setPage(page);
+      onPageChange();
+
+    });
+
+    return button;
+
+  }
+
+  container.appendChild(
+    createButton('‹', current - 1, current === 1)
+  );
+
+  for (let page = 1; page <= totalPages; page++) {
+
+    container.appendChild(
+      createButton(
+        page,
+        page,
+        false,
+        page === current
+      )
+    );
+
+  }
+
+  container.appendChild(
+    createButton(
+      '›',
+      current + 1,
+      current === totalPages
+    )
+  );
+
+}
+
+window.renderPagination = renderPagination;
