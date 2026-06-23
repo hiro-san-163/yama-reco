@@ -91,11 +91,14 @@ recordsCount.textContent = `${filtered.length}件`;
 recordsList.innerHTML = '';
 
 pageItems.forEach(record => {
+
   recordsList.appendChild(
     createRecordCard(record)
   );
 
-  }
+});
+
+}    
 
   function createRecordCard(record) {
 
