@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!recordsList) return;
 
+  const pager = new Pagination(10);
+
   initialize();
 
   function initialize() {
@@ -77,20 +79,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     filtered.sort((a, b) =>
-      b.date_s.localeCompare(a.date_s)
-    );
-   
-    recordsCount.textContent = `${filtered.length}件`;
+  b.date_s.localeCompare(a.date_s)
+);
 
-    recordsList.innerHTML = '';
+pager.setData(filtered);
 
-    filtered.forEach(record => {
+const pageItems = pager.getCurrentPageItems();
 
-      recordsList.appendChild(
-        createRecordCard(record)
-      );
+recordsCount.textContent = `${filtered.length}件`;
 
-    });
+recordsList.innerHTML = '';
+
+pageItems.forEach(record => {
+  recordsList.appendChild(
+    createRecordCard(record)
+  );
 
   }
 
