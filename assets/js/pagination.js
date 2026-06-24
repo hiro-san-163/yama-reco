@@ -84,6 +84,42 @@ class Pagination {
 
 window.Pagination = Pagination;
 
+/**
+ * 表示件数セレクトボックスを初期化する
+ *
+ * @param {HTMLSelectElement} selectElement 表示件数<select>
+ * @param {Pagination} pager Paginationインスタンス
+ * @param {Function} onChange 表示件数変更時のコールバック
+ */
+export function setupPageSize(selectElement, pager, onChange) {
+  const pageSizes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
+
+  // option生成
+  selectElement.innerHTML = "";
+
+  pageSizes.forEach(size => {
+    const option = document.createElement("option");
+    option.value = size;
+    option.textContent = `${size}件`;
+    selectElement.appendChild(option);
+  });
+
+  // 現在の表示件数を反映
+  selectElement.value = String(pager.getPageSize());
+
+  // 変更イベント
+  selectElement.addEventListener("change", (event) => {
+    const pageSize = Number(event.target.value);
+
+    pager.setPageSize(pageSize);
+    pager.setPage(1); // 先頭ページへ戻す
+
+    if (typeof onChange === "function") {
+      onChange();
+    }
+  });
+}
+
 function renderPagination(pager, container, onPageChange) {
 
   if (!container) return;
