@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const genreFilter = document.getElementById('genreFilter');
   const yearFilter = document.getElementById('yearFilter');
 
+  const pageSizeSelect = document.getElementById('pageSize');
+
   const recordsList = document.getElementById('recordsList');
   const recordsCount = document.getElementById('recordsCount');
 
@@ -16,6 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function initialize() {
 
     populateFilters();
+
+    setupPageSize(
+      pageSizeSelect,
+      pager,
+      renderRecords
+    );
 
     areaFilter.addEventListener('change', renderRecords);
     genreFilter.addEventListener('change', renderRecords);
@@ -79,33 +87,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     filtered.sort((a, b) =>
-  b.date_s.localeCompare(a.date_s)
-);
+      b.date_s.localeCompare(a.date_s)
+    );
 
-pager.setData(filtered);
+    pager.setData(filtered);
 
-const pageItems = pager.getCurrentPageItems();
+    const pageItems = pager.getCurrentPageItems();
 
-recordsCount.textContent = `${filtered.length}件`;
+    recordsCount.textContent = `${filtered.length}件`;
 
-recordsList.innerHTML = '';
+    recordsList.innerHTML = '';
 
-pageItems.forEach(record => {
+    pageItems.forEach(record => {
 
-  recordsList.appendChild(
-    createRecordCard(record)
-  );
+      recordsList.appendChild(
+        createRecordCard(record)
+      );
 
-});
+    });
 
+    renderPagination(
+      pager,
+      document.getElementById('pagination'),
+      renderRecords
+    );
 
-renderPagination(
-  pager,
-  document.getElementById('pagination'),
-  renderRecords
-);
-
-}    
+  }
 
   function createRecordCard(record) {
 
