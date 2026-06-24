@@ -25,10 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
       renderRecords
     );
 
-    areaFilter.addEventListener('change', renderRecords);
-    genreFilter.addEventListener('change', renderRecords);
-    yearFilter.addEventListener('change', renderRecords);
+    const searchButton = document.getElementById('searchButton');
 
+    searchButton.addEventListener('click', () => {
+      pager.setPage(1);
+      renderRecords();
+    });
+    
     renderRecords();
 
   }
