@@ -91,20 +91,22 @@ window.Pagination = Pagination;
  * @param {Pagination} pager Paginationインスタンス
  * @param {Function} onChange 表示件数変更時のコールバック
  */
-  function setupPageSize(selectElement, pager, onChange) {
+function setupPageSize(selectElement, pager, onChange) {
+
   const pageSizes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
 
   // option生成
   selectElement.innerHTML = "";
 
   pageSizes.forEach(size => {
-    
+
     const option = document.createElement("option");
-    
+
     option.value = size;
     option.textContent = `${size}件`;
-    
+
     selectElement.appendChild(option);
+
   });
 
   // 現在の表示件数を反映
@@ -112,17 +114,28 @@ window.Pagination = Pagination;
 
   // 変更イベント
   selectElement.addEventListener("change", (event) => {
-    
+
     const pageSize = Number(event.target.value);
 
     pager.setPageSize(pageSize);
-    
-   if (typeof onChange === "function") {
+
+    if (typeof onChange === "function") {
       onChange();
     }
+
   });
+
 }
 
+window.setupPageSize = setupPageSize;
+
+/**
+ * ページネーションを描画する
+ *
+ * @param {Pagination} pager Paginationインスタンス
+ * @param {HTMLElement} container ページネーション表示先
+ * @param {Function} onPageChange ページ変更時のコールバック
+ */
 function renderPagination(pager, container, onPageChange) {
 
   if (!container) return;
@@ -141,7 +154,6 @@ function renderPagination(pager, container, onPageChange) {
 
     button.textContent = label;
     button.type = 'button';
-
     button.className = 'pagination-button';
 
     if (active) {
