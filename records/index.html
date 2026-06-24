@@ -11,7 +11,7 @@ breadcrumb: 山行記録
     <h1>山行記録</h1>
 
     <p class="page-description">
-      山行記録の一覧です。エリア・ジャンル・年度で絞り込みできます。
+      山行記録の一覧です。エリア・ジャンル・年で絞り込みできます。
     </p>
 
   </header>
@@ -49,12 +49,30 @@ breadcrumb: 山行記録
     <div class="form-group">
 
       <label for="yearFilter">
-        年度
+        年
       </label>
 
       <select id="yearFilter">
         <option value="">すべて</option>
       </select>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="pageSize">
+        表示件数
+      </label>
+
+      <select id="pageSize"></select>
+
+    </div>
+
+    <div class="form-group">
+
+      <button id="searchButton" type="button">
+        検索
+      </button>
 
     </div>
 
@@ -81,7 +99,7 @@ breadcrumb: 山行記録
   <!-- ページネーション表示位置 -->
   <div id="pagination"></div>
 
-  </section>
+</section>
 
 <!-- ======================================
      POSTS DATA
@@ -111,8 +129,8 @@ const recordsData = [
 {% endfor %}
 
 ];
+
 </script>
 
 <script src="{{ '/assets/js/pagination.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/records.js' | relative_url }}"></script>
-
