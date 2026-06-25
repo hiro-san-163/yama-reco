@@ -1,10 +1,10 @@
 DATA_SPEC.md
 
-hiro-sanの山歩きサイト V5 データ仕様書
+# hiro-sanの山歩きサイト V5 データ仕様書
 
 ⸻
 
-概要
+## 概要
 
 V5では山行データをJSONで管理する。
 
@@ -14,7 +14,7 @@ V5では山行データをJSONで管理する。
 
 ⸻
 
-データファイル一覧
+### データファイル一覧
 
 records_master.json
 
@@ -58,7 +58,7 @@ STrecords.json
 
 ⸻
 
-records_master.json スキーマ
+## records_master.json スキーマ
 
 {
   "date_s": "",
@@ -88,7 +88,7 @@ records_master.json スキーマ
 
 ⸻
 
-項目定義
+## 項目定義
 
 date_s
 
@@ -270,6 +270,8 @@ string
 
 山行概要
 
+sumarryを200字前後に要約したもの
+
 records/index および record の一覧表示に利用する。
 
 ⸻
@@ -394,7 +396,7 @@ string
 
 ⸻
 
-md生成ルール
+## md生成ルール
 
 元データ
 
@@ -426,23 +428,23 @@ records_master.json の全項目をfront matterへ出力する。
 
 ⸻
 
-利用ルール
+## 利用ルール
 
 records/index
 
-利用データ
+## 利用データ
 
 site.posts
 
 ⸻
 
-検索方式
+## 検索方式
 
 JavaScriptによるクライアントサイド検索
 
 ⸻
 
-プルダウン検索対象
+## プルダウン検索対象
 
 * area
 * genre
@@ -456,7 +458,7 @@ date_s から生成する。
 
 ⸻
 
-一覧表示
+## 一覧表示
 
 * title
 * date_s
@@ -467,7 +469,7 @@ date_s から生成する。
 
 ⸻
 
-record.html
+## record.html
 
 利用データ
 
@@ -475,7 +477,7 @@ front matter
 
 ⸻
 
-logs/index
+## logs/index
 
 利用データ
 
@@ -528,21 +530,21 @@ date_s から生成する。
 
 ⸻
 
-データ管理ルール
+## データ管理ルール
 
 records_master.json はV5の基幹データである。
 
 ⸻
 
-既存項目名の変更は禁止。
+## 既存項目名の変更は禁止。
 
 ⸻
 
-既存項目の削除は禁止。
+## 既存項目の削除は禁止。
 
 ⸻
 
-新規項目追加は可能。
+## 新規項目追加は可能。
 
 ただし追加時は
 
@@ -553,7 +555,7 @@ records_master.json はV5の基幹データである。
 
 ⸻
 
-最重要ルール
+# 最重要ルール
 
 records_master.json
 
