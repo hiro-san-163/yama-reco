@@ -3,11 +3,13 @@ V5_SPEC.md
 改訂日：2026-06-24
 Version：Ver.1.1
 
+本書はV5システム全体の最上位仕様書であり、各詳細仕様書（DATA_SPEC、DIRECTORY_STRUCTURE等）は本書を基準とする。
+
 ⸻
 
-hiro-san 山歩きサイト V5 仕様書
+# hiro-san 山歩きサイト V5 仕様書
 
-V5アーキテクチャ原則
+## V5アーキテクチャ原則
 
 V5は GitHub Pages + Jekyll を利用した山行記録サイトである。
 
@@ -30,14 +32,19 @@ logs系
 * site.posts は利用しない。
 * 横断検索・山行データ検索を担当する。
 
-JSONデータの役割
+## JSONデータの役割
 
 データ	用途
 records_master.json	hiro-san 山行データのマスターデータ
+
 SBrecords.json	SilverBoy 山行データ
+
 STrecords.json	ショウタン 山行データ
 
-Markdown生成
+records_master.json は hiro-san の山行データを管理する唯一のマスターデータ（Single Source of Truth）とする。
+Markdown は本データから自動生成される派生データであり、山行データの追加・修正は records_master.json を更新して行う。
+
+## Markdown生成
 
 Markdown化の対象は records_master.json のみとする。
 
@@ -52,7 +59,7 @@ SBrecords.json および STrecords.json は Markdownへ変換しない。
 
 ⸻
 
-概要
+# 概要
 
 V5は GitHub Pages + Jekyll により構築する山行記録サイトである。
 
@@ -66,43 +73,49 @@ V5は GitHub Pages + Jekyll により構築する山行記録サイトである�
 
 ⸻
 
-データフロー
+## データフロー
 
 hiro-san データ（CSV or EXCEL）
 
 records_master.json
+
         │
         ▼
  Markdown生成
+ 
         │
         ▼
      _posts
+     
         │
         ▼
    site.posts
+   
         │
         ├── records/index
         └── record.html
 
 ⸻
 
-共同管理データ
+## 共同管理データ
 
-records_master.json
-SBrecords.json
-STrecords.json
+- records_master.json
+- SBrecords.json
+- STrecords.json
+  
         │
         ▼
    JSONを直接利用
+  
         │
         ▼
     logs/index
 
 ⸻
 
-ページ構成
+# ページ構成
 
-主要ページ
+## 主要ページ
 
 * index.html
 * records/index.html
@@ -112,7 +125,7 @@ STrecords.json
 * about/index.html
 * other/index.html
 
-将来拡張ページ
+## 将来拡張ページ
 
 * area/index.html（未定）
 * genre/index.html（未定）
@@ -171,6 +184,8 @@ records_master.json を直接検索してはならない。
 ## データ取得
 
 Liquid により `site.posts` を取得し、JavaScript によるクライアントサイド処理で一覧表示・絞り込みを行う。
+
+records/index は全文検索ページではなく、site.posts を一覧表示し、条件による絞り込みを行うページとする。
 
 ---
 
@@ -332,6 +347,8 @@ record.html は、hiro-san の山行記録を閲覧するための個別ペー�
 
 Front Matter は `records_master.json` から生成された Markdown ファイルに含まれるデータを使用する。
 
+利用するデータソースは site.posts のみとする。records_master.json を直接参照してはならない。
+
 ---
 
 ## 基本方針
@@ -415,6 +432,8 @@ Front Matter は `records_master.json` から生成された Markdown ファイ�
 8. フォトギャラリー
 9. 外部リンク
 10. ナビゲーション
+
+表示順はワイヤーフレームを基準とする。CSS によるレイアウト変更は妨げない。
 
 ---
 
@@ -550,7 +569,7 @@ records/index が写真付き一覧ページであるのに対し、logs/index �
 
 ## データ取得
 
-JavaScript により、ユーザーが選択したJSONファイルを読み込み、検索対象データを生成する。
+JavaScript により、ユーザーが選択したJSONファイルのみを読み込み、検索対象データを生成する。
 
 検索対象として選択できるJSONファイルは以下とする。
 
@@ -584,12 +603,19 @@ Markdownファイルや `site.posts` を経由してはならない。
 
 ---
 
-### キーワード検索
+### 検索対象項目（キーワード検索）
 
-検索対象として選択されたデータソースに対し、以下の項目を対象として検索を行う。
+検索対象として選択されたデータソースに対し、以下の項目を対象としてキーワード検索を行う。
 
 * title
 * summary
+
+### 検索対象項目（プルダウンリスト）
+
+- area
+- genre
+- year （date_sから生成）
+- month （date_sから生成）
 
 ---
 
@@ -680,6 +706,25 @@ Markdownファイルや `site.posts` を経由してはならない。
 ### 表示形式
 
 一覧形式とする。
+
+### スマホの場合
+
+スマートフォン表示における条件検索後の画面挙動は以下の通りとする。
+
+検索条件を入力し「検索」ボタンを押下した場合、検索条件パネルは画面上から一時的に非表示とする。
+代わりに、現在適用中の検索条件を画面上部にサマリー表示する。
+
+サマリー表示には、例えば以下のように実際に適用されている条件を明示する。
+
+keyword="雪山"　genre="沢登り"
+
+複数条件がある場合は、すべての適用中条件を一覧形式で表示する。
+
+この状態では検索結果の閲覧に集中できるUIとする。
+
+再度条件を変更して検索を行う場合は、「リセット」ボタンを押下することで検索条件サマリーを解除し、検索条件パネルを再表示する。このとき入力値も初期状態へ戻す。
+
+本仕様により、スマホ環境において検索状態の可視性と操作性を両立させるものとする。
 
 ---
 
