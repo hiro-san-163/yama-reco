@@ -1,6 +1,6 @@
 DATA_SPEC.md
 
-hiro-san 山歩きサイト V5 データ仕様書
+hiro-sanの山歩きサイト V5 データ仕様書
 
 ⸻
 
@@ -84,7 +84,6 @@ records_master.json スキーマ
   "gpfg2": "",
   "gp3": "",
   "gpfg3": "",
-  "slug": ""
 }
 
 ⸻
@@ -152,6 +151,10 @@ string
 説明
 
 レコード識別ID
+
+yamareco_urlの.html直前の5～10桁程度の数字（記録ID）
+
+mdファイル名に利用する　yyyy-mm-dd-[レコード識別ID]
 
 ⸻
 
@@ -253,6 +256,8 @@ logs/index の全文検索対象として利用する。
 
 一覧表示には利用しない。
 
+logs/index の抽出カードの山行概要に冒頭100字程度を引用する。
+
 ⸻
 
 sm2
@@ -265,7 +270,7 @@ string
 
 山行概要
 
-records/index および logs/index の一覧表示に利用する。
+records/index および record の一覧表示に利用する。
 
 ⸻
 
@@ -301,7 +306,7 @@ string
 
 説明
 
-メイン画像パス
+メイン画像のurl
 
 ⸻
 
@@ -325,7 +330,7 @@ string
 
 説明
 
-ギャラリー画像1
+ギャラリー画像1のurl
 
 ⸻
 
@@ -349,7 +354,7 @@ string
 
 説明
 
-ギャラリー画像2
+ギャラリー画像2のurl
 
 ⸻
 
@@ -373,7 +378,7 @@ string
 
 説明
 
-ギャラリー画像3
+ギャラリー画像3のurl
 
 ⸻
 
@@ -386,18 +391,6 @@ string
 説明
 
 ギャラリー画像3キャプション
-
-⸻
-
-slug
-
-型
-
-string
-
-説明
-
-URL生成用スラッグ
 
 ⸻
 
@@ -417,7 +410,7 @@ _posts
 
 ファイル名
 
-YYYY-MM-DD-yamareco_url.md
+YYYY-MM-DD-レコード識別ID（yamareco_url）.md
 
 例
 
@@ -449,11 +442,17 @@ JavaScriptによるクライアントサイド検索
 
 ⸻
 
-検索対象
+プルダウン検索対象
 
-* title
 * area
 * genre
+* year
+
+⸻
+
+year
+
+date_s から生成する。
 
 ⸻
 
