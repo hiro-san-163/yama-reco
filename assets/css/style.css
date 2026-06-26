@@ -1960,6 +1960,24 @@ textarea:focus {
 
 }
 
+.logs-condition-bar {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+}
+
+.logs-condition-actions {
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+}
+
 .record-empty-message {
 
   margin: 0 0 1rem;
@@ -1978,6 +1996,19 @@ textarea:focus {
   .logs-page.is-search-active .logs-condition-summary {
 
     display: block;
+
+  }
+
+  .logs-condition-bar {
+
+    align-items: stretch;
+    flex-direction: column;
+
+  }
+
+  .logs-condition-actions {
+
+    justify-content: flex-start;
 
   }
 

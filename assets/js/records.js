@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  const cards = Array.from(document.querySelectorAll('#recordsList .record-card'));
   const areaFilter = document.getElementById('areaFilter');
   const genreFilter = document.getElementById('genreFilter');
   const yearFilter = document.getElementById('yearFilter');
@@ -12,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const paginationContainer = document.getElementById('pagination');
 
   const pager = new Pagination(10);
-
-  const recordsData = Array.isArray(window.recordsData) ? window.recordsData : [];
 
   initialize();
 
@@ -30,21 +29,30 @@ document.addEventListener('DOMContentLoaded', () => {
       renderResults();
     });
 
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const url = card.dataset.url;
+        if (url) {
+          window.location.href = url;
+        }
+      });
+    });
+
     renderResults();
   }
 
   function populateFilters() {
-    populateSelect(areaFilter, getUniqueValues('area'));
-    populateSelect(genreFilter, getUniqueValues('genre'));
-    populateSelect(yearFilter, getUniqueValues('year'));
+    populateSelect(areaFilter, getUniqueValues('recordArea'));
+    populateSelect(genreFilter, getUniqueValues('recordGenre'));
+    populateSelect(yearFilter, getUniqueValues('recordDate', value => value.slice(0, 4)));
   }
 
-  function getUniqueValues(key) {
-    return [...new Set(
-      recordsData
-        .map(item => item[key])
-        .filter(Boolean)
-    )].sort((a, b) => a.localeCompare(b, 'ja'));
+  function getUniqueValues(key, mapper) {
+    const values = cards
+      .map(card => mapper ? mapper(card.dataset[key] || '') : card.dataset[key])
+      .filter(Boolean);
+
+    return [...new Set(values)].sort((a, b) => b.localeCompare(a, 'ja'));
   }
 
   function populateSelect(select, values) {
@@ -57,14 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderResults() {
-    const filtered = recordsData.filter(record => {
-      if (areaFilter.value && record.area !== areaFilter.value) return false;
-      if (genreFilter.value && record.genre !== genreFilter.value) return false;
-      if (yearFilter.value && record.year !== yearFilter.value) return false;
+    const filtered = cards.filter(card => {
+      if (areaFilter.value && card.dataset.recordArea !== areaFilter.value) return false;
+      if (genreFilter.value && card.dataset.recordGenre !== genreFilter.value) return false;
+      if (yearFilter.value && card.dataset.recordDate.slice(0, 4) !== yearFilter.value) return false;
       return true;
     });
 
-    filtered.sort((a, b) => b.date_s.localeCompare(a.date_s));
+    filtered.sort((a, b) => b.dataset.recordDate.localeCompare(a.dataset.recordDate));
 
     pager.setData(filtered);
 
@@ -73,44 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
     recordsCount.textContent = `${pager.getTotalItems()}件中 ${pageItems.length}件表示`;
     emptyMessage.hidden = pager.getTotalItems() !== 0;
 
-    recordsList.innerHTML = '';
+    cards.forEach(card => {
+      card.hidden = true;
+    });
 
-    pageItems.forEach(record => {
-      recordsList.appendChild(createRecordCard(record));
+    pageItems.forEach(card => {
+      recordsList.appendChild(card);
+      card.hidden = false;
     });
 
     renderPagination(pager, paginationContainer, renderResults);
-  }
-
-  function createRecordCard(record) {
-    const card = document.createElement('a');
-    card.href = record.url;
-    card.className = 'record-card';
-
-    const hasThumb = Boolean(record.thumbnail);
-
-    card.innerHTML = `
-      ${hasThumb ? `
-      <div class="record-card-image">
-        <img src="${record.thumbnail}" alt="${record.title}">
-      </div>
-      ` : ''}
-      <div class="record-card-content">
-        <h2 class="record-card-title">${record.title || ''}</h2>
-        <div class="record-card-meta">
-          <span>${record.date_s || ''}</span>
-          ${record.area ? `<span>｜ ${record.area}</span>` : ''}
-          ${record.genre ? `<span>｜ ${record.genre}</span>` : ''}
-        </div>
-        <p class="record-card-summary">${record.summary || ''}</p>
-      </div>
-    `;
-
-    if (hasThumb) {
-      card.classList.add('has-thumb');
-    }
-
-    return card;
   }
 
 });

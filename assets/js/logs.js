@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   const logsPage = document.querySelector('.logs-page');
   const logsList = document.getElementById('logsList');
   const logsCount = document.getElementById('logsCount');
+  const logsFilterPanel = document.getElementById('logsFilterPanel');
+  const logsConditionBar = document.getElementById('logsConditionBar');
   const logsConditionSummary = document.getElementById('logsConditionSummary');
   const paginationContainer = document.getElementById('pagination');
-
-  const logsFilterPanel = document.getElementById('logsFilterPanel');
 
   const sourceHiro = document.getElementById('sourceHiro');
   const sourceSB = document.getElementById('sourceSB');
@@ -22,11 +22,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const searchButton = document.getElementById('searchButton');
   const resetButton = document.getElementById('resetButton');
+  const logsResetButton = document.getElementById('logsResetButton');
+  const logsEditButton = document.getElementById('logsEditButton');
 
   const pager = new Pagination(10);
+  const mobileQuery = window.matchMedia('(max-width: 768px)');
 
   let allRecords = [];
   let searchApplied = false;
+  let currentResults = [];
 
   try {
     const [hiroData, sbData, stData] = await Promise.all([
@@ -75,38 +79,54 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     searchButton.addEventListener('click', () => {
       searchApplied = true;
-      setSearchMode(true);
       pager.setPage(1);
       renderResults();
     });
 
-    resetButton.addEventListener('click', () => {
-      resetFilters();
-      searchApplied = false;
-      setSearchMode(false);
-      pager.setPage(1);
-      renderResults();
-    });
+    resetButton.addEventListener('click', resetAndShowFilters);
+    logsResetButton.addEventListener('click', resetAndShowFilters);
+
+    if (logsEditButton) {
+      logsEditButton.addEventListener('click', () => {
+        searchApplied = true;
+        syncSearchPanelVisibility();
+      });
+    }
 
     sortFilter.addEventListener('change', () => {
       pager.setPage(1);
       renderResults();
     });
 
+    if (mobileQuery.addEventListener) {
+      mobileQuery.addEventListener('change', syncSearchPanelVisibility);
+    } else if (mobileQuery.addListener) {
+      mobileQuery.addListener(syncSearchPanelVisibility);
+    }
+
     renderResults();
   }
 
-  function setSearchMode(active) {
-    if (logsPage) {
-      logsPage.classList.toggle('is-search-active', active);
+  function resetAndShowFilters() {
+    resetFilters();
+    searchApplied = false;
+    pager.setPage(1);
+    renderResults();
+  }
+
+  function syncSearchPanelVisibility() {
+    const isMobile = mobileQuery.matches;
+
+    if (logsConditionBar) {
+      logsConditionBar.hidden = !searchApplied;
     }
 
-    if (logsConditionSummary) {
-      logsConditionSummary.hidden = !active;
+    if (logsFilterPanel) {
+      logsFilterPanel.hidden = Boolean(searchApplied && isMobile);
     }
 
-    if (logsFilterPanel && !active) {
-      logsFilterPanel.hidden = false;
+    if (!searchApplied && logsConditionBar) {
+      logsConditionBar.hidden = true;
     }
   }
 
@@ -149,10 +169,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function renderResults() {
-    const filtered = getFilteredRecords();
-    const sorted = sortRecords(filtered);
-
-    pager.setData(sorted);
+    currentResults = sortRecords(getFilteredRecords());
+    pager.setData(currentResults);
 
     const pageItems = pager.getCurrentPageItems();
 
@@ -165,12 +183,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     renderPagination(pager, paginationContainer, renderResults);
-
-    if (searchApplied) {
-      setSearchMode(true);
-    }
-
-    renderConditionSummary(sorted.length);
+    renderConditionSummary();
+    syncSearchPanelVisibility();
   }
 
   function getFilteredRecords() {
@@ -226,7 +240,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     return sorted;
   }
 
-  function renderConditionSummary(totalCount) {
+  function renderConditionSummary() {
     if (!logsConditionSummary) return;
 
     if (!searchApplied) {
@@ -248,7 +262,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       `年: ${yearFilter.value || 'すべて'}`,
       `月: ${monthFilter.value || 'すべて'}`,
       `並び順: ${getSortLabel(sortFilter.value)}`,
-      `件数: ${totalCount}件`
+      `件数: ${currentResults.length}件`
     ];
 
     logsConditionSummary.textContent = summaryParts.join(' / ');

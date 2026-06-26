@@ -89,38 +89,54 @@ breadcrumb: 山行記録
     条件に一致する山行記録はありません。
   </p>
 
-  <div id="recordsList" class="records-list"></div>
+  <div id="recordsList" class="records-list">
+
+    {% for post in site.posts %}
+
+    <article
+      class="record-card{% if post.tm and post.tm != '' %} has-thumb{% endif %}"
+      data-url="{{ post.url | relative_url }}"
+      data-record-date="{{ post.date_s }}"
+      data-record-area="{{ post.area | escape }}"
+      data-record-genre="{{ post.genre | escape }}">
+
+      {% if post.tm and post.tm != '' %}
+      <div class="record-card-image">
+        <img
+          src="{{ post.tm | escape }}"
+          alt="{{ post.title | escape }}">
+      </div>
+      {% endif %}
+
+      <div class="record-card-content">
+        <h2 class="record-card-title">
+          {{ post.title }}
+        </h2>
+
+        <div class="record-card-meta">
+          <span>{{ post.date_s }}</span>
+          {% if post.area and post.area != '' %}
+          <span>｜ {{ post.area }}</span>
+          {% endif %}
+          {% if post.genre and post.genre != '' %}
+          <span>｜ {{ post.genre }}</span>
+          {% endif %}
+        </div>
+
+        <p class="record-card-summary">
+          {{ post.sm2 }}
+        </p>
+      </div>
+
+    </article>
+
+    {% endfor %}
+
+  </div>
 
   <div id="pagination" class="pagination"></div>
 
 </section>
-
-<script>
-
-{% assign records = site.posts %}
-
-window.recordsData = [
-
-{% for post in records %}
-
-{
-  title: {{ post.title | jsonify }},
-  url: {{ post.url | relative_url | jsonify }},
-  date_s: {{ post.date_s | jsonify }},
-  area: {{ post.area | jsonify }},
-  genre: {{ post.genre | jsonify }},
-  summary: {{ post.sm2 | strip_html | strip_newlines | jsonify }},
-  thumbnail: {{ post.tm | jsonify }},
-  year: {{ post.date_s | slice: 0, 4 | jsonify }}
-}
-
-{% unless forloop.last %},{% endunless %}
-
-{% endfor %}
-
-];
-
-</script>
 
 <script src="{{ '/assets/js/pagination.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/records.js' | relative_url }}"></script>
