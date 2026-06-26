@@ -108,13 +108,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function syncSearchPanelVisibility() {
     const isMobile = mobileQuery.matches;
+    const shouldHidePanel = Boolean(searchApplied && isMobile);
 
     if (logsFilterPanel) {
-      logsFilterPanel.hidden = Boolean(searchApplied && isMobile);
+      logsFilterPanel.hidden = shouldHidePanel;
+    }
+
+    if (logsPage) {
+      logsPage.classList.toggle('is-search-active', shouldHidePanel);
     }
 
     if (logsConditionBar) {
-      logsConditionBar.hidden = !(searchApplied && isMobile && logsFilterPanel && logsFilterPanel.hidden);
+      logsConditionBar.hidden = !shouldHidePanel;
     }
   }
 

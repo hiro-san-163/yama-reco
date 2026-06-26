@@ -2002,6 +2002,12 @@ textarea:focus {
 
   }
 
+  .records-page.is-search-active .records-filter {
+
+    display: none;
+
+  }
+
   .logs-page.is-search-active .logs-condition-summary {
 
     display: block;
@@ -2024,6 +2030,12 @@ textarea:focus {
   .records-condition-bar {
 
     justify-content: flex-start;
+
+  }
+
+  .records-page.is-search-active .records-condition-bar {
+
+    display: flex;
 
   }
 
