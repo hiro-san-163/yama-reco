@@ -158,6 +158,7 @@ function renderPagination(pager, container, onPageChange) {
 
     if (active) {
       button.classList.add('active');
+      button.setAttribute('aria-current', 'page');
     }
 
     if (disabled) {

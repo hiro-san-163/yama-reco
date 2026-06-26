@@ -16,11 +16,9 @@ breadcrumb: 山行検索
 
   </header>
 
-  <!-- ======================================
-       DATA SOURCE
-  ======================================= -->
-
-  <section class="logs-filter">
+  <section
+    id="logsFilterPanel"
+    class="logs-filter">
 
     <div class="form-group">
 
@@ -59,10 +57,6 @@ breadcrumb: 山行検索
 
     </div>
 
-    <!-- ======================================
-         KEYWORD
-    ======================================= -->
-
     <div class="form-group">
 
       <label for="keywordFilter">
@@ -76,10 +70,6 @@ breadcrumb: 山行検索
 
     </div>
 
-    <!-- ======================================
-         AREA
-    ======================================= -->
-
     <div class="form-group">
 
       <label for="areaFilter">
@@ -87,18 +77,10 @@ breadcrumb: 山行検索
       </label>
 
       <select id="areaFilter">
-
-        <option value="">
-          すべて
-        </option>
-
+        <option value="">すべて</option>
       </select>
 
     </div>
-
-    <!-- ======================================
-         GENRE
-    ======================================= -->
 
     <div class="form-group">
 
@@ -107,18 +89,10 @@ breadcrumb: 山行検索
       </label>
 
       <select id="genreFilter">
-
-        <option value="">
-          すべて
-        </option>
-
+        <option value="">すべて</option>
       </select>
 
     </div>
-
-    <!-- ======================================
-         YEAR
-    ======================================= -->
 
     <div class="form-group">
 
@@ -127,18 +101,10 @@ breadcrumb: 山行検索
       </label>
 
       <select id="yearFilter">
-
-        <option value="">
-          すべて
-        </option>
-
+        <option value="">すべて</option>
       </select>
 
     </div>
-
-    <!-- ======================================
-         MONTH
-    ======================================= -->
 
     <div class="form-group">
 
@@ -147,38 +113,26 @@ breadcrumb: 山行検索
       </label>
 
       <select id="monthFilter">
-
-        <option value="">
-          すべて
-        </option>
-
+        <option value="">すべて</option>
       </select>
 
-    </div><div class="form-group form-group-buttons">
+    </div>
 
-  <button
-    type="button"
-    id="searchButton">
+    <div class="form-group form-group-buttons">
 
-    検索
+      <button
+        type="button"
+        id="searchButton">
+        検索
+      </button>
 
-  </button>
+      <button
+        type="button"
+        id="resetButton">
+        リセット
+      </button>
 
-  <button
-    type="button"
-    id="resetButton">
-
-    リセット
-
-  </button>
-
-</div>
-
-    
-
-    <!-- ======================================
-         SORT
-    ======================================= -->
+    </div>
 
     <div class="form-group">
 
@@ -187,32 +141,31 @@ breadcrumb: 山行検索
       </label>
 
       <select id="sortFilter">
-
-        <option value="date_desc">
-          日付降順
-        </option>
-
-        <option value="date_asc">
-          日付昇順
-        </option>
-
-        <option value="title_asc">
-          タイトル昇順
-        </option>
-
-        <option value="title_desc">
-          タイトル降順
-        </option>
-
+        <option value="date_desc">日付降順</option>
+        <option value="date_asc">日付昇順</option>
+        <option value="title_asc">タイトル昇順</option>
+        <option value="title_desc">タイトル降順</option>
       </select>
+
+    </div>
+
+    <div class="form-group">
+
+      <label for="pageSize">
+        表示件数
+      </label>
+
+      <select id="pageSize"></select>
 
     </div>
 
   </section>
 
-  <!-- ======================================
-       RESULT COUNT
-  ======================================= -->
+  <div
+    id="logsConditionSummary"
+    class="logs-condition-summary"
+    hidden>
+  </div>
 
   <div class="logs-count">
 
@@ -222,11 +175,9 @@ breadcrumb: 山行検索
 
   </div>
 
-  <!-- ======================================
-       RESULT LIST
-  ======================================= -->
-
   <div id="logsList" class="logs-list"></div>
+
+  <div id="pagination" class="pagination"></div>
 
 </section>
 
@@ -234,4 +185,5 @@ breadcrumb: 山行検索
 const BASE_URL = "{{ site.baseurl }}";
 </script>
 
+<script src="{{ '/assets/js/pagination.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/logs.js' | relative_url }}"></script>

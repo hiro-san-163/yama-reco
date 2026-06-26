@@ -1876,6 +1876,113 @@ textarea:focus {
 
 }
 
+/* ======================================
+   23 SHARED PAGINATION & LOGS STATE
+====================================== */
+
+.pagination {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+
+}
+
+.pagination-button,
+.pagination-btn {
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+
+}
+
+.pagination-button:hover:not(.active):not(:disabled),
+.pagination-btn:hover:not(.active):not(:disabled) {
+
+  background: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+  color: #ffffff;
+
+}
+
+.pagination-button.active,
+.pagination-button[aria-current="page"],
+.pagination-btn.active {
+
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  cursor: default;
+
+}
+
+.pagination-button:disabled,
+.pagination-btn:disabled,
+.pagination-btn.disabled {
+
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+
+}
+
+.pagination-button:focus-visible,
+.pagination-btn:focus-visible {
+
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+
+}
+
+.logs-condition-summary {
+
+  margin-bottom: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.84);
+  color: var(--color-text-light);
+  overflow-wrap: anywhere;
+
+}
+
+.record-empty-message {
+
+  margin: 0 0 1rem;
+  color: var(--color-text-light);
+
+}
+
+@media (max-width: 768px) {
+
+  .logs-page.is-search-active .logs-filter {
+
+    display: none;
+
+  }
+
+  .logs-page.is-search-active .logs-condition-summary {
+
+    display: block;
+
+  }
+
+}
+
 
 /* ======================================
    22 RECORD PAGE RESPONSIVE

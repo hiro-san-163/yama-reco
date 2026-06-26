@@ -16,10 +16,6 @@ breadcrumb: 山行記録
 
   </header>
 
-  <!-- ======================================
-       FILTER
-  ======================================= -->
-
   <section class="records-filter">
 
     <div class="form-group">
@@ -78,10 +74,6 @@ breadcrumb: 山行記録
 
   </section>
 
-  <!-- ======================================
-       RESULT COUNT
-  ======================================= -->
-
   <div class="records-count">
 
     <span id="recordsCount">
@@ -90,26 +82,24 @@ breadcrumb: 山行記録
 
   </div>
 
-  <!-- ======================================
-       RECORDS LIST
-  ======================================= -->
+  <p
+    id="recordEmptyMessage"
+    class="record-empty-message"
+    hidden>
+    条件に一致する山行記録はありません。
+  </p>
 
   <div id="recordsList" class="records-list"></div>
 
-  <!-- ページネーション表示位置 -->
-  <div id="pagination"></div>
+  <div id="pagination" class="pagination"></div>
 
 </section>
 
-<!-- ======================================
-     POSTS DATA
-====================================== -->
-
 <script>
 
-{% assign records = site.posts | where_exp: "post", "post.tags contains '山行記録'" %}
+{% assign records = site.posts %}
 
-const recordsData = [
+window.recordsData = [
 
 {% for post in records %}
 
@@ -120,7 +110,7 @@ const recordsData = [
   area: {{ post.area | jsonify }},
   genre: {{ post.genre | jsonify }},
   summary: {{ post.sm2 | strip_html | strip_newlines | jsonify }},
-  thumbnail: {{ post.tm | relative_url | jsonify }},
+  thumbnail: {{ post.tm | jsonify }},
   year: {{ post.date_s | slice: 0, 4 | jsonify }}
 }
 
