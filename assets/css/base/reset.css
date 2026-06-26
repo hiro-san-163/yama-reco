@@ -31,7 +31,9 @@ body {
 
   /* 背景画像 */
   background-color: var(--color-bg);
-  background-image: url("../images/IMG_2539.webp");
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.34)),
+    url("../../images/IMG_2539.webp");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -46,7 +48,7 @@ body::before {
 
   inset: 0;
 
-  background: rgba(255,255,255,0.50);
+  background: rgba(255,255,255,0.08);
 
   pointer-events: none;
 
