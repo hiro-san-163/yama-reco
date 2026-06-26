@@ -40,3 +40,4 @@ GitHub Pages + Jekyll で運用する。
 - docs/CODEX_RULES.md
 - docs/DATA_SPEC.md
 - docs/DIRECTORY_STRUCTURE.md
+- docs/CSS_ARCHITECTURE.md - CSS設計（モジュールアーキテクチャ）
