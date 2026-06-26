@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const searchButton = document.getElementById('searchButton');
   const resetButton = document.getElementById('resetButton');
   const logsResetButton = document.getElementById('logsResetButton');
-  const logsEditButton = document.getElementById('logsEditButton');
 
   const pager = new Pagination(10);
   const mobileQuery = window.matchMedia('(max-width: 768px)');
@@ -86,13 +85,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     resetButton.addEventListener('click', resetAndShowFilters);
     logsResetButton.addEventListener('click', resetAndShowFilters);
 
-    if (logsEditButton) {
-      logsEditButton.addEventListener('click', () => {
-        searchApplied = true;
-        syncSearchPanelVisibility();
-      });
-    }
-
     sortFilter.addEventListener('change', () => {
       pager.setPage(1);
       renderResults();
@@ -117,16 +109,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   function syncSearchPanelVisibility() {
     const isMobile = mobileQuery.matches;
 
-    if (logsConditionBar) {
-      logsConditionBar.hidden = !searchApplied;
-    }
-
     if (logsFilterPanel) {
       logsFilterPanel.hidden = Boolean(searchApplied && isMobile);
     }
 
-    if (!searchApplied && logsConditionBar) {
-      logsConditionBar.hidden = true;
+    if (logsConditionBar) {
+      logsConditionBar.hidden = !(searchApplied && isMobile && logsFilterPanel && logsFilterPanel.hidden);
     }
   }
 
@@ -243,29 +231,42 @@ document.addEventListener('DOMContentLoaded', async () => {
   function renderConditionSummary() {
     if (!logsConditionSummary) return;
 
-    if (!searchApplied) {
-      logsConditionSummary.textContent = '';
-      logsConditionSummary.hidden = true;
-      return;
-    }
-
     const sources = [];
     if (sourceHiro.checked) sources.push('hiro-san');
     if (sourceSB.checked) sources.push('silverboy');
     if (sourceST.checked) sources.push('ショウタン');
 
-    const summaryParts = [
-      `対象データ: ${sources.length ? sources.join(' / ') : 'なし'}`,
-      `キーワード: ${keywordFilter.value.trim() || 'なし'}`,
-      `エリア: ${areaFilter.value || 'すべて'}`,
-      `ジャンル: ${genreFilter.value || 'すべて'}`,
-      `年: ${yearFilter.value || 'すべて'}`,
-      `月: ${monthFilter.value || 'すべて'}`,
-      `並び順: ${getSortLabel(sortFilter.value)}`,
-      `件数: ${currentResults.length}件`
-    ];
+    const summaryParts = [];
 
-    logsConditionSummary.textContent = summaryParts.join(' / ');
+    if (sources.length !== 3) {
+      summaryParts.push(`対象データ: ${sources.length ? sources.join(' / ') : 'なし'}`);
+    }
+
+    if (keywordFilter.value.trim()) {
+      summaryParts.push(`キーワード: ${keywordFilter.value.trim()}`);
+    }
+
+    if (areaFilter.value) {
+      summaryParts.push(`エリア: ${areaFilter.value}`);
+    }
+
+    if (genreFilter.value) {
+      summaryParts.push(`ジャンル: ${genreFilter.value}`);
+    }
+
+    if (yearFilter.value) {
+      summaryParts.push(`年: ${yearFilter.value}`);
+    }
+
+    if (monthFilter.value) {
+      summaryParts.push(`月: ${monthFilter.value}`);
+    }
+
+    if (sortFilter.value !== 'date_desc') {
+      summaryParts.push(`並び順: ${getSortLabel(sortFilter.value)}`);
+    }
+
+    logsConditionSummary.textContent = summaryParts.length ? summaryParts.join(' / ') : '条件指定なし';
     logsConditionSummary.hidden = false;
   }
 

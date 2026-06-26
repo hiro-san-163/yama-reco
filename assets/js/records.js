@@ -81,13 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
     recordsCount.textContent = `${pager.getTotalItems()}件中 ${pageItems.length}件表示`;
     emptyMessage.hidden = pager.getTotalItems() !== 0;
 
-    cards.forEach(card => {
-      card.hidden = true;
-    });
+    recordsList.innerHTML = '';
 
     pageItems.forEach(card => {
-      recordsList.appendChild(card);
       card.hidden = false;
+      recordsList.appendChild(card);
     });
 
     renderPagination(pager, paginationContainer, renderResults);
