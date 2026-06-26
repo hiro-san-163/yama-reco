@@ -1,0 +1,47 @@
+/* ======================================
+   COMPONENTS LAYER: CARD
+   Card component styles
+====================================== */
+
+.card {
+
+  background: var(--color-card);
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-card);
+
+  overflow: hidden;
+
+}
+
+.card-body {
+
+  padding: 1rem;
+
+}
+
+.card-title {
+
+  margin-bottom: 0.5rem;
+
+  font-size: 1.2rem;
+  font-weight: 700;
+
+}
+
+.card-meta {
+
+  font-size: 0.9rem;
+
+  color: var(--color-text-light);
+
+}
+
+.card-summary {
+
+  margin-top: 0.75rem;
+
+}

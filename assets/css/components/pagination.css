@@ -1,0 +1,107 @@
+/* ======================================
+   COMPONENTS LAYER: PAGINATION
+   Pagination and page navigation controls
+====================================== */
+
+.pagination {
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 0.5rem;
+
+  margin-top: 2rem;
+
+}
+
+.pagination-btn {
+
+  display: inline-flex;
+
+  justify-content: center;
+  align-items: center;
+
+  min-width: 2.5rem;
+  height: 2.5rem;
+
+  padding: 0 0.85rem;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+
+  background: var(--color-bg);
+
+  color: var(--color-text);
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: var(--transition-fast);
+
+}
+
+.pagination-btn:hover:not(.active):not(:disabled) {
+
+  background: var(--color-primary-light);
+
+  border-color: var(--color-primary-light);
+
+  color: #ffffff;
+
+}
+
+.pagination-btn.active {
+
+  background: var(--color-primary);
+
+  border-color: var(--color-primary);
+
+  color: #ffffff;
+
+  cursor: default;
+
+}
+
+.pagination-btn:disabled,
+.pagination-btn.disabled {
+
+  opacity: 0.45;
+
+  cursor: not-allowed;
+
+  pointer-events: none;
+
+}
+
+.pagination-btn:focus-visible {
+
+  outline: 2px solid var(--color-primary);
+
+  outline-offset: 2px;
+
+}
+
+@media (max-width: 768px) {
+
+  .pagination {
+
+    gap: 0.4rem;
+
+  }
+
+  .pagination-btn {
+
+    min-width: 2.25rem;
+    height: 2.25rem;
+
+    padding: 0 0.7rem;
+
+    font-size: 0.9rem;
+
+  }
+
+}

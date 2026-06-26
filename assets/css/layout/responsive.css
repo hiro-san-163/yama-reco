@@ -1,0 +1,109 @@
+/* ======================================
+   LAYOUT LAYER: RESPONSIVE
+   Global responsive design rules
+====================================== */
+
+@media (max-width: 768px) {
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  /* Navigation */
+
+  .nav-inner {
+
+    padding: 0;
+
+  }
+
+  .nav-toggle {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 0.9rem 1rem;
+
+    text-align: right;
+
+  }
+
+  .nav-menu {
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 0;
+
+  }
+
+  .nav-menu.is-open {
+
+    display: flex;
+
+  }
+
+  .nav-menu li {
+
+    width: 100%;
+
+  }
+
+  .nav-menu a {
+
+    padding: 0.9rem 1rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+  }
+
+  /* Footer */
+
+  .footer-nav-desktop {
+
+    display: none;
+
+  }
+
+  .footer-nav-mobile {
+
+    display: block;
+
+  }
+
+  /* Layout */
+
+  .section {
+
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+
+  }
+
+}
+
+@media (min-width: 769px) {
+
+  .footer-nav-desktop {
+
+    display: block;
+
+  }
+
+  .footer-nav-mobile {
+
+    display: none;
+
+  }
+
+}

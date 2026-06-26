@@ -1,0 +1,166 @@
+/* ======================================
+   PAGES LAYER: HOME
+   Home page styles
+====================================== */
+
+.home-page {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.home-concept {
+  margin-bottom: 3rem;
+}
+
+.concept-card {
+
+  padding: 2rem;
+
+  text-align: center;
+
+  background: var(--color-card);
+
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-card);
+
+}
+
+.concept-text {
+
+  margin: 0;
+
+  font-size: 1.25rem;
+
+  line-height: 1.8;
+
+  color: var(--color-heading);
+
+}
+
+.home-recent {
+  margin-top: 2rem;
+}
+
+.section-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-bottom: 1.5rem;
+
+}
+
+.home-records {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(320px, 1fr));
+
+  gap: 1.5rem;
+
+}
+
+.home-record-card {
+
+  background: var(--color-card);
+
+  border-radius: var(--radius-md);
+
+  overflow: hidden;
+
+  box-shadow: var(--shadow-card);
+
+  transition: var(--transition-fast);
+
+}
+
+.home-record-card:hover {
+
+  transform: translateY(-2px);
+
+}
+
+.home-record-card a {
+
+  display: block;
+
+  height: 100%;
+
+}
+
+.home-record-image img {
+
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  object-fit: cover;
+
+}
+
+.home-record-content {
+
+  padding: 1rem;
+
+}
+
+.home-record-content h3 {
+
+  margin-bottom: 0.75rem;
+
+  color: var(--color-heading);
+
+}
+
+.home-record-meta {
+
+  margin-bottom: 0.75rem;
+
+  font-size: 0.9rem;
+
+  color: var(--color-text-light);
+
+}
+
+.home-record-summary {
+
+  margin-bottom: 0;
+
+}
+
+@media (max-width: 768px) {
+
+  .concept-card {
+
+    padding: 1.5rem;
+
+  }
+
+  .concept-text {
+
+    font-size: 1.1rem;
+
+  }
+
+  .section-header {
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+  }
+
+  .home-records {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}

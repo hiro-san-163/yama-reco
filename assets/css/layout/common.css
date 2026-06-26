@@ -1,0 +1,36 @@
+/* ======================================
+   LAYOUT LAYER: COMMON
+   Container, sections, and common layout utilities
+====================================== */
+
+.container {
+
+  max-width: var(--container-width);
+
+  margin: 0 auto;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+}
+
+.site-main {
+
+  min-height: 60vh;
+
+}
+
+.section {
+
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}

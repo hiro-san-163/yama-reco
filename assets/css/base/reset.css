@@ -1,0 +1,98 @@
+/* ======================================
+   BASE LAYER: RESET & BASE STYLES
+   Browser normalization and base element styles
+====================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+  margin: 0;
+  padding: 0;
+
+  color: var(--color-text);
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Sans",
+    "Yu Gothic",
+    sans-serif;
+
+  line-height: 1.7;
+
+  /* 背景画像 */
+  background-color: var(--color-bg);
+  background-image: url("../images/IMG_2539.webp");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+body::before {
+
+  content: "";
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(255,255,255,0.50);
+
+  pointer-events: none;
+
+  z-index: -1;
+
+}
+
+img {
+
+  display: block;
+  max-width: 100%;
+  height: auto;
+
+}
+
+a {
+
+  color: inherit;
+  text-decoration: none;
+
+}
+
+ul,
+ol {
+
+  margin: 0;
+  padding: 0;
+
+}
+
+li {
+  list-style: none;
+}
+
+table {
+
+  width: 100%;
+  border-collapse: collapse;
+
+}
+
+button,
+input,
+select,
+textarea {
+
+  font: inherit;
+
+}

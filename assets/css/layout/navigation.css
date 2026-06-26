@@ -1,0 +1,70 @@
+/* ======================================
+   LAYOUT LAYER: NAVIGATION
+   Main navigation and menu styles
+====================================== */
+
+.site-nav {
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: var(--color-primary);
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+}
+
+.nav-inner {
+
+  max-width: var(--container-width);
+
+  margin: 0 auto;
+
+  padding: 0 1rem;
+
+}
+
+.nav-menu {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+}
+
+.nav-menu a {
+
+  display: block;
+
+  padding: 1rem 0;
+
+  color: #ffffff;
+
+  font-weight: 600;
+
+  transition: var(--transition-fast);
+
+}
+
+.nav-menu a:hover {
+
+  opacity: 0.8;
+
+}
+
+.nav-toggle {
+
+  display: none;
+
+  background: none;
+  border: none;
+
+  color: #ffffff;
+
+  font-size: 1.5rem;
+
+  cursor: pointer;
+
+}

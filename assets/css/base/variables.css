@@ -1,0 +1,50 @@
+/* ======================================
+   BASE LAYER: VARIABLES
+   CSS Custom Properties - Design System
+====================================== */
+
+:root {
+
+  /* Brand Colors */
+
+  --color-primary: #144b33;
+  --color-primary-light: #2d6a4f;
+  --color-primary-dark: #0d3524;
+
+  --color-accent: #6b8e23;
+
+  /* Text */
+
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-heading: #144b33;
+
+  /* Background */
+
+  --color-bg: #ffffff;
+  --color-bg-alt: #f7f8f7;
+
+  /* Border */
+
+  --color-border: #dddddd;
+
+  /* Card */
+
+  --color-card: rgba(255,255,255,0.90);
+  --shadow-card: 0 8px 24px rgba(0,0,0,.10);
+   
+  /* Layout */
+
+  --container-width: 1200px;
+
+  /* Radius */
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  /* Transition */
+
+  --transition-fast: 0.2s ease;
+
+}

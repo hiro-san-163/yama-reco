@@ -1,0 +1,74 @@
+/* ======================================
+   LAYOUT LAYER: FOOTER
+   Site footer
+====================================== */
+
+.site-footer {
+
+  margin-top: 4rem;
+
+  background: rgba(20,75,51,0.92);
+
+   backdrop-filter: blur(6px);
+
+   color: #ffffff;
+
+}
+
+.footer-inner {
+
+  max-width: var(--container-width);
+
+  margin: 0 auto;
+
+  padding: 2rem 1rem;
+
+  text-align: center;
+
+}
+
+.footer-nav {
+
+  margin-bottom: 1rem;
+
+}
+
+.footer-nav a {
+
+  color: #ffffff;
+
+}
+
+.footer-nav a:hover {
+
+  text-decoration: underline;
+
+}
+
+.footer-top {
+
+  margin: 1.5rem 0;
+
+}
+
+.footer-top a {
+
+  color: #ffffff;
+
+}
+
+.footer-copyright {
+
+  margin-bottom: 0;
+
+  font-size: 0.9rem;
+
+  opacity: 0.9;
+
+}
+
+.footer-nav-mobile {
+
+  display: none;
+
+}

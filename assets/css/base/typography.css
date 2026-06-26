@@ -1,0 +1,52 @@
+/* ======================================
+   BASE LAYER: TYPOGRAPHY
+   Heading and text element styles
+====================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+
+  margin-top: 0;
+
+  color: var(--color-heading);
+  line-height: 1.4;
+
+}
+
+h1 {
+
+  font-size: 2rem;
+  margin-bottom: 1rem;
+
+}
+
+h2 {
+
+  font-size: 1.6rem;
+  margin-bottom: 0.9rem;
+
+}
+
+h3 {
+
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+
+}
+
+p {
+
+  margin-top: 0;
+  margin-bottom: 1rem;
+
+}
+
+small {
+
+  color: var(--color-text-light);
+
+}
