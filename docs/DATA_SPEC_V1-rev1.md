@@ -1,6 +1,6 @@
 DATA_SPEC.md
 
-改訂日：2026-06-24 Version：Ver.1
+改訂日：2026-06-24 Version：Ver.1(Rev1)
 
 # hiro-sanの山歩きサイト V5 データ仕様書
 
@@ -10,7 +10,7 @@ DATA_SPEC.md
 
 V5では山行データをJSONで管理する。
 
-主データは records_master.json とし、個別記事(md)生成の元データとして利用する。
+主データは records_master.json とし、md生成および records/index・logs/index のデータソースとして利用する。
 
 外部協力者データとして SBrecords.json および STrecords.json を利用する。
 
@@ -154,7 +154,7 @@ string
 
 レコード識別ID
 
-yamareco_urlの.html直前の5～10桁程度の数字（記録ID）
+山行を一意に識別するID。通常はヤマレコ記録IDを格納する。
 
 mdファイル名に利用する　yyyy-mm-dd-[レコード識別ID]
 
@@ -298,7 +298,7 @@ string
 
 説明
 
-地図URLまたは地図情報
+地図表示に利用するURL
 
 ⸻
 
@@ -414,7 +414,9 @@ _posts
 
 ファイル名
 
-YYYY-MM-DD-レコード識別ID（yamareco_url）.md
+mdファイル名は date_s と record_id を使用する。
+
+YYYY-MM-DD-[record_id].md
 
 例
 
@@ -426,7 +428,8 @@ yamareco_urlから記録ID部分を抽出して使用する。
 
 front matter
 
-records_master.json の全項目をfront matterへ出力する。
+records_master.json の全項目を front matter へ出力する。
+あわせて固定値として layout: record および tags: 山行記録 を付加する。
 
 ⸻
 
@@ -596,6 +599,10 @@ JSONのまま利用
 logs/index
 
 ⸻
+
+records/index は site.posts を利用する。
+
+logs/index は JSON を直接検索する。
 
 SBrecords.json と STrecords.json は md化しない。
 
