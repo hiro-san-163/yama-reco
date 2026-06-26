@@ -92,6 +92,37 @@
 
 }
 
+.log-card-source {
+
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.65rem;
+
+  border-radius: 999px;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+
+}
+
+.log-card.source-hiro .log-card-source {
+  background: rgba(20, 75, 51, 0.14);
+  color: var(--color-primary-dark);
+}
+
+.log-card.source-sb .log-card-source {
+  background: rgba(30, 100, 180, 0.14);
+  color: #1e5ab0;
+}
+
+.log-card.source-st .log-card-source {
+  background: rgba(140, 90, 40, 0.16);
+  color: #8b4b1a;
+}
+
 .checkbox-group {
 
   display: flex;

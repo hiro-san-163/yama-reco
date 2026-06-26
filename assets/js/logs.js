@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   function syncSearchPanelVisibility() {
     const isMobile = mobileQuery.matches;
     const shouldHidePanel = Boolean(searchApplied && isMobile);
+    const shouldShowSummary = Boolean(searchApplied && isMobile && shouldHidePanel);
 
     if (logsFilterPanel) {
       logsFilterPanel.hidden = shouldHidePanel;
@@ -119,7 +120,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     if (logsConditionBar) {
-      logsConditionBar.hidden = !shouldHidePanel;
+      logsConditionBar.hidden = !shouldShowSummary;
+    }
+
+    if (logsConditionSummary) {
+      const summaryParts = getConditionSummaryParts();
+      logsConditionSummary.textContent = summaryParts.length ? summaryParts.join(' / ') : '条件指定なし';
+      logsConditionSummary.hidden = !(shouldShowSummary && summaryParts.length);
     }
   }
 
@@ -236,6 +243,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   function renderConditionSummary() {
     if (!logsConditionSummary) return;
 
+    const summaryParts = getConditionSummaryParts();
+    logsConditionSummary.textContent = summaryParts.length ? summaryParts.join(' / ') : '条件指定なし';
+    logsConditionSummary.hidden = !summaryParts.length;
+  }
+
+  function getConditionSummaryParts() {
     const sources = [];
     if (sourceHiro.checked) sources.push('hiro-san');
     if (sourceSB.checked) sources.push('silverboy');
@@ -271,8 +284,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       summaryParts.push(`並び順: ${getSortLabel(sortFilter.value)}`);
     }
 
-    logsConditionSummary.textContent = summaryParts.length ? summaryParts.join(' / ') : '条件指定なし';
-    logsConditionSummary.hidden = false;
+    return summaryParts;
   }
 
   function getSortLabel(value) {

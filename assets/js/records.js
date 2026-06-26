@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const recordsPage = document.querySelector('.records-page');
   const recordsFilterPanel = document.getElementById('recordsFilterPanel');
   const recordsConditionBar = document.getElementById('recordsConditionBar');
+  const recordsConditionSummary = document.getElementById('recordsConditionSummary');
 
   const areaFilter = document.getElementById('areaFilter');
   const genreFilter = document.getElementById('genreFilter');
@@ -108,23 +109,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     renderPagination(pager, paginationContainer, renderResults);
+    renderConditionSummary();
     syncPanelVisibility();
+  }
+
+  function renderConditionSummary() {
+    if (!recordsConditionSummary) return;
+
+    const summaryParts = [];
+
+    if (areaFilter.value) {
+      summaryParts.push(`エリア: ${areaFilter.value}`);
+    }
+
+    if (genreFilter.value) {
+      summaryParts.push(`ジャンル: ${genreFilter.value}`);
+    }
+
+    if (yearFilter.value) {
+      summaryParts.push(`年: ${yearFilter.value}`);
+    }
+
+    const shouldShowSummary = Boolean(searchApplied && mobileQuery.matches);
+    recordsConditionSummary.textContent = summaryParts.length ? summaryParts.join(' / ') : '条件指定なし';
+    recordsConditionSummary.hidden = !(shouldShowSummary && summaryParts.length);
   }
 
   function syncPanelVisibility() {
     const isMobile = mobileQuery.matches;
     const shouldHidePanel = Boolean(searchApplied && isMobile);
+    const shouldShowSummary = Boolean(searchApplied && isMobile && shouldHidePanel);
 
     if (recordsFilterPanel) {
       recordsFilterPanel.hidden = shouldHidePanel;
     }
 
     if (recordsConditionBar) {
-      recordsConditionBar.hidden = !(searchApplied && isMobile && shouldHidePanel);
+      recordsConditionBar.hidden = !shouldShowSummary;
     }
 
     if (recordsPage) {
       recordsPage.classList.toggle('is-search-active', shouldHidePanel);
+    }
+
+    if (recordsConditionSummary) {
+      const summaryParts = [];
+
+      if (areaFilter.value) {
+        summaryParts.push(`エリア: ${areaFilter.value}`);
+      }
+
+      if (genreFilter.value) {
+        summaryParts.push(`ジャンル: ${genreFilter.value}`);
+      }
+
+      if (yearFilter.value) {
+        summaryParts.push(`年: ${yearFilter.value}`);
+      }
+
+      recordsConditionSummary.textContent = summaryParts.length ? summaryParts.join(' / ') : '条件指定なし';
+      recordsConditionSummary.hidden = !(shouldShowSummary && summaryParts.length);
     }
   }
 
