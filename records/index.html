@@ -16,7 +16,9 @@ breadcrumb: 山行記録
 
   </header>
 
-  <section class="records-filter">
+  <section
+    id="recordsFilterPanel"
+    class="records-filter">
 
     <div class="form-group">
 
@@ -74,6 +76,20 @@ breadcrumb: 山行記録
 
   </section>
 
+  <div
+    id="recordsConditionBar"
+    class="records-condition-bar"
+    hidden>
+
+    <button
+      type="button"
+      id="recordsResetButton"
+      class="button button-outline">
+      リセット
+    </button>
+
+  </div>
+
   <div class="records-count">
 
     <span id="recordsCount">
@@ -91,7 +107,9 @@ breadcrumb: 山行記録
 
   <div id="recordsList" class="records-list">
 
-    {% for post in site.posts %}
+    {% assign records = site.posts | where_exp: "post", "post.tags contains '山行記録'" %}
+
+    {% for post in records %}
 
     <article
       class="record-card{% if post.tm and post.tm != '' %} has-thumb{% endif %}"

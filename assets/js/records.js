@@ -1,11 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const cards = Array.from(document.querySelectorAll('#recordsList .record-card'));
+  const recordsPage = document.querySelector('.records-page');
+  const recordsFilterPanel = document.getElementById('recordsFilterPanel');
+  const recordsConditionBar = document.getElementById('recordsConditionBar');
+
   const areaFilter = document.getElementById('areaFilter');
   const genreFilter = document.getElementById('genreFilter');
   const yearFilter = document.getElementById('yearFilter');
   const pageSizeSelect = document.getElementById('pageSize');
   const searchButton = document.getElementById('searchButton');
+  const recordsResetButton = document.getElementById('recordsResetButton');
 
   const recordsList = document.getElementById('recordsList');
   const recordsCount = document.getElementById('recordsCount');
@@ -13,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const paginationContainer = document.getElementById('pagination');
 
   const pager = new Pagination(10);
+  const mobileQuery = window.matchMedia('(max-width: 768px)');
+
+  let searchApplied = false;
 
   initialize();
 
@@ -25,18 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     searchButton.addEventListener('click', () => {
+      searchApplied = true;
       pager.setPage(1);
       renderResults();
     });
 
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        const url = card.dataset.url;
-        if (url) {
-          window.location.href = url;
-        }
-      });
+    recordsResetButton.addEventListener('click', () => {
+      resetFilters();
+      searchApplied = false;
+      pager.setPage(1);
+      renderResults();
     });
+
+    if (mobileQuery.addEventListener) {
+      mobileQuery.addEventListener('change', syncPanelVisibility);
+    } else if (mobileQuery.addListener) {
+      mobileQuery.addListener(syncPanelVisibility);
+    }
 
     renderResults();
   }
@@ -64,6 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function resetFilters() {
+    areaFilter.value = '';
+    genreFilter.value = '';
+    yearFilter.value = '';
+  }
+
   function renderResults() {
     const filtered = cards.filter(card => {
       if (areaFilter.value && card.dataset.recordArea !== areaFilter.value) return false;
@@ -89,6 +108,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     renderPagination(pager, paginationContainer, renderResults);
+    syncPanelVisibility();
+  }
+
+  function syncPanelVisibility() {
+    const isMobile = mobileQuery.matches;
+    const shouldHidePanel = Boolean(searchApplied && isMobile);
+
+    if (recordsFilterPanel) {
+      recordsFilterPanel.hidden = shouldHidePanel;
+    }
+
+    if (recordsConditionBar) {
+      recordsConditionBar.hidden = !(searchApplied && isMobile && shouldHidePanel);
+    }
+
+    if (recordsPage) {
+      recordsPage.classList.toggle('is-search-active', shouldHidePanel);
+    }
   }
 
 });
