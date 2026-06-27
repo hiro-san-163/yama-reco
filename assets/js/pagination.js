@@ -154,7 +154,7 @@ function renderPagination(pager, container, onPageChange) {
 
     button.textContent = label;
     button.type = 'button';
-    button.className = 'pagination-button';
+    button.className = 'pagination-btn';
 
     if (active) {
       button.classList.add('active');
