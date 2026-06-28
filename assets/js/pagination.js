@@ -176,7 +176,11 @@ function renderPagination(pager, container, onPageChange) {
     return button;
 
   }
-
+  
+　container.appendChild(
+  createButton('«', 1, current === 1)
+　);
+  
   container.appendChild(
     createButton('‹', current - 1, current === 1)
   );
@@ -191,6 +195,14 @@ function renderPagination(pager, container, onPageChange) {
         page === current
       )
     );
+
+		container.appendChild(
+  createButton(
+    '»',
+    totalPages,
+    current === totalPages
+  )
+);
 
   }
 
