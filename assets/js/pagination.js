@@ -196,6 +196,10 @@ function renderPagination(pager, container, onPageChange) {
     createButton('‹', current - 1, current === 1)
   );
 
+  const maxVisiblePages = 10;
+
+if (totalPages <= maxVisiblePages) {
+
   for (let page = 1; page <= totalPages; page++) {
 
     container.appendChild(
@@ -206,8 +210,14 @@ function renderPagination(pager, container, onPageChange) {
         page === current
       )
     );
+
   }
 
+} else {
+
+  // ここに次のステップで追加する
+
+}
   container.appendChild(
     createButton(
       '›',
