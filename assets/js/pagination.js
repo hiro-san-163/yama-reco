@@ -228,6 +228,22 @@ if (totalPages <= maxVisiblePages) {
     createDots()
   );
 
+  const startPage = Math.max(2, current - 1);
+const endPage = Math.min(totalPages - 1, current + 1);
+
+for (let page = startPage; page <= endPage; page++) {
+
+  container.appendChild(
+    createButton(
+      page,
+      page,
+      false,
+      page === current
+    )
+  );
+
+}	
+	
   container.appendChild(
     createButton(
       totalPages,
