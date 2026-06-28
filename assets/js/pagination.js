@@ -234,9 +234,25 @@ if (current > 4) {
 
 }
 
-// 中央に表示するページ範囲
-const startPage = Math.max(2, current - 1);
-const endPage = Math.min(totalPages - 1, current + 1);
+let startPage;
+let endPage;
+
+if (current <= 4) {
+
+  startPage = 2;
+  endPage = Math.min(5, totalPages - 1);
+
+} else if (current >= totalPages - 3) {
+
+  startPage = Math.max(2, totalPages - 4);
+  endPage = totalPages - 1;
+
+} else {
+
+  startPage = current - 1;
+  endPage = current + 1;
+
+}
 
 for (let page = startPage; page <= endPage; page++) {
 
@@ -250,7 +266,7 @@ for (let page = startPage; page <= endPage; page++) {
   );
 
 }
-
+	
 // 右側の ... が必要な場合
 if (current < totalPages - 3) {
 
