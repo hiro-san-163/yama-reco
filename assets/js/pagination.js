@@ -188,12 +188,12 @@ function renderPagination(pager, container, onPageChange) {
 
 }
   
-　container.appendChild(
+  container.appendChild(
   createButton('«', 1, current === 1)
 　);
-  
+
   container.appendChild(
-    createButton('‹', current - 1, current === 1)
+  createButton('‹', current - 1, current === 1)
   );
 
   const maxVisiblePages = 10;
