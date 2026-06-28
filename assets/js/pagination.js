@@ -195,15 +195,6 @@ function renderPagination(pager, container, onPageChange) {
         page === current
       )
     );
-
-		container.appendChild(
-  createButton(
-    '»',
-    totalPages,
-    current === totalPages
-  )
-);
-
   }
 
   container.appendChild(
@@ -213,6 +204,14 @@ function renderPagination(pager, container, onPageChange) {
       current === totalPages
     )
   );
+
+		container.appendChild(
+  createButton(
+    '»',
+    totalPages,
+    current === totalPages
+  )
+);
 
 }
 
