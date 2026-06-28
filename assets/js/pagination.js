@@ -176,6 +176,17 @@ function renderPagination(pager, container, onPageChange) {
     return button;
 
   }
+
+	function createDots() {
+
+  const dots = document.createElement('span');
+
+  dots.className = 'pagination-dots';
+  dots.textContent = '...';
+
+  return dots;
+
+}
   
 　container.appendChild(
   createButton('«', 1, current === 1)
