@@ -148,9 +148,6 @@ function renderPagination(pager, container, onPageChange) {
 
   const current = pager.getCurrentPage();
 
-  const EDGE_COUNT = 5;
-  const SIDE_COUNT = 1;
-	
   function createButton(label, page, disabled = false, active = false) {
 
     const button = document.createElement('button');
