@@ -215,20 +215,27 @@ if (totalPages <= maxVisiblePages) {
 
 } else {
 
-  container.appendChild(
-    createButton(
-      1,
-      1,
-      false,
-      current === 1
-    )
-  );
+// 先頭ページ
+container.appendChild(
+  createButton(
+    1,
+    1,
+    false,
+    current === 1
+  )
+);
+
+// 左側の ... が必要な場合
+if (current > 4) {
 
   container.appendChild(
     createDots()
   );
 
-  const startPage = Math.max(2, current - 1);
+}
+
+// 中央に表示するページ範囲
+const startPage = Math.max(2, current - 1);
 const endPage = Math.min(totalPages - 1, current + 1);
 
 for (let page = startPage; page <= endPage; page++) {
@@ -242,35 +249,25 @@ for (let page = startPage; page <= endPage; page++) {
     )
   );
 
-}	
-	
+}
+
+// 右側の ... が必要な場合
+if (current < totalPages - 3) {
+
   container.appendChild(
-    createButton(
-      totalPages,
-      totalPages,
-      false,
-      current === totalPages
-    )
+    createDots()
   );
 
 }
-	
-  container.appendChild(
-    createButton(
-      '›',
-      current + 1,
-      current === totalPages
-    )
-  );
 
-		container.appendChild(
+// 最終ページ
+container.appendChild(
   createButton(
-    '»',
     totalPages,
+    totalPages,
+    false,
     current === totalPages
   )
 );
 
-}
-
-window.renderPagination = renderPagination;
+ 
