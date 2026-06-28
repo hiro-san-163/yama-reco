@@ -226,7 +226,7 @@ container.appendChild(
 );
 
 // 左側の ... が必要な場合
-if (current > 4) {
+if (startPage > 2) {
 
   container.appendChild(
     createDots()
@@ -268,7 +268,7 @@ for (let page = startPage; page <= endPage; page++) {
 }
 	
 // 右側の ... が必要な場合
-if (current < totalPages - 3) {
+if (endPage < totalPages - 1) {
 
   container.appendChild(
     createDots()
