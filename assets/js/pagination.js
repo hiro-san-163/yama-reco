@@ -182,7 +182,7 @@ function renderPagination(pager, container, onPageChange) {
   const dots = document.createElement('span');
 
   dots.className = 'pagination-dots';
-  dots.textContent = '...';
+  dots.textContent = '◆◆◆';
 
   return dots;
 
