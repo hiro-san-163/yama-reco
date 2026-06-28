@@ -270,4 +270,24 @@ container.appendChild(
   )
 );
 
- 
+}   // else の終了
+
+container.appendChild(
+  createButton(
+    '›',
+    current + 1,
+    current === totalPages
+  )
+);
+
+container.appendChild(
+  createButton(
+    '»',
+    totalPages,
+    current === totalPages
+  )
+);
+
+}   // renderPagination の終了
+
+window.renderPagination = renderPagination; 
