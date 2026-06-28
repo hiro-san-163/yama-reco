@@ -215,9 +215,30 @@ if (totalPages <= maxVisiblePages) {
 
 } else {
 
-  // ここに次のステップで追加する
+  container.appendChild(
+    createButton(
+      1,
+      1,
+      false,
+      current === 1
+    )
+  );
+
+  container.appendChild(
+    createDots()
+  );
+
+  container.appendChild(
+    createButton(
+      totalPages,
+      totalPages,
+      false,
+      current === totalPages
+    )
+  );
 
 }
+	
   container.appendChild(
     createButton(
       '›',
