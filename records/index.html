@@ -122,7 +122,6 @@ breadcrumb: 山行記録
     
     <article
       class="record-card{% if post.tm and post.tm != '' %} has-thumb{% endif %}"
-      data-url="{{ post.url | relative_url }}"
       data-record-date="{{ post.date_s }}"
       data-record-area="{{ post.area | escape }}"
       data-record-genre="{{ post.genre | escape }}">
