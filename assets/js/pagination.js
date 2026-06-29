@@ -148,6 +148,9 @@ function renderPagination(pager, container, onPageChange) {
 
   const current = pager.getCurrentPage();
 
+  const EDGE_COUNT = 5;
+  const SIDE_COUNT = 1;
+
   function createButton(label, page, disabled = false, active = false) {
 
     const button = document.createElement('button');
@@ -229,20 +232,21 @@ container.appendChild(
 let startPage;
 let endPage;
 
-if (current <= 4) {
+if (current <= EDGE_COUNT - 1) {
 
   startPage = 2;
   endPage = Math.min(5, totalPages - 1);
 
-} else if (current >= totalPages - 3) {
+} else if (current >= totalPages - (EDGE_COUNT - 2)) {
 
   startPage = Math.max(2, totalPages - 4);
   endPage = totalPages - 1;
 
 } else {
 
-  startPage = current - 1;
-  endPage = current + 1;
+  startPage = current - SIDE_COUNT;
+	
+  endPage = current + SIDE_COUNT;
 
 }
 
