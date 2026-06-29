@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
  const cards = Array.from(
-  document.querySelectorAll('#recordsList .record-card-link')
+  document.querySelectorAll('#recordsList .record-card-link');
   const recordsPage = document.querySelector('.records-page');
   const recordsFilterPanel = document.getElementById('recordsFilterPanel');
   const recordsConditionBar = document.getElementById('recordsConditionBar');
