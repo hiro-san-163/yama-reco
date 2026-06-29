@@ -116,6 +116,10 @@ breadcrumb: 山行記録
 
     {% for post in records %}
 
+    <a
+      href="{{ post.url | relative_url }}"
+      class="record-card-link">
+    
     <article
       class="record-card{% if post.tm and post.tm != '' %} has-thumb{% endif %}"
       data-url="{{ post.url | relative_url }}"
@@ -152,6 +156,8 @@ breadcrumb: 山行記録
       </div>
 
     </article>
+
+  </a>
 
     {% endfor %}
 
