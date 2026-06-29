@@ -52,7 +52,18 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileQuery.addListener(syncPanelVisibility);
     }
 
-    renderResults();
+      cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const url = card.dataset.url;
+
+      if (url) {
+        window.location.href = url;
+      }
+    });
+  });
+
+  renderResults();
+    
   }
 
   function populateFilters() {
