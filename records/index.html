@@ -117,46 +117,46 @@ breadcrumb: 山行記録
     {% for post in records %}
 
     <a
-      href="{{ post.url | relative_url }}"
-      class="record-card-link">
-    
-    <article
-      class="record-card{% if post.tm and post.tm != '' %} has-thumb{% endif %}"
-      data-record-date="{{ post.date_s }}"
-      data-record-area="{{ post.area | escape }}"
-      data-record-genre="{{ post.genre | escape }}">
+  href="{{ post.url | relative_url }}"
+  class="record-card-link"
+  data-record-date="{{ post.date_s }}"
+  data-record-area="{{ post.area | escape }}"
+  data-record-genre="{{ post.genre | escape }}">
 
-      {% if post.tm and post.tm != '' %}
-      <div class="record-card-image">
-        <img
-          src="{{ post.tm | escape }}"
-          alt="{{ post.title | escape }}">
-      </div>
-      {% endif %}
+  <article
+    class="record-card{% if post.tm and post.tm != '' %} has-thumb{% endif %}">
 
-      <div class="record-card-content">
-        <h2 class="record-card-title">
-          {{ post.title }}
-        </h2>
+    {% if post.tm and post.tm != '' %}
+    <div class="record-card-image">
+      <img
+        src="{{ post.tm | escape }}"
+        alt="{{ post.title | escape }}">
+    </div>
+    {% endif %}
 
-        <div class="record-card-meta">
-          <span>{{ post.date_s }}</span>
-          {% if post.area and post.area != '' %}
-          <span>｜ {{ post.area }}</span>
-          {% endif %}
-          {% if post.genre and post.genre != '' %}
-          <span>｜ {{ post.genre }}</span>
-          {% endif %}
-        </div>
+    <div class="record-card-content">
+      <h2 class="record-card-title">
+        {{ post.title }}
+      </h2>
 
-        <p class="record-card-summary">
-          {{ post.sm2 }}
-        </p>
+      <div class="record-card-meta">
+        <span>{{ post.date_s }}</span>
+        {% if post.area and post.area != '' %}
+        <span>｜ {{ post.area }}</span>
+        {% endif %}
+        {% if post.genre and post.genre != '' %}
+        <span>｜ {{ post.genre }}</span>
+        {% endif %}
       </div>
 
-    </article>
+      <p class="record-card-summary">
+        {{ post.sm2 }}
+      </p>
+    </div>
 
-  </a>
+  </article>
+
+</a>
 
     {% endfor %}
 
