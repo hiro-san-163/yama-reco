@@ -7,6 +7,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
 
   <title>
     {% if page.title %}
@@ -17,7 +18,10 @@
   </title>
 
   <meta name="description" content="{{ page.description | default: site.description }}">
-
+  <link rel="icon" href="{{ '/assets/images/icons/favicon.ico' | relative_url }}" sizes="any">
+  <link rel="apple-touch-icon" href="{{ '/assets/images/icons/apple-touch-icon.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{ '/assets/images/icons/android-chrome-192x192.png' | relative_url }}">
+  
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 
