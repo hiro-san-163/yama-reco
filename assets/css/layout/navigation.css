@@ -54,6 +54,42 @@
 
 }
 
+/* ======================================
+   Navigation Overlay
+====================================== */
+
+.nav-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  z-index: 1400;
+
+  pointer-events: none;
+
+}
+
+.nav-overlay.is-open {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+
+}
+
 .nav-toggle {
 
   display: none;
