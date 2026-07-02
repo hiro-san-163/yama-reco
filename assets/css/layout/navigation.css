@@ -1,69 +1,46 @@
 /* ======================================
    LAYOUT LAYER: NAVIGATION
-   Site Navigation (PC + Mobile)
 ====================================== */
 
-/* ======================================
-   Base Navigation
-====================================== */
-
+/* Base Navigation */
 .site-nav {
-
   position: sticky;
   top: 0;
   z-index: 1000;
-
   background: var(--color-primary);
-
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-
 }
 
 .nav-inner {
-
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 1rem;
-
 }
 
-/* ======================================
-   Desktop Menu
-====================================== */
-
+/* Desktop Menu */
 .nav-menu {
-
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 2rem;
 
+  z-index: 1600; /* ★追加：前面固定 */
 }
 
 .nav-menu a {
-
   display: block;
-
   padding: 1rem 0;
-
   color: #ffffff;
-
   font-weight: 600;
-
   transition: var(--transition-fast);
-
 }
 
 .nav-menu a:hover {
   opacity: 0.8;
 }
 
-/* ======================================
-   Overlay
-====================================== */
-
+/* Overlay */
 .nav-overlay {
-
   position: fixed;
   inset: 0;
 
@@ -74,62 +51,35 @@
 
   transition: opacity 0.3s ease, visibility 0.3s ease;
 
-  z-index: 1400;
-
+  z-index: 1200; /* ★修正：menuより下へ */
   pointer-events: none;
-
 }
 
 .nav-overlay.is-open {
-
   opacity: 1;
   visibility: visible;
-
   pointer-events: auto;
-
 }
 
-/* ======================================
-   Toggle Button (Mobile)
-====================================== */
-
+/* Toggle */
 .nav-toggle {
-
   display: none;
-
   background: none;
   border: none;
-
   color: #ffffff;
-
   font-size: 1.5rem;
-
   cursor: pointer;
-
 }
 
-/* ======================================
-   Mobile Navigation
-====================================== */
-
+/* Mobile */
 @media (max-width: 768px) {
 
-  .nav-inner {
-    padding: 0;
-  }
-
-  /* Toggle Button */
   .nav-toggle {
-
     display: flex;
-
     position: fixed;
-
     top: 42%;
     right: 28px;
-
     transform: translateY(-50%);
-
     z-index: 2000;
 
     width: 52px;
@@ -138,28 +88,17 @@
     justify-content: center;
     align-items: center;
 
-    padding: 0;
-
     background: rgba(255, 255, 255, 0.9);
-
     color: var(--color-primary);
-
     border-radius: 50%;
-
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-
   }
 
-  /* Slide Menu */
   .nav-menu {
-
     display: flex;
     flex-direction: column;
 
-    gap: 0;
-
     position: fixed;
-
     top: 56px;
     right: -45%;
 
@@ -172,13 +111,11 @@
     list-style: none;
 
     overflow-y: auto;
-
     background: var(--color-primary);
 
     transition: right 0.3s ease;
 
-    z-index: 1500;
-
+    z-index: 1600; /* ★確実に前面 */
   }
 
   .nav-menu.is-open {
@@ -190,12 +127,7 @@
   }
 
   .nav-menu a {
-
     padding: 0.9rem 1rem;
-
     border-top: 1px solid rgba(255, 255, 255, 0.15);
-
   }
-
 }
-   
