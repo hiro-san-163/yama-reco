@@ -61,20 +61,38 @@
    
  .nav-menu {
 
-    display: none;
+  display: flex;
 
-    flex-direction: column;
+  flex-direction: column;
 
-    gap: 0;
+  gap: 0;
 
-  }
+  position: fixed;
 
+  top: 0;
+
+  right: -70%;
+
+  width: 65%;
+
+  height: 100vh;
+
+  padding-top: 5rem;
+
+  background: var(--color-primary);
+
+  transition: right 0.3s ease;
+
+  z-index: 1500;
+
+}
+   
   .nav-menu.is-open {
 
-    display: flex;
+  right: 0;
 
-  }
-
+}
+   
   .nav-menu li {
 
     width: 100%;
