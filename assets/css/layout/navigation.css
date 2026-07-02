@@ -1,6 +1,10 @@
 /* ======================================
    LAYOUT LAYER: NAVIGATION
-   Main navigation and menu styles
+   Site Navigation (PC + Mobile)
+====================================== */
+
+/* ======================================
+   Base Navigation
 ====================================== */
 
 .site-nav {
@@ -18,12 +22,14 @@
 .nav-inner {
 
   max-width: var(--container-width);
-
   margin: 0 auto;
-
   padding: 0 1rem;
 
 }
+
+/* ======================================
+   Desktop Menu
+====================================== */
 
 .nav-menu {
 
@@ -49,30 +55,24 @@
 }
 
 .nav-menu a:hover {
-
   opacity: 0.8;
-
 }
 
 /* ======================================
-   Navigation Overlay
+   Overlay
 ====================================== */
 
 .nav-overlay {
 
   position: fixed;
-
   inset: 0;
 
   background: rgba(0, 0, 0, 0.35);
 
   opacity: 0;
-
   visibility: hidden;
 
-  transition:
-    opacity 0.3s ease,
-    visibility 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 
   z-index: 1400;
 
@@ -83,12 +83,15 @@
 .nav-overlay.is-open {
 
   opacity: 1;
-
   visibility: visible;
 
   pointer-events: auto;
 
 }
+
+/* ======================================
+   Toggle Button (Mobile)
+====================================== */
 
 .nav-toggle {
 
@@ -104,3 +107,95 @@
   cursor: pointer;
 
 }
+
+/* ======================================
+   Mobile Navigation
+====================================== */
+
+@media (max-width: 768px) {
+
+  .nav-inner {
+    padding: 0;
+  }
+
+  /* Toggle Button */
+  .nav-toggle {
+
+    display: flex;
+
+    position: fixed;
+
+    top: 42%;
+    right: 28px;
+
+    transform: translateY(-50%);
+
+    z-index: 2000;
+
+    width: 52px;
+    height: 52px;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 0;
+
+    background: rgba(255, 255, 255, 0.9);
+
+    color: var(--color-primary);
+
+    border-radius: 50%;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  }
+
+  /* Slide Menu */
+  .nav-menu {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0;
+
+    position: fixed;
+
+    top: 56px;
+    right: -45%;
+
+    width: 45%;
+    height: calc(100vh - 56px);
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    overflow-y: auto;
+
+    background: var(--color-primary);
+
+    transition: right 0.3s ease;
+
+    z-index: 1500;
+
+  }
+
+  .nav-menu.is-open {
+    right: 0;
+  }
+
+  .nav-menu li {
+    width: 100%;
+  }
+
+  .nav-menu a {
+
+    padding: 0.9rem 1rem;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+  }
+
+}
+   
