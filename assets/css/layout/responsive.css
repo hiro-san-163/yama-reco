@@ -31,9 +31,9 @@
 
   position: fixed;
 
-  top: 55%;
+  top: 42%;
 
-  right: 16px;
+  right: 28px;
 
   transform: translateY(-50%);
 
@@ -69,16 +69,16 @@
 
   position: fixed;
 
-  top: 45%;
+  top: 56;
 
   right: 24px;
 
   width: 45%;
   right: -50%;
 
-  height: 100vh;
-
-  padding-top: 5rem;
+  height: calc(100vh - 56px);
+    
+  padding-top: 0;
 
   background: var(--color-primary);
 
