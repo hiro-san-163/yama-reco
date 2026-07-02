@@ -2,15 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const toggle = document.getElementById('navToggle');
   const menu = document.getElementById('navMenu');
+  const overlay = document.getElementById('navOverlay');
 
-  if (!toggle || !menu) {
+  if (!toggle || !menu || !overlay) {
     return;
   }
 
   function openMenu() {
 
     menu.classList.add('is-open');
+    overlay.classList.add('is-open');
+
     toggle.setAttribute('aria-expanded', 'true');
+
     document.body.style.overflow = 'hidden';
 
   }
@@ -18,7 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeMenu() {
 
     menu.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+
     toggle.setAttribute('aria-expanded', 'false');
+
     document.body.style.overflow = '';
 
   }
@@ -41,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   });
 
-  // メニュー内リンクを押したら閉じる
+  // メニュー項目選択
   menu.querySelectorAll('a').forEach(link => {
 
     link.addEventListener('click', () => {
@@ -52,21 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   });
 
-  // メニュー外をタップしたら閉じる
-  document.addEventListener('click', (event) => {
+  // オーバーレイクリック
+  overlay.addEventListener('click', () => {
 
-    if (!menu.classList.contains('is-open')) {
-      return;
-    }
-
-    if (
-      !menu.contains(event.target) &&
-      !toggle.contains(event.target)
-    ) {
-
-      closeMenu();
-
-    }
+    closeMenu();
 
   });
 
