@@ -8,15 +8,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const menu = document.getElementById('navMenu');
   const overlay = document.getElementById('navOverlay');
 
-  if (!toggle || !menu || !overlay) {
-    return;
-  }
+  if (!toggle || !menu || !overlay) return;
+
+  let isOpen = false;
 
   /* ======================================
-     Menu Controls
+     State Control
   ====================================== */
 
   function openMenu() {
+
+    if (isOpen) return;
+
+    isOpen = true;
 
     menu.classList.add('is-open');
     overlay.classList.add('is-open');
@@ -29,6 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function closeMenu() {
 
+    if (!isOpen) return;
+
+    isOpen = false;
+
     menu.classList.remove('is-open');
     overlay.classList.remove('is-open');
 
@@ -40,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function toggleMenu() {
 
-    if (menu.classList.contains('is-open')) {
+    if (isOpen) {
       closeMenu();
     } else {
       openMenu();
@@ -52,45 +60,53 @@ document.addEventListener('DOMContentLoaded', () => {
      Events
   ====================================== */
 
-  // ハンバーガーボタン
-  toggle.addEventListener('click', (event) => {
+  // ハンバーガー
+  toggle.addEventListener('click', (e) => {
 
-    event.preventDefault();
-    event.stopPropagation();
+    e.preventDefault();
+    e.stopPropagation();
 
     toggleMenu();
 
   });
 
-  // メニュー項目選択
+  // オーバーレイ
+  overlay.addEventListener('click', () => {
+    closeMenu();
+  });
+
+  // メニューリンク（重要：遷移安定化）
   menu.querySelectorAll('a').forEach(link => {
 
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
 
+      // 先に閉じるだけ（遷移はブラウザに完全委任）
       closeMenu();
 
-      // ブラウザ本来のリンク遷移を妨げない
-      // preventDefault() は使用しない
+      // Safari対策：一部環境で再描画遅延が遷移阻害するため軽く逃がす
+      setTimeout(() => {}, 0);
 
     });
 
   });
 
-  // オーバーレイをタップ
-  overlay.addEventListener('click', () => {
-
-    closeMenu();
-
-  });
-
-  // 画面幅がPCになったらメニューを閉じる
+  // 画面リサイズで強制リセット
   window.addEventListener('resize', () => {
 
     if (window.innerWidth > 768) {
-
       closeMenu();
-
     }
+
+  });
+
+  // 画面回転対策（スマホ特有）
+  window.addEventListener('orientationchange', () => {
+
+    setTimeout(() => {
+      if (window.innerWidth > 768) {
+        closeMenu();
+      }
+    }, 200);
 
   });
 
