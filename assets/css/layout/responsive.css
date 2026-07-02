@@ -1,6 +1,6 @@
 /* ======================================
    LAYOUT LAYER: RESPONSIVE
-   Global Responsive Design Rules
+   Global Responsive Rules (NON-NAV ONLY)
 ====================================== */
 
 @media (max-width: 768px) {
@@ -22,98 +22,13 @@
   }
 
   /* ======================================
-     Navigation
+     Layout Spacing
   ====================================== */
 
-  .nav-inner {
-    padding: 0;
-  }
+  .section {
 
-  .nav-toggle {
-
-    display: flex;
-
-    position: fixed;
-
-    top: 42%;
-
-    right: 28px;
-
-    transform: translateY(-50%);
-
-    z-index: 2000;
-
-    width: 52px;
-
-    height: 52px;
-
-    justify-content: center;
-
-    align-items: center;
-
-    padding: 0;
-
-    background: rgba(255, 255, 255, 0.9);
-
-    color: var(--color-primary);
-
-    border-radius: 50%;
-
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-
-  }
-
-  .nav-menu {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 0;
-
-    position: fixed;
-
-    top: 56px;
-
-    right: -45%;
-
-    width: 45%;
-
-    height: calc(100vh - 56px);
-
-    margin: 0;
-
-    padding-top: 0;
-
-    list-style: none;
-
-    overflow-y: auto;
-
-    background: var(--color-primary);
-
-    transition: right 0.3s ease;
-
-    z-index: 1500;
-
-  }
-
-  .nav-menu.is-open {
-
-    right: 0;
-
-  }
-
-  .nav-menu li {
-
-    width: 100%;
-
-  }
-
-  .nav-menu a {
-
-    padding: 0.9rem 1rem;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 
   }
 
@@ -122,44 +37,27 @@
   ====================================== */
 
   .footer-nav-desktop {
-
     display: none;
-
   }
 
   .footer-nav-mobile {
-
     display: block;
-
-  }
-
-  /* ======================================
-     Layout
-  ====================================== */
-
-  .section {
-
-    padding-top: 1.5rem;
-
-    padding-bottom: 1.5rem;
-
   }
 
 }
+
+/* ======================================
+   Desktop Footer Control
+====================================== */
 
 @media (min-width: 769px) {
 
   .footer-nav-desktop {
-
     display: block;
-
   }
 
   .footer-nav-mobile {
-
     display: none;
-
   }
 
 }
-
