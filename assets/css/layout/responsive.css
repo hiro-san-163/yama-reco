@@ -1,9 +1,13 @@
 /* ======================================
    LAYOUT LAYER: RESPONSIVE
-   Global responsive design rules
+   Global Responsive Design Rules
 ====================================== */
 
 @media (max-width: 768px) {
+
+  /* ======================================
+     Typography
+  ====================================== */
 
   h1 {
     font-size: 1.7rem;
@@ -17,88 +21,88 @@
     font-size: 1.2rem;
   }
 
-  /* Navigation */
+  /* ======================================
+     Navigation
+  ====================================== */
 
   .nav-inner {
-
     padding: 0;
-
   }
 
   .nav-toggle {
 
-  display: flex;
+    display: flex;
 
-  position: fixed;
+    position: fixed;
 
-  top: 42%;
+    top: 42%;
 
-  right: 28px;
+    right: 28px;
 
-  transform: translateY(-50%);
+    transform: translateY(-50%);
 
-  z-index: 2000;
+    z-index: 2000;
 
-  width: 52px;
+    width: 52px;
 
-  height: 52px;
+    height: 52px;
 
-  justify-content: center;
+    justify-content: center;
 
-  align-items: center;
+    align-items: center;
 
-  padding: 0;
+    padding: 0;
 
-  background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.9);
 
-  color: var(--color-primary);
+    color: var(--color-primary);
 
-  border-radius: 50%;
+    border-radius: 50%;
 
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
-}
-   
- .nav-menu {
+  }
 
-  display: flex;
+  .nav-menu {
 
-  flex-direction: column;
+    display: flex;
 
-  gap: 0;
+    flex-direction: column;
 
-  position: fixed;
+    gap: 0;
 
-  top: 56px;
+    position: fixed;
 
-  right: -45%;
+    top: 56px;
 
-  width: 45%;
+    right: -45%;
 
-  height: calc(100vh - 56px);
+    width: 45%;
 
-  padding-top: 0;
+    height: calc(100vh - 56px);
 
-  margin: 0;
+    margin: 0;
 
-  list-style: none;
+    padding-top: 0;
 
-  background: var(--color-primary);
+    list-style: none;
 
-  overflow-y: auto;
+    overflow-y: auto;
 
-  transition: right 0.3s ease;
+    background: var(--color-primary);
 
-  z-index: 1500;
+    transition: right 0.3s ease;
 
-}
+    z-index: 1500;
 
-.nav-menu.is-open {
+  }
 
-  right: 0;
+  .nav-menu.is-open {
 
-}
-   
+    right: 0;
+
+  }
+
   .nav-menu li {
 
     width: 100%;
@@ -113,7 +117,9 @@
 
   }
 
-  /* Footer */
+  /* ======================================
+     Footer
+  ====================================== */
 
   .footer-nav-desktop {
 
@@ -127,11 +133,14 @@
 
   }
 
-  /* Layout */
+  /* ======================================
+     Layout
+  ====================================== */
 
   .section {
 
     padding-top: 1.5rem;
+
     padding-bottom: 1.5rem;
 
   }
@@ -153,3 +162,4 @@
   }
 
 }
+
