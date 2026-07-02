@@ -42,15 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   overlay.addEventListener('click', closeMenu);
 
-  // ★重要：遷移100%保証
+  // クリックしたメニュー項目から確実にページ遷移する
   menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
 
+      const targetUrl = link.getAttribute('href');
       closeMenu();
 
-      // Safari描画安定化（遷移阻害回避）
-      setTimeout(() => {}, 0);
+      if (!targetUrl) return;
 
+      // メニュー閉じ動作と遷移の競合を避けるため少し遅らせて遷移
+      window.setTimeout(() => {
+        window.location.assign(new URL(targetUrl, window.location.href).href);
+      }, 60);
     });
   });
 
