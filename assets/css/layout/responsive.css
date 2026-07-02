@@ -69,11 +69,12 @@
 
   position: fixed;
 
-  top: 0;
+  top: 45%;
 
-  right: -70%;
+  right: 24px;
 
-  width: 65%;
+  width: 45%;
+  right: -50%;
 
   height: 100vh;
 
