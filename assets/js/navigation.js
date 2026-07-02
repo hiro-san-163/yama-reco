@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* ======================================
+     Elements
+  ====================================== */
+
   const toggle = document.getElementById('navToggle');
   const menu = document.getElementById('navMenu');
   const overlay = document.getElementById('navOverlay');
@@ -7,6 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!toggle || !menu || !overlay) {
     return;
   }
+
+  /* ======================================
+     Menu Controls
+  ====================================== */
 
   function openMenu() {
 
@@ -40,10 +48,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
+  /* ======================================
+     Events
+  ====================================== */
+
   // ハンバーガーボタン
   toggle.addEventListener('click', (event) => {
 
+    event.preventDefault();
     event.stopPropagation();
+
     toggleMenu();
 
   });
@@ -55,14 +69,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
       closeMenu();
 
+      // ブラウザ本来のリンク遷移を妨げない
+      // preventDefault() は使用しない
+
     });
 
   });
 
-  // オーバーレイクリック
+  // オーバーレイをタップ
   overlay.addEventListener('click', () => {
 
     closeMenu();
+
+  });
+
+  // 画面幅がPCになったらメニューを閉じる
+  window.addEventListener('resize', () => {
+
+    if (window.innerWidth > 768) {
+
+      closeMenu();
+
+    }
 
   });
 
