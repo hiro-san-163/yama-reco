@@ -27,17 +27,39 @@
 
   .nav-toggle {
 
-    display: block;
+  display: flex;
 
-    width: 100%;
+  position: fixed;
 
-    padding: 0.9rem 1rem;
+  top: 55%;
 
-    text-align: right;
+  right: 16px;
 
-  }
+  transform: translateY(-50%);
 
-  .nav-menu {
+  z-index: 2000;
+
+  width: 52px;
+
+  height: 52px;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 0;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  color: var(--color-primary);
+
+  border-radius: 50%;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+}
+   
+ .nav-menu {
 
     display: none;
 
