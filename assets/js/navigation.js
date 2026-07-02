@@ -42,20 +42,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   overlay.addEventListener('click', closeMenu);
 
-  // クリックしたメニュー項目から確実にページ遷移する
+  // クリック時はメニューだけ閉じ、リンクの持つ通常の遷移をそのまま使う
   menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', (event) => {
-      event.preventDefault();
+      const href = link.getAttribute('href');
 
-      const targetUrl = link.getAttribute('href');
+      if (!href) {
+        event.preventDefault();
+        return;
+      }
+
       closeMenu();
 
-      if (!targetUrl) return;
+      if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:')) {
+        return;
+      }
 
-      // メニュー閉じ動作と遷移の競合を避けるため少し遅らせて遷移
-      window.setTimeout(() => {
-        window.location.assign(new URL(targetUrl, window.location.href).href);
-      }, 60);
+      if (href.startsWith('#')) {
+        event.preventDefault();
+        return;
+      }
     });
   });
 
