@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     isOpen = true;
     menu.classList.add('is-open');
 
-    // overlay.classList.add('is-open');
+    overlay.classList.add('is-open');
 
     toggle.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
