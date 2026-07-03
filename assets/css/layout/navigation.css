@@ -98,6 +98,9 @@
     display: flex;
     flex-direction: column;
 
+  justify-content: flex-start;   /* ←追加 */
+  align-items: stretch;          /* ←追加 */
+
     position: fixed;
     top: 56px;
     right: -45%;
