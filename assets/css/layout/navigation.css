@@ -24,7 +24,7 @@
   align-items: center;
   gap: 2rem;
 
-  z-index: 1600; /* ★追加：前面固定 */
+  z-index: 1600;
 }
 
 .nav-menu a {
@@ -39,26 +39,12 @@
   opacity: 0.8;
 }
 
-/* Overlay */
+/* Overlay（STEP2テスト：完全無効化） */
 .nav-overlay {
-  position: fixed;
-  inset: 0;
-
-  background: rgba(0, 0, 0, 0.35);
-
-  opacity: 0;
-  visibility: hidden;
-
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-
-  z-index: 1200; /* ★修正：menuより下へ */
-  pointer-events: none;
-}
-
-.nav-overlay.is-open {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 /* Toggle */
@@ -115,7 +101,7 @@
 
     transition: right 0.3s ease;
 
-    z-index: 1600; /* ★確実に前面 */
+    z-index: 1600;
   }
 
   .nav-menu.is-open {
