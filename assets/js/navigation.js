@@ -13,12 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     isOpen = true;
     menu.classList.add('is-open');
-
     overlay.classList.add('is-open');
 
     toggle.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
-}
+  }
 
   function closeMenu() {
     if (!isOpen) return;
@@ -43,36 +42,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   overlay.addEventListener('click', closeMenu);
 
-  // クリック時はメニューだけ閉じ、リンクの持つ通常の遷移をそのまま使う
+  /* メニュー項目クリック時は閉じるだけ
+     ページ遷移はaタグ本来の動作に任せる */
   menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', (event) => {
-      const href = link.getAttribute('href');
-
-      if (!href) {
-        event.preventDefault();
-        return;
-      }
-
-      closeMenu();
-
-      if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('mailto:')) {
-        return;
-      }
-
-      if (href.startsWith('#')) {
-        event.preventDefault();
-        return;
-      }
-    });
+    link.addEventListener('click', closeMenu);
   });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) closeMenu();
+    if (window.innerWidth > 768) {
+      closeMenu();
+    }
   });
 
   window.addEventListener('orientationchange', () => {
     setTimeout(() => {
-      if (window.innerWidth > 768) closeMenu();
+      if (window.innerWidth > 768) {
+        closeMenu();
+      }
     }, 150);
   });
 
