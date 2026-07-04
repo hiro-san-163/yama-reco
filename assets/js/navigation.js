@@ -1,65 +1,56 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* ======================================
+   V5 NAVIGATION Rev.2
+   assets/js/navigation.js
+   Minimal Implementation (3 functions only)
+====================================== */
 
-  const toggle = document.getElementById('navToggle');
-  const menu = document.getElementById('navMenu');
-  const overlay = document.getElementById('navOverlay');
+(function () {
+  'use strict';
 
-  if (!toggle || !menu || !overlay) return;
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  const navOverlay = document.getElementById('navOverlay');
 
-  let isOpen = false;
+  if (!navToggle || !navMenu || !navOverlay) return;
 
   function openMenu() {
-    if (isOpen) return;
+    navMenu.classList.add('is-open');
+    navOverlay.classList.add('is-active');
 
-    isOpen = true;
-    menu.classList.add('is-open');
-    overlay.classList.add('is-open');
-
-    toggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-lock');
   }
 
   function closeMenu() {
-    if (!isOpen) return;
+    navMenu.classList.remove('is-open');
+    navOverlay.classList.remove('is-active');
 
-    isOpen = false;
-    menu.classList.remove('is-open');
-    overlay.classList.remove('is-open');
-
-    toggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-lock');
   }
 
   function toggleMenu() {
-    isOpen ? closeMenu() : openMenu();
+    const isOpen = navMenu.classList.contains('is-open');
+
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   }
 
-  toggle.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    toggleMenu();
-  });
+  /* --------------------------------------
+     EVENT BINDING (minimal only)
+  -------------------------------------- */
 
-  overlay.addEventListener('click', closeMenu);
+  navToggle.addEventListener('click', toggleMenu);
+  navOverlay.addEventListener('click', closeMenu);
 
-  /* メニュー項目クリック時は閉じるだけ
-     ページ遷移はaタグ本来の動作に任せる */
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 768) {
+  /* ESC key support (minimal safety) */
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
       closeMenu();
     }
   });
 
-  window.addEventListener('orientationchange', () => {
-    setTimeout(() => {
-      if (window.innerWidth > 768) {
-        closeMenu();
-      }
-    }, 150);
-  });
-
-});
+})();
