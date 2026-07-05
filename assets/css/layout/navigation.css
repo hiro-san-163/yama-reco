@@ -132,6 +132,8 @@
   .nav-inner {
     position: relative;
     height: 56px;
+
+   justify-content: flex-end;
   }
 
   /* --------------------------------------
@@ -140,12 +142,15 @@
   -------------------------------------- */
   .nav-menu {
     position: fixed;
-    top: 0;
+    top: 56;
     right: 0;
 
-    width: 78%;
-    max-width: 320px;
-    height: 100vh;
+    width:46%;
+    min-width:240px;
+    max-width:280px;
+
+   height: auto;
+   max-height: 70vh;
 
     background: #ffffff;
 
@@ -155,7 +160,7 @@
 
     gap: 0;
 
-    padding: 80px 20px 20px;
+    padding:12px 18px;
 
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
