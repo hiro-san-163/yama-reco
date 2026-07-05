@@ -1,56 +1,74 @@
 /* ======================================
-   V5 NAVIGATION Rev.2
-   assets/js/navigation.js
-   Minimal Implementation (3 functions only)
+   Navigation Rev.3
+   Mobile Navigation Controller
 ====================================== */
 
-(function () {
-  'use strict';
+document.addEventListener('DOMContentLoaded', () => {
 
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
   const navOverlay = document.getElementById('navOverlay');
 
-  if (!navToggle || !navMenu || !navOverlay) return;
+  if (!navToggle || !navMenu || !navOverlay) {
+    return;
+  }
+
+  /* ======================================
+     Open Menu
+  ====================================== */
 
   function openMenu() {
     navMenu.classList.add('is-open');
-    navOverlay.classList.add('is-active');
+    navOverlay.classList.add('is-open');
+
+    document.body.classList.add('nav-open');
 
     navToggle.setAttribute('aria-expanded', 'true');
-    document.body.classList.add('nav-lock');
   }
+
+  /* ======================================
+     Close Menu
+  ====================================== */
 
   function closeMenu() {
     navMenu.classList.remove('is-open');
-    navOverlay.classList.remove('is-active');
+    navOverlay.classList.remove('is-open');
+
+    document.body.classList.remove('nav-open');
 
     navToggle.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('nav-lock');
   }
 
-  function toggleMenu() {
-    const isOpen = navMenu.classList.contains('is-open');
+  /* ======================================
+     Toggle Menu
+  ====================================== */
 
-    if (isOpen) {
+  function toggleMenu() {
+    if (navMenu.classList.contains('is-open')) {
       closeMenu();
     } else {
       openMenu();
     }
   }
 
-  /* --------------------------------------
-     EVENT BINDING (minimal only)
-  -------------------------------------- */
+  /* ======================================
+     Events
+  ====================================== */
 
   navToggle.addEventListener('click', toggleMenu);
+
   navOverlay.addEventListener('click', closeMenu);
 
-  /* ESC key support (minimal safety) */
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
       closeMenu();
     }
   });
 
-})();
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 769) {
+      closeMenu();
+    }
+  });
+
+});
