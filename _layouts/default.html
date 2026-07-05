@@ -5,24 +5,50 @@
 <html lang="ja">
 
 <head>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1">
 
   <title>
+
     {% if page.title %}
+
       {{ page.title }} | {{ site.title }}
+
     {% else %}
+
       {{ site.title }}
+
     {% endif %}
+
   </title>
 
-  <meta name="description" content="{{ page.description | default: site.description }}">
+  <meta
+    name="description"
+    content="{{ page.description | default: site.description }}">
 
-  <link rel="icon" href="{{ '/assets/images/icons/favicon.ico' | relative_url }}" sizes="any">
-  <link rel="apple-touch-icon" href="{{ '/assets/images/icons/apple-touch-icon.png' | relative_url }}">
-  <link rel="icon" type="image/png" sizes="192x192" href="{{ '/assets/images/icons/android-chrome-192x192.png' | relative_url }}">
+  <link
+    rel="icon"
+    href="{{ '/assets/images/icons/favicon.ico' | relative_url }}"
+    sizes="any">
 
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <link
+    rel="apple-touch-icon"
+    href="{{ '/assets/images/icons/apple-touch-icon.png' | relative_url }}">
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="{{ '/assets/images/icons/android-chrome-192x192.png' | relative_url }}">
+
+  <link
+    rel="stylesheet"
+    href="{{ '/assets/css/style.css' | relative_url }}">
+
 </head>
 
 <body id="top">
@@ -30,21 +56,28 @@
   <!-- ======================================
        HEADER
   ======================================= -->
+
   <header class="site-header">
 
     <div class="header-inner">
 
-      <a href="{{ '/' | relative_url }}" class="site-brand">
+      <a
+        href="{{ '/' | relative_url }}"
+        class="site-brand">
 
         {% if site.logo %}
+
           <img
             src="{{ site.logo | relative_url }}"
             alt="{{ site.title }}"
             class="site-logo">
+
         {% endif %}
 
         <span class="site-title">
+
           {{ site.title }}
+
         </span>
 
       </a>
@@ -54,71 +87,92 @@
   </header>
 
   <!-- ======================================
-       NAVIGATION
+       MOBILE / PC NAVIGATION
+       Rev.3
   ======================================= -->
+
   <nav class="site-nav">
 
-    <div class="nav-inner">
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-label="メニューを開く"
+      aria-expanded="false"
+      aria-controls="navMenu">
 
-      <button
-        class="nav-toggle"
-        id="navToggle"
-        aria-label="メニューを開く"
-        aria-expanded="false"
-        aria-controls="navMenu">
+      ☰
 
-        ☰
+    </button>
 
-      </button>
+    <ul
+      class="nav-menu"
+      id="navMenu">
 
-      <ul
-        class="nav-menu"
-        id="navMenu">
+      <li>
 
-        <li>
-          <a href="{{ '/' | relative_url }}">
-            HOME
-          </a>
-        </li>
+        <a href="{{ '/' | relative_url }}">
 
-        <li>
-          <a href="{{ '/records/' | relative_url }}">
-            山行記録
-          </a>
-        </li>
+          HOME
 
-        <li>
-          <a href="{{ '/logs/' | relative_url }}">
-            山行検索
-          </a>
-        </li>
+        </a>
 
-        <li>
-          <a href="{{ '/about/' | relative_url }}">
-            自己紹介
-          </a>
-        </li>
+      </li>
 
-        <li>
-          <a href="{{ '/blog/' | relative_url }}">
-            ブログ
-          </a>
-        </li>
+      <li>
 
-        <li>
-          <a href="{{ '/others/' | relative_url }}">
-            その他
-          </a>
-        </li>
+        <a href="{{ '/records/' | relative_url }}">
 
-      </ul>
+          山行記録
 
-      <!-- Overlay -->
-      <div
-        id="navOverlay"
-        class="nav-overlay"
-        aria-hidden="true">
-      </div>
+        </a>
+
+      </li>
+
+      <li>
+
+        <a href="{{ '/logs/' | relative_url }}">
+
+          山行検索
+
+        </a>
+
+      </li>
+
+      <li>
+
+        <a href="{{ '/about/' | relative_url }}">
+
+          自己紹介
+
+        </a>
+
+      </li>
+
+      <li>
+
+        <a href="{{ '/blog/' | relative_url }}">
+
+          ブログ
+
+        </a>
+
+      </li>
+
+      <li>
+
+        <a href="{{ '/others/' | relative_url }}">
+
+          その他
+
+        </a>
+
+      </li>
+
+    </ul>
+
+    <div
+      id="navOverlay"
+      class="nav-overlay">
 
     </div>
 
@@ -127,6 +181,7 @@
   <!-- ======================================
        BREADCRUMB
   ======================================= -->
+
   {% unless page.url == "/" %}
 
     {% if page.breadcrumb %}
@@ -136,15 +191,21 @@
         <nav class="breadcrumb">
 
           <a href="{{ '/' | relative_url }}">
+
             HOME
+
           </a>
 
           <span class="breadcrumb-separator">
+
             &gt;
+
           </span>
 
           <span class="breadcrumb-current">
+
             {{ page.breadcrumb }}
+
           </span>
 
         </nav>
@@ -158,6 +219,7 @@
   <!-- ======================================
        MAIN
   ======================================= -->
+
   <main class="site-main">
 
     {{ content }}
@@ -167,63 +229,100 @@
   <!-- ======================================
        FOOTER
   ======================================= -->
+
   <footer class="site-footer">
 
     <div class="footer-inner">
 
       <!-- Desktop -->
+
       <nav class="footer-nav footer-nav-desktop">
 
-        <a href="{{ '/' | relative_url }}">HOME</a>
+        <a href="{{ '/' | relative_url }}">
+          HOME
+        </a>
+
         <span>｜</span>
 
-        <a href="{{ '/records/' | relative_url }}">山行記録</a>
+        <a href="{{ '/records/' | relative_url }}">
+          山行記録
+        </a>
+
         <span>｜</span>
 
-        <a href="{{ '/logs/' | relative_url }}">山行検索</a>
+        <a href="{{ '/logs/' | relative_url }}">
+          山行検索
+        </a>
+
         <span>｜</span>
 
-        <a href="{{ '/about/' | relative_url }}">自己紹介</a>
+        <a href="{{ '/about/' | relative_url }}">
+          自己紹介
+        </a>
+
         <span>｜</span>
 
-        <a href="{{ '/blog/' | relative_url }}">ブログ</a>
+        <a href="{{ '/blog/' | relative_url }}">
+          ブログ
+        </a>
+
         <span>｜</span>
 
-        <a href="{{ '/others/' | relative_url }}">その他</a>
+        <a href="{{ '/others/' | relative_url }}">
+          その他
+        </a>
 
       </nav>
 
       <!-- Mobile -->
+
       <nav class="footer-nav footer-nav-mobile">
 
-        <a href="{{ '/' | relative_url }}">HOME</a>
+        <a href="{{ '/' | relative_url }}">
+          HOME
+        </a>
+
         <span>｜</span>
 
-        <a href="{{ '/records/' | relative_url }}">山行記録</a>
+        <a href="{{ '/records/' | relative_url }}">
+          山行記録
+        </a>
+
         <span>｜</span>
 
-        <a href="{{ '/logs/' | relative_url }}">山行検索</a>
+        <a href="{{ '/logs/' | relative_url }}">
+          山行検索
+        </a>
 
       </nav>
 
       <div class="footer-top">
 
         <a href="#top">
+
           ↑ TOP
+
         </a>
 
       </div>
 
       <p class="footer-copyright">
+
         © 2026 hiro-san 山歩き
+
       </p>
 
     </div>
 
   </footer>
 
+  <!-- ======================================
+       Navigation Script
+  ======================================= -->
+
   <script src="{{ '/assets/js/navigation.js' | relative_url }}"></script>
 
 </body>
 
 </html>
+
