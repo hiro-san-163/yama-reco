@@ -48,7 +48,9 @@
 
 .nav-toggle svg,
 .nav-toggle i {
-  pointer-events: none;
+  font-size: 1.6rem;
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 /* ======================================
@@ -166,14 +168,14 @@
   .nav-toggle {
     display: inline-flex;
     position: fixed;
-    top: 55%;
+    top: 62%;
     right: 18px;
     transform: translateY(-50%);
     z-index: 1100;
   }
 
   .nav-toggle[aria-expanded="true"] {
-    transform: translateY(-50%) rotate(90deg);
+    transform: translateY(-50%);
   }
 
   /* ======================================
@@ -200,7 +202,7 @@
     margin: 0;
     padding: 1rem 0;
 
-    background: var(--color-surface);
+    background: var(--color-background);
     border-radius: 12px 0 0 12px;
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
 
