@@ -130,11 +130,11 @@
 
   /* nav container alignment */
   .nav-inner {
-    position: relative;
-    height: 56px;
+  position: relative;
+  height: 56px;
 
-   justify-content: flex-end;
-  }
+  justify-content: flex-end;
+　}
 
   /* --------------------------------------
      MOBILE MENU PANEL
