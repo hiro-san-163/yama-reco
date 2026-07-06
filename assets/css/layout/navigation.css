@@ -22,14 +22,15 @@
   display: none;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   padding: 0;
   border: none;
   border-radius: 9999px;
   background: var(--color-surface);
-  color: var(--color-text);
+  color: var(--color-heading);
   cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   transition:
     background-color 0.25s ease,
     color 0.25s ease,
@@ -48,9 +49,10 @@
 
 .nav-toggle svg,
 .nav-toggle i {
-  font-size: 1.6rem;
-  width: 1.6rem;
-  height: 1.6rem;
+  font-size: 1.8rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  line-height: 1;
 }
 
 /* ======================================
@@ -175,7 +177,7 @@
   }
 
   .nav-toggle[aria-expanded="true"] {
-    transform: translateY(-50%);
+    transform: translateY(-50%) rotate(0deg);
   }
 
   /* ======================================
@@ -202,9 +204,12 @@
     margin: 0;
     padding: 1rem 0;
 
-    background: var(--color-background);
+    background: var(--color-surface-strong);
+    border: 1px solid rgba(20, 75, 51, 0.12);
     border-radius: 12px 0 0 12px;
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 
     overflow-y: auto;
     overflow-x: hidden;
@@ -230,13 +235,16 @@
   .nav-menu a {
     display: block;
     width: 100%;
-    padding: 0.9rem 1.5rem;
+    padding: 0.95rem 1.25rem;
     text-align: left;
+    color: var(--color-heading);
+    font-weight: 600;
   }
 
   .nav-menu a:hover,
   .nav-menu a:focus-visible {
     background: var(--color-surface-hover);
+    color: var(--color-accent);
   }
 
   /* ======================================
