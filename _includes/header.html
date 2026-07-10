@@ -1,16 +1,115 @@
 <header class="site-header">
-  <div class="site-header-inner">
-    <a class="site-title" href="{{ '/' | relative_url }}">
-      {{ site.title | default: 'hiro-san 山歩きサイト' }}
+
+  <div class="header-inner">
+
+    <a
+      href="{{ '/' | relative_url }}"
+      class="site-brand">
+
+      {% if site.logo %}
+
+        <img
+          src="{{ site.logo | relative_url }}"
+          alt="{{ site.title }}"
+          class="site-logo">
+
+      {% endif %}
+
+      <span class="site-title">
+
+        {{ site.title }}
+
+      </span>
+
     </a>
 
-    <nav class="site-nav" aria-label="主要ページ">
-      <a href="{{ '/' | relative_url }}">ホーム</a>
-      <a href="{{ '/records/' | relative_url }}">山行記録</a>
-      <a href="{{ '/logs/' | relative_url }}">検索</a>
-      <a href="{{ '/about.html' | relative_url }}">紹介</a>
-      <a href="{{ '/blog.html' | relative_url }}">ブログ</a>
-      <a href="{{ '/other.html' | relative_url }}">その他</a>
-    </nav>
   </div>
+
 </header>
+
+<nav class="site-nav">
+
+  <button
+    class="nav-toggle"
+    id="navToggle"
+    aria-label="メニューを開く"
+    aria-expanded="false"
+    aria-controls="navMenu">
+
+    ☰
+
+  </button>
+
+  <ul
+    class="nav-menu"
+    id="navMenu">
+
+    <li>
+
+      <a href="{{ '/' | relative_url }}">
+
+        HOME
+
+      </a>
+
+    </li>
+
+    <li>
+
+      <a href="{{ '/records/' | relative_url }}">
+
+        山行記録
+
+      </a>
+
+    </li>
+
+    <li>
+
+      <a href="{{ '/logs/' | relative_url }}">
+
+        山行検索
+
+      </a>
+
+    </li>
+
+    <li>
+
+      <a href="{{ '/about/' | relative_url }}">
+
+        自己紹介
+
+      </a>
+
+    </li>
+
+    <li>
+
+      <a href="{{ '/blog/' | relative_url }}">
+
+        ブログ
+
+      </a>
+
+    </li>
+
+    <li>
+
+      <a href="{{ '/others/' | relative_url }}">
+
+        その他
+
+      </a>
+
+    </li>
+
+  </ul>
+
+  <div
+    id="navOverlay"
+    class="nav-overlay">
+
+  </div>
+
+</nav>

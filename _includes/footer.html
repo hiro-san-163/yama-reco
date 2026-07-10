@@ -1,7 +1,81 @@
 <footer class="site-footer">
-  <div class="site-footer-inner">
-    <p>
-      &copy; {{ site.time | date: '%Y' }} {{ site.title | default: 'hiro-san 山歩きサイト' }}
+
+  <div class="footer-inner">
+
+    <nav class="footer-nav footer-nav-desktop">
+
+      <a href="{{ '/' | relative_url }}">
+        HOME
+      </a>
+
+      <span>｜</span>
+
+      <a href="{{ '/records/' | relative_url }}">
+        山行記録
+      </a>
+
+      <span>｜</span>
+
+      <a href="{{ '/logs/' | relative_url }}">
+        山行検索
+      </a>
+
+      <span>｜</span>
+
+      <a href="{{ '/about/' | relative_url }}">
+        自己紹介
+      </a>
+
+      <span>｜</span>
+
+      <a href="{{ '/blog/' | relative_url }}">
+        ブログ
+      </a>
+
+      <span>｜</span>
+
+      <a href="{{ '/others/' | relative_url }}">
+        その他
+      </a>
+
+    </nav>
+
+    <nav class="footer-nav footer-nav-mobile">
+
+      <a href="{{ '/' | relative_url }}">
+        HOME
+      </a>
+
+      <span>｜</span>
+
+      <a href="{{ '/records/' | relative_url }}">
+        山行記録
+      </a>
+
+      <span>｜</span>
+
+      <a href="{{ '/logs/' | relative_url }}">
+        山行検索
+      </a>
+
+    </nav>
+
+    <div class="footer-top">
+
+      <a href="#top">
+
+        ↑ TOP
+
+      </a>
+
+    </div>
+
+    <p class="footer-copyright">
+
+      © 2026 hiro-san 山歩き
+
     </p>
+
   </div>
+
 </footer>
