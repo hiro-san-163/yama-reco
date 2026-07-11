@@ -1,6 +1,6 @@
 /* ======================================
    LAYOUT LAYER: RESPONSIVE
-   Shared responsive rules for common layout and page-level adjustments
+   Shared responsive rules for common layout and components only
 ====================================== */
 
 /* ======================================
@@ -31,61 +31,6 @@
   .container {
     padding-left: 0.875rem;
     padding-right: 0.875rem;
-  }
-
-  /* Home page */
-  .home-page {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
-
-  .home-concept {
-    margin-bottom: 2rem;
-  }
-
-  .concept-card {
-    padding: 1.5rem;
-  }
-
-  .concept-text {
-    font-size: 1.1rem;
-  }
-
-  .section-header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .home-records {
-    grid-template-columns: 1fr;
-  }
-
-  /* Record detail page */
-  .record-page {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
-
-  .record-main-image {
-    margin-bottom: 2rem;
-  }
-
-  .record-section {
-    margin-bottom: 2rem;
-  }
-
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .record-navigation {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .record-nav-prev,
-  .record-nav-next {
-    text-align: left;
   }
 
   /* Footer */

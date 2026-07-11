@@ -171,7 +171,7 @@
     display: inline-flex;
     position: fixed;
     top: 62%;
-    right: 18px;
+     right: clamp(0.875rem, 2.5vw, 1.25rem);
     transform: translateY(-50%);
     z-index: 1100;
   }
@@ -186,7 +186,7 @@
 
   .nav-menu {
     position: fixed;
-    top: 8rem;
+    top: clamp(6rem, 12vw, 8rem);
     right: 0;
 
     display: flex;
