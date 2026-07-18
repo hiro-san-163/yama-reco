@@ -27,8 +27,9 @@
   align-items: center;
   justify-content: center;
 
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
+  margin-right:.25rem;
 
   padding: 0;
 
@@ -68,8 +69,8 @@
 
 .nav-toggle svg {
 
-  width: 28px;
-  height: 28px;
+  width: 48px;
+  height: 48px;
 
 }
 
@@ -111,7 +112,8 @@
   align-items: center;
   justify-content: center;
 
-  padding: .5rem 0;
+  font-size:1.08rem;
+  font-weight:500;
 
   color: var(--color-heading);
 
