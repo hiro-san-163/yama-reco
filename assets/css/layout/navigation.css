@@ -27,9 +27,12 @@
   align-items: center;
   justify-content: center;
 
-  width: 56px;
-  height: 56px;
-  margin-right:.25rem;
+  width: 60px;
+  height: 60px;
+
+  font-size: 2rem;
+   
+  margin-right:.5rem;
 
   padding: 0;
 
@@ -52,7 +55,7 @@
 
 .nav-toggle:hover {
 
-  background: var(--color-surface-hover);
+   color: var(--color-accent);
 
 }
 
@@ -134,13 +137,9 @@
 
 .nav-menu a[aria-current="page"] {
 
-  color: var(--color-accent);
+  color: #0B6E4F;
 
-  font-weight:700;
-
-  color:#0B6E4F;
-
-  border-bottom:3px solid currentColor;
+  font-weight: 700;
 
 }
 
