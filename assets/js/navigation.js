@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const navMenu = document.getElementById('navMenu');
   const navOverlay = document.getElementById('navOverlay');
 
+  let scrollPosition = 0;
+
   if (!navToggle || !navMenu || !navOverlay) {
     return;
   }
@@ -18,27 +20,39 @@ document.addEventListener('DOMContentLoaded', () => {
   ====================================== */
 
   function openMenu() {
-    navMenu.classList.add('is-open');
-    navOverlay.classList.add('is-open');
 
-    document.body.classList.add('nav-open');
+  scrollPosition = window.scrollY;
 
-    navToggle.setAttribute('aria-expanded', 'true');
-  }
+  document.body.style.top = `-${scrollPosition}px`;
 
+  navMenu.classList.add('is-open');
+  navOverlay.classList.add('is-open');
+
+  document.body.classList.add('nav-open');
+
+  navToggle.setAttribute('aria-expanded', 'true');
+
+}
+   
   /* ======================================
      Close Menu
   ====================================== */
 
   function closeMenu() {
-    navMenu.classList.remove('is-open');
-    navOverlay.classList.remove('is-open');
 
-    document.body.classList.remove('nav-open');
+  navMenu.classList.remove('is-open');
+  navOverlay.classList.remove('is-open');
 
-    navToggle.setAttribute('aria-expanded', 'false');
-  }
+  document.body.classList.remove('nav-open');
 
+  document.body.style.top = '';
+
+  window.scrollTo(0, scrollPosition);
+
+  navToggle.setAttribute('aria-expanded', 'false');
+
+}
+   
   /* ======================================
      Toggle Menu
   ====================================== */
