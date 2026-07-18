@@ -1,17 +1,23 @@
+<!-- ======================================
+     SITE HEADER
+     Branding + Global Navigation
+====================================== -->
+
 <header class="site-header">
 
   <div class="header-inner">
 
     <a
       href="{{ '/' | relative_url }}"
-      class="site-brand">
+      class="site-brand"
+      aria-label="{{ site.title }}">
 
       {% if site.logo %}
 
-        <img
-          src="{{ site.logo | relative_url }}"
-          alt="{{ site.title }}"
-          class="site-logo">
+      <img
+        src="{{ site.logo | relative_url }}"
+        alt="{{ site.title }}"
+        class="site-logo">
 
       {% endif %}
 
@@ -23,88 +29,91 @@
 
     </a>
 
+    <nav
+      class="site-nav"
+      aria-label="グローバルナビゲーション">
+
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        type="button"
+        aria-label="メニューを開く"
+        aria-expanded="false"
+        aria-controls="navMenu">
+
+        ☰
+
+      </button>
+
+      <ul
+        class="nav-menu"
+        id="navMenu">
+
+        <li>
+          <a
+            href="{{ '/' | relative_url }}"
+            {% if page.url == "/" %}
+            aria-current="page"
+            {% endif %}>
+            HOME
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="{{ '/records/' | relative_url }}"
+            {% if page.url contains '/records' %}
+            aria-current="page"
+            {% endif %}>
+            山行記録
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="{{ '/logs/' | relative_url }}"
+            {% if page.url contains '/logs' %}
+            aria-current="page"
+            {% endif %}>
+            山行検索
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="{{ '/about/' | relative_url }}"
+            {% if page.url contains '/about' %}
+            aria-current="page"
+            {% endif %}>
+            自己紹介
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="{{ '/blog/' | relative_url }}"
+            {% if page.url contains '/blog' %}
+            aria-current="page"
+            {% endif %}>
+            ブログ
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="{{ '/others/' | relative_url }}"
+            {% if page.url contains '/others' %}
+            aria-current="page"
+            {% endif %}>
+            その他
+          </a>
+        </li>
+
+      </ul>
+
+    </nav>
+
   </div>
-
-</header>
-
-<nav class="site-nav">
-
-  <button
-    class="nav-toggle"
-    id="navToggle"
-    aria-label="メニューを開く"
-    aria-expanded="false"
-    aria-controls="navMenu">
-
-    ☰
-
-  </button>
-
-  <ul
-    class="nav-menu"
-    id="navMenu">
-
-    <li>
-
-      <a href="{{ '/' | relative_url }}">
-
-        HOME
-
-      </a>
-
-    </li>
-
-    <li>
-
-      <a href="{{ '/records/' | relative_url }}">
-
-        山行記録
-
-      </a>
-
-    </li>
-
-    <li>
-
-      <a href="{{ '/logs/' | relative_url }}">
-
-        山行検索
-
-      </a>
-
-    </li>
-
-    <li>
-
-      <a href="{{ '/about/' | relative_url }}">
-
-        自己紹介
-
-      </a>
-
-    </li>
-
-    <li>
-
-      <a href="{{ '/blog/' | relative_url }}">
-
-        ブログ
-
-      </a>
-
-    </li>
-
-    <li>
-
-      <a href="{{ '/others/' | relative_url }}">
-
-        その他
-
-      </a>
-
-    </li>
-
-  </ul>
 
   <div
     id="navOverlay"
@@ -112,4 +121,5 @@
 
   </div>
 
-</nav>
+</header>
+
