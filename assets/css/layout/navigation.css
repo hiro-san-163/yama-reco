@@ -136,7 +136,11 @@
 
   color: var(--color-accent);
 
-  font-weight: 600;
+  font-weight:700;
+
+  color:#0B6E4F;
+
+  border-bottom:3px solid currentColor;
 
 }
 
