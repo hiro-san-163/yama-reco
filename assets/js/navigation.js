@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const navMenu = document.getElementById('navMenu');
   const navOverlay = document.getElementById('navOverlay');
 
-  let scrollPosition = 0;
+  /* Scroll Position */
+   
+  let scrollPosition = 0; 
 
   if (!navToggle || !navMenu || !navOverlay) {
     return;
@@ -20,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
   ====================================== */
 
   function openMenu() {
+
+    if (navMenu.classList.contains('is-open')) {
+       return;
+    } 
 
   scrollPosition = window.scrollY;
 
@@ -39,6 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
   ====================================== */
 
   function closeMenu() {
+
+  if (!navMenu.classList.contains('is-open')) {
+      return;
+   }
 
   navMenu.classList.remove('is-open');
   navOverlay.classList.remove('is-open');
@@ -84,5 +94,22 @@ document.addEventListener('DOMContentLoaded', () => {
       closeMenu();
     }
   });
+
+/* ======================================
+   Close Menu After Navigation
+====================================== */
+
+navMenu.querySelectorAll('a').forEach((link) => {
+
+  link.addEventListener('click', () => {
+
+    if (window.innerWidth <= 768) {
+      closeMenu();
+    }
+
+  });
+
+});
+   
 
 });
