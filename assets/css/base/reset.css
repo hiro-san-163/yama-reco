@@ -98,3 +98,17 @@ textarea {
   font: inherit;
 
 }
+
+/* ======================================
+   Navigation State
+====================================== */
+
+body.nav-open {
+
+  position: fixed;
+
+  overflow: hidden;
+
+  width: 100%;
+
+}
