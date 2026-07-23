@@ -28,12 +28,19 @@
   --color-surface-hover: rgba(20,75,51,0.08);
   --color-surface-strong: rgba(255,255,255,0.98);
 
+/* 追加 */
+--color-panel-bg: rgba(247,248,247,0.88);
+
+--color-condition-bg: rgba(255,255,255,0.84);
+   
   /* 追加 */
   --color-overlay: rgba(0,0,0,0.35);
 
   /* Border */
 
-  --color-border: #dddddd;
+  --color-border: #dddddd; 
+   
+  --color-card-border: rgba(0,0,0,0.05);
 
   /* 追加 */
   --color-menu-border: rgba(20,75,51,0.12);
