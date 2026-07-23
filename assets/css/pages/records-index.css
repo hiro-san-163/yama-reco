@@ -29,7 +29,7 @@
 
   padding: 1rem;
 
-  background: rgba(247,248,247,0.88);
+  background: var(--color-panel-bg);
    
   border-radius: var(--radius-md);
 
