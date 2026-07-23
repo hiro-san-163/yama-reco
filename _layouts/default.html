@@ -55,15 +55,7 @@
 
   {% include header.html %}
 
-  {% unless page.url == "/" %}
-    {% if page.breadcrumb %}
-      <div class="breadcrumb-wrap">
-        {% include breadcrumb.html %}
-      </div>
-    {% endif %}
-  {% endunless %}
-
-  <main class="site-main">
+    <main class="site-main">
 
     {{ content }}
 
