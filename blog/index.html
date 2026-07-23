@@ -25,6 +25,8 @@ title: ブログ
 
   <article class="card">
 
+  <div class="card-body">
+
     <h2>
       <a href="{{ post.url | relative_url }}">
         {{ post.title }}
@@ -54,7 +56,9 @@ title: ブログ
         続きを読む →
       </a>
     </p>
-
+    
+  </div>
+    
   </article>
 
   {% endfor %}
