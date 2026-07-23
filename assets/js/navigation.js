@@ -1,5 +1,5 @@
 /* ======================================
-   Navigation Rev.3
+   Navigation Rev.4
    Mobile Navigation Controller
 ====================================== */
 
@@ -84,10 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
   navOverlay.addEventListener('click', closeMenu);
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      closeMenu();
-    }
-  });
+  if (
+    event.key === 'Escape' &&
+    navMenu.classList.contains('is-open')
+  ) {
+    closeMenu();
+  }
+});
 
   window.addEventListener('resize', () => {
     if (window.innerWidth >= 769) {
