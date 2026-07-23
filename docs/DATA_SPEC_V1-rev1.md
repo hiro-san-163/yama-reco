@@ -1,6 +1,7 @@
 DATA_SPEC.md
 
 改訂日：2026-06-24 Version：Ver.1(Rev1)
+       2026-07-23 Version：Ver.1(Rev2)
 
 # hiro-sanの山歩きサイト V5 データ仕様書
 
@@ -126,7 +127,7 @@ YYYY-MM-DD
 
 ⸻
 
-### duration
+### duration  rev2
 
 **型**
 
