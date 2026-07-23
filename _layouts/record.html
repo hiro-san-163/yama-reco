@@ -25,9 +25,25 @@ layout: default
       {% endif %}
 
       {% if page.duration %}
-        <span>｜ {{ page.duration }}</span>
+
+        <span>｜
+
+        {% assign duration = page.duration | plus: 0 %}
+
+        {% if duration == 1 %}
+
+         日帰り
+
+      {% elsif duration > 1 %}
+
+       {{ duration | minus: 1 }}泊{{ duration }}日
+
       {% endif %}
 
+      </span>
+
+     {% endif %}
+      
       {% if page.area %}
         <span>｜ {{ page.area }}</span>
       {% endif %}
