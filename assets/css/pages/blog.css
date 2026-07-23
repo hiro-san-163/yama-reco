@@ -10,26 +10,6 @@
 
 }
 
-.blog-intro {
-
-  max-width: 800px;
-
-}
-
-.blog-intro p {
-
-  margin-bottom: 1rem;
-
-  line-height: 1.9;
-
-}
-
-.blog-intro p:last-child {
-
-  margin-bottom: 0;
-
-}
-
 @media (max-width: 768px) {
 
   .blog-page {
