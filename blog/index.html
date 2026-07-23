@@ -1,14 +1,19 @@
 ---
 layout: default
 title: ブログ
-breadcrumb: blog
 ---
 
+<section class="container blog-page">
+
+<header class="page-header">
+  
 <h1>ブログ</h1>
 
 <p class="page-description">
 日々の出来事や山歩き以外の話題を気軽に綴っています。
 </p>
+
+</header>
 
 {% assign posts = site.posts | where_exp: "post", "post.tags contains '日常'" %}
 
@@ -61,3 +66,5 @@ breadcrumb: blog
 <p>まだ記事はありません。</p>
 
 {% endif %}
+
+</section>
