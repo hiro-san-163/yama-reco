@@ -33,7 +33,7 @@ title: ブログ
       </a>
     </h2>
 
-    <div class="post-meta">
+    <div class="card-meta">
       {{ post.date | date: "%Y-%m-%d" }}
 
       {% if post.tags %}
@@ -46,7 +46,7 @@ title: ブログ
     </div>
 
     {% if post.excerpt %}
-    <p class="post-excerpt">
+    <p class="card- summary">
       {{ post.excerpt | strip_html | truncate: 120 }}
     </p>
     {% endif %}
