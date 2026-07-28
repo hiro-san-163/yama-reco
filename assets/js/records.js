@@ -24,206 +24,96 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let searchApplied = false;
 
-let restoredPage = 1;
-let restoredScrollY = 0;
-
-const STORAGE_KEY = 'recordsState';
-
   initialize();
 
   function initialize() {
-
-  populateFilters();
-
-  setupPageSize(pageSizeSelect, pager, () => {
-
-    pager.setPage(1);
-    renderResults();
-
-  });
-
-  searchButton.addEventListener('click', () => {
-
-    searchApplied = true;
-    pager.setPage(1);
-    renderResults();
-
-  });
-
-  recordsResetButton.addEventListener('click', () => {
-
-    resetFilters();
-
-    searchApplied = false;
-
-    pager.setPage(1);
-
-    sessionStorage.removeItem(STORAGE_KEY);
-
-    restoredPage = 1;
-    restoredScrollY = 0;
-
-    renderResults();
-
-  });
-
-  cards.forEach(card => {
-
-    card.addEventListener('click', saveState);
-
-  });
-
-  if (mobileQuery.addEventListener) {
-
-    mobileQuery.addEventListener(
-      'change',
-      syncPanelVisibility
-    );
-
-  } else if (mobileQuery.addListener) {
-
-    mobileQuery.addListener(
-      syncPanelVisibility
-    );
-
-  }
-
-  restoreState();
-
-  renderResults();
-
-}
-
-  function restoreState() {
-
-  const savedState = sessionStorage.getItem(STORAGE_KEY);
-
-  if (!savedState) {
-    return;
-  }
-
-  try {
-
-    const state = JSON.parse(savedState);
-
-    areaFilter.value = state.area || '';
-    genreFilter.value = state.genre || '';
-    yearFilter.value = state.year || '';
-
-    if (state.pageSize) {
-
-      pageSizeSelect.value = state.pageSize;
-      pager.setPageSize(Number(state.pageSize));
-
-    }
-
-    searchApplied = Boolean(state.searchApplied);
-
-    restoredPage = Number(state.currentPage) || 1;
-    restoredScrollY = Number(state.scrollY) || 0;
-
-  } catch (error) {
-
-    console.warn('recordsStateの復元に失敗しました。', error);
-
-    sessionStorage.removeItem(STORAGE_KEY);
-
-    restoredPage = 1;
-    restoredScrollY = 0;
-    searchApplied = false;
-
-  }
-
-}
-
-function renderResults() {
-
-  const filtered = cards.filter(card => {
-
-    if (
-      areaFilter.value &&
-      card.dataset.recordArea !== areaFilter.value
-    ) {
-      return false;
-    }
-
-    if (
-      genreFilter.value &&
-      card.dataset.recordGenre !== genreFilter.value
-    ) {
-      return false;
-    }
-
-    if (
-      yearFilter.value &&
-      card.dataset.recordDate.slice(0, 4) !== yearFilter.value
-    ) {
-      return false;
-    }
-
-    return true;
-
-  });
-
-  filtered.sort((a, b) =>
-    b.dataset.recordDate.localeCompare(a.dataset.recordDate)
-  );
-
-  pager.setData(filtered);
-
-  if (
-    restoredPage > 1 &&
-    restoredPage <= pager.getTotalPages()
-  ) {
-
-    pager.setPage(restoredPage);
-
-  }
-
-  const pageItems = pager.getCurrentPageItems();
-
-  recordsCount.textContent =
-    `${pager.getTotalItems()}件中 ${pageItems.length}件表示`;
-
-  emptyMessage.hidden =
-    pager.getTotalItems() !== 0;
-
-  recordsList.innerHTML = '';
-
-  pageItems.forEach(card => {
-
-    card.hidden = false;
-    recordsList.appendChild(card);
-
-  });
-
-  renderPagination(
-    pager,
-    paginationContainer,
-    renderResults
-  );
-
-  renderConditionSummary();
-  syncPanelVisibility();
-
-  if (restoredScrollY > 0) {
-
-    requestAnimationFrame(() => {
-
-      window.scrollTo({
-        top: restoredScrollY,
-        left: 0,
-        behavior: 'instant'
-      });
-
+    populateFilters();
+
+    setupPageSize(pageSizeSelect, pager, () => {
+      pager.setPage(1);
+      renderResults();
     });
 
-    restoredPage = 1;
-    restoredScrollY = 0;
+    searchButton.addEventListener('click', () => {
+      searchApplied = true;
+      pager.setPage(1);
+      renderResults();
+    });
 
+    recordsResetButton.addEventListener('click', () => {
+      resetFilters();
+      searchApplied = false;
+      pager.setPage(1);
+      renderResults();
+    });
+
+    if (mobileQuery.addEventListener) {
+      mobileQuery.addEventListener('change', syncPanelVisibility);
+    } else if (mobileQuery.addListener) {
+      mobileQuery.addListener(syncPanelVisibility);
+    }
+
+  renderResults();
+    
   }
 
-}
+  function populateFilters() {
+    populateSelect(areaFilter, getUniqueValues('recordArea'));
+    populateSelect(genreFilter, getUniqueValues('recordGenre'));
+    populateSelect(yearFilter, getUniqueValues('recordDate', value => value.slice(0, 4)));
+  }
+
+  function getUniqueValues(key, mapper) {
+    const values = cards
+      .map(card => mapper ? mapper(card.dataset[key] || '') : card.dataset[key])
+      .filter(Boolean);
+
+    return [...new Set(values)].sort((a, b) => b.localeCompare(a, 'ja'));
+  }
+
+  function populateSelect(select, values) {
+    values.forEach(value => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = value;
+      select.appendChild(option);
+    });
+  }
+
+  function resetFilters() {
+    areaFilter.value = '';
+    genreFilter.value = '';
+    yearFilter.value = '';
+  }
+
+  function renderResults() {
+    const filtered = cards.filter(card => {
+      if (areaFilter.value && card.dataset.recordArea !== areaFilter.value) return false;
+      if (genreFilter.value && card.dataset.recordGenre !== genreFilter.value) return false;
+      if (yearFilter.value && card.dataset.recordDate.slice(0, 4) !== yearFilter.value) return false;
+      return true;
+    });
+
+    filtered.sort((a, b) => b.dataset.recordDate.localeCompare(a.dataset.recordDate));
+
+    pager.setData(filtered);
+
+    const pageItems = pager.getCurrentPageItems();
+
+    recordsCount.textContent = `${pager.getTotalItems()}件中 ${pageItems.length}件表示`;
+    emptyMessage.hidden = pager.getTotalItems() !== 0;
+
+    recordsList.innerHTML = '';
+
+    pageItems.forEach(card => {
+      card.hidden = false;
+      recordsList.appendChild(card);
+    });
+
+    renderPagination(pager, paginationContainer, renderResults);
+    renderConditionSummary();
+    syncPanelVisibility();
+  }
 
   function renderConditionSummary() {
     if (!recordsConditionSummary) return;
@@ -264,6 +154,13 @@ function renderResults() {
       recordsPage.classList.toggle('is-search-active', shouldHidePanel);
     }
 
+    if (recordsConditionSummary) {
+      const summaryParts = [];
+
+      if (areaFilter.value) {
+        summaryParts.push(`エリア: ${areaFilter.value}`);
+      }
+
       if (genreFilter.value) {
         summaryParts.push(`ジャンル: ${genreFilter.value}`);
       }
@@ -277,40 +174,4 @@ function renderResults() {
     }
   }
 
-function saveState() {
-
-  const state = {
-
-    area: areaFilter.value,
-
-    genre: genreFilter.value,
-
-    year: yearFilter.value,
-
-    pageSize: pager.getPageSize(),
-
-    currentPage: pager.getCurrentPage(),
-
-    searchApplied,
-
-    scrollY:
-
-      window.pageYOffset ||
-
-      document.documentElement.scrollTop
-
-  };
-
-  sessionStorage.setItem(
-
-    STORAGE_KEY,
-
-    JSON.stringify(state)
-
-  );
-
-}
- 
- 
 });
-
