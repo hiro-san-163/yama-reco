@@ -88,6 +88,25 @@ document.addEventListener('DOMContentLoaded', () => {
     yearFilter.value = '';
   }
 
+  function saveState() {
+
+  const state = {
+    area: areaFilter.value,
+    genre: genreFilter.value,
+    year: yearFilter.value,
+    pageSize: pageSizeSelect.value,
+    currentPage: pager.getCurrentPage(),
+    searchApplied,
+    scrollY: window.scrollY
+  };
+
+  sessionStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(state)
+  );
+
+}
+
   function renderResults() {
     const filtered = cards.filter(card => {
       if (areaFilter.value && card.dataset.recordArea !== areaFilter.value) return false;
@@ -95,6 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (yearFilter.value && card.dataset.recordDate.slice(0, 4) !== yearFilter.value) return false;
       return true;
     });
+
+    cards.forEach(card => {
+
+  card.addEventListener('click', () => {
+    saveState();
+  });
+
+});
 
     filtered.sort((a, b) => b.dataset.recordDate.localeCompare(a.dataset.recordDate));
 
