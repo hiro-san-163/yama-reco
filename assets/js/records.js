@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileQuery.addListener(syncPanelVisibility);
     }
 
+  restoreState();
   renderResults();
     
   }
@@ -104,6 +105,29 @@ document.addEventListener('DOMContentLoaded', () => {
     STORAGE_KEY,
     JSON.stringify(state)
   );
+
+}
+
+  function restoreState() {
+
+  const savedState = sessionStorage.getItem(STORAGE_KEY);
+
+  if (!savedState) {
+    return;
+  }
+
+  const state = JSON.parse(savedState);
+
+  areaFilter.value = state.area || '';
+  genreFilter.value = state.genre || '';
+  yearFilter.value = state.year || '';
+
+  if (state.pageSize) {
+    pageSizeSelect.value = state.pageSize;
+    pager.setPageSize(Number(state.pageSize));
+  }
+
+  searchApplied = Boolean(state.searchApplied);
 
 }
 
