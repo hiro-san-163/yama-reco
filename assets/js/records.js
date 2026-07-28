@@ -24,7 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let searchApplied = false;
 
- const STORAGE_KEY = 'recordsState';
+let restoredPage = 1;
+let restoredScrollY = 0;
+
+const STORAGE_KEY = 'recordsState';
 
   initialize();
 
@@ -261,13 +264,6 @@ function renderResults() {
       recordsPage.classList.toggle('is-search-active', shouldHidePanel);
     }
 
-    if (recordsConditionSummary) {
-      const summaryParts = [];
-
-      if (areaFilter.value) {
-        summaryParts.push(`エリア: ${areaFilter.value}`);
-      }
-
       if (genreFilter.value) {
         summaryParts.push(`ジャンル: ${genreFilter.value}`);
       }
@@ -281,30 +277,40 @@ function renderResults() {
     }
   }
 
-});
-
 function saveState() {
 
   const state = {
 
     area: areaFilter.value,
+
     genre: genreFilter.value,
+
     year: yearFilter.value,
 
     pageSize: pager.getPageSize(),
+
     currentPage: pager.getCurrentPage(),
 
     searchApplied,
 
     scrollY:
+
       window.pageYOffset ||
+
       document.documentElement.scrollTop
 
   };
 
   sessionStorage.setItem(
+
     STORAGE_KEY,
+
     JSON.stringify(state)
+
   );
 
 }
+ 
+ 
+});
+
