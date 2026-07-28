@@ -82,7 +82,15 @@ document.addEventListener('DOMContentLoaded', () => {
   navToggle.addEventListener('click', toggleMenu);
 
   navOverlay.addEventListener('click', closeMenu);
-
+  
+  navMenu.querySelectorAll('a').forEach((link) => {
+     link.addEventListener('click', () => {
+       if (window.innerWidth < 769) {
+       closeMenu();
+     }
+   });
+ });
+ 
   document.addEventListener('keydown', (event) => {
   if (
     event.key === 'Escape' &&
