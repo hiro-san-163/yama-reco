@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let searchApplied = false;
 
+ const STORAGE_KEY = 'recordsState';
+
   initialize();
 
   function initialize() {
