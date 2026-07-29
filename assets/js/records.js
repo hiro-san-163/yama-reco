@@ -130,6 +130,20 @@ const SEARCH_STATE_KEYS = [
   return params;
 
 }
+
+   /**
+   * 現在の検索状態をURLへ反映する
+   */
+  function syncUrlState() {
+
+    const params = getCurrentSearchState();
+
+    const nextUrl =
+      `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}`;
+
+    history.replaceState(null, '', nextUrl);
+
+  }
   
   function renderResults() {
     const filtered = cards.filter(card => {
@@ -156,6 +170,9 @@ const SEARCH_STATE_KEYS = [
     });
 
     renderPagination(pager, paginationContainer, renderResults);
+
+    syncUrlState();
+   
     renderConditionSummary();
     syncPanelVisibility();
   }
