@@ -103,7 +103,7 @@ const SEARCH_STATE_KEYS = [
  *
  * @returns {URLSearchParams}
  */
-function getCurrentSearchState() {
+  function getCurrentSearchState() {
 
   const params = new URLSearchParams();
 
