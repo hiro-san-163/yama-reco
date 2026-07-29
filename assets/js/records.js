@@ -54,39 +54,6 @@ const SEARCH_STATE_KEYS = [
     recordsResetButton.addEventListener('click', () => {
       resetFilters();
 
-    /**
- * 現在の検索状態を取得する
- *
- * @returns {URLSearchParams}
- */
-function getCurrentSearchState() {
-
-  const params = new URLSearchParams();
-
-  if (areaFilter.value) {
-    params.set('area', areaFilter.value);
-  }
-
-  if (genreFilter.value) {
-    params.set('genre', genreFilter.value);
-  }
-
-  if (yearFilter.value) {
-    params.set('year', yearFilter.value);
-  }
-
-  if (pager.getCurrentPage() > 1) {
-    params.set('page', pager.getCurrentPage());
-  }
-
-  if (pageSizeSelect.value) {
-    params.set('pageSize', pageSizeSelect.value);
-  }
-
-  return params;
-
-}
-     
       searchApplied = false;
       pager.setPage(1);
       renderResults();
@@ -131,6 +98,39 @@ function getCurrentSearchState() {
     yearFilter.value = '';
   }
 
+    /**
+ * 現在の検索状態を取得する
+ *
+ * @returns {URLSearchParams}
+ */
+function getCurrentSearchState() {
+
+  const params = new URLSearchParams();
+
+  if (areaFilter.value) {
+    params.set('area', areaFilter.value);
+  }
+
+  if (genreFilter.value) {
+    params.set('genre', genreFilter.value);
+  }
+
+  if (yearFilter.value) {
+    params.set('year', yearFilter.value);
+  }
+
+  if (pager.getCurrentPage() > 1) {
+    params.set('page', pager.getCurrentPage());
+  }
+
+  if (pageSizeSelect.value) {
+    params.set('pageSize', pageSizeSelect.value);
+  }
+
+  return params;
+
+}
+  
   function renderResults() {
     const filtered = cards.filter(card => {
       if (areaFilter.value && card.dataset.recordArea !== areaFilter.value) return false;
