@@ -130,7 +130,7 @@ const SEARCH_STATE_KEYS = [
   return params;
 
 }
-
+ 
    /**
    * 現在の検索状態をURLへ反映する
    */
