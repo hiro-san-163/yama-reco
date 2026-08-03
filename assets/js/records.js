@@ -148,6 +148,25 @@ const SEARCH_STATE_KEYS = [
     history.replaceState(null, '', nextUrl);
 
   }
+
+   /**
+   * レコードカードのリンクへ現在の検索状態を付与する
+   */
+  function updateRecordLinks() {
+
+    const queryString = getCurrentSearchState().toString();
+
+    cards.forEach(card => {
+
+      const href = queryString
+        ? `${card.dataset.baseHref}?${queryString}`
+        : card.dataset.baseHref;
+
+      card.setAttribute('href', href);
+
+    });
+
+  }
   
   function renderResults() {
     const filtered = cards.filter(card => {
@@ -176,6 +195,7 @@ const SEARCH_STATE_KEYS = [
     renderPagination(pager, paginationContainer, renderResults);
 
     syncUrlState();
+    updateRecordLinks();
    
     renderConditionSummary();
     syncPanelVisibility();
