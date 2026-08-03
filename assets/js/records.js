@@ -40,6 +40,10 @@ const SEARCH_STATE_KEYS = [
   function initialize() {
     populateFilters();
 
+       cards.forEach(card => {
+      card.dataset.baseHref = card.getAttribute('href');
+    });
+
     setupPageSize(pageSizeSelect, pager, () => {
       pager.setPage(1);
       renderResults();
