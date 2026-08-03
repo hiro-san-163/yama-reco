@@ -161,6 +161,9 @@ const SEARCH_STATE_KEYS = [
       const href = queryString
         ? `${card.dataset.baseHref}?${queryString}`
         : card.dataset.baseHref;
+     
+    console.log('baseHref =', card.dataset.baseHref);
+    console.log('newHref  =', href);
 
       card.setAttribute('href', href);
 
