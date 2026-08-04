@@ -29,10 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function initialize() {
     populateFilters();
 
-       cards.forEach(card => {
-      card.dataset.baseHref = card.getAttribute('href');
-    });
-
     setupPageSize(pageSizeSelect, pager, () => {
       pager.setPage(1);
       renderResults();
@@ -116,9 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     renderPagination(pager, paginationContainer, renderResults);
-
-    syncUrlState();
-    updateRecordLinks();
    
     renderConditionSummary();
     syncPanelVisibility();
