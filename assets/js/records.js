@@ -24,17 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let searchApplied = false;
 
- /**
- * URLへ保持する検索状態キー
- */
-const SEARCH_STATE_KEYS = [
-  'area',
-  'genre',
-  'year',
-  'page',
-  'pageSize'
-];
- 
   initialize();
 
   function initialize() {
@@ -100,75 +89,6 @@ const SEARCH_STATE_KEYS = [
     areaFilter.value = '';
     genreFilter.value = '';
     yearFilter.value = '';
-  }
-
-    /**
- * 現在の検索状態を取得する
- *
- * @returns {URLSearchParams}
- */
-  function getCurrentSearchState() {
-
-  const params = new URLSearchParams();
-
-  if (areaFilter.value) {
-    params.set('area', areaFilter.value);
-  }
-
-  if (genreFilter.value) {
-    params.set('genre', genreFilter.value);
-  }
-
-  if (yearFilter.value) {
-    params.set('year', yearFilter.value);
-  }
-
-  if (pager.getCurrentPage() > 1) {
-    params.set('page', pager.getCurrentPage());
-  }
-
-  if (pageSizeSelect.value) {
-    params.set('pageSize', pageSizeSelect.value);
-  }
-
-  return params;
-
-}
- 
-   /**
-   * 現在の検索状態をURLへ反映する
-   */
-  function syncUrlState() {
-
-    const params = getCurrentSearchState();
-
-    const nextUrl =
-      `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}`;
-
-    history.replaceState(null, '', nextUrl);
-
-  }
-
-   /**
-   * レコードカードのリンクへ現在の検索状態を付与する
-   */
-  function updateRecordLinks() {
-
-    const queryString = getCurrentSearchState().toString();
-
-    cards.forEach(card => {
-
-      const href = queryString
-        ? `${card.dataset.baseHref}?${queryString}`
-        : card.dataset.baseHref;
-     
-    console.log('baseHref =', card.dataset.baseHref);
-    console.log('newHref  =', href);
-
-      card.setAttribute('href', href);
-
-    });
-
   }
   
   function renderResults() {
