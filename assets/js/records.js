@@ -115,9 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
    
     renderConditionSummary();
     syncPanelVisibility();
-
-   sessionStorage.setItem('recordsReturnUrl', window.location.href);
-  }
+  
+ }
 
   function renderConditionSummary() {
     if (!recordsConditionSummary) return;
