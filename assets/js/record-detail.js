@@ -4,12 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!returnButton) return;
 
-  const returnUrl = sessionStorage.getItem('recordsReturnUrl');
+  returnButton.addEventListener('click', (event) => {
+    event.preventDefault();
 
-  if (returnUrl) {
-    returnButton.href = returnUrl;
-  } else {
-    returnButton.href = '/yama-reco/records/';
-  }
+    if (window.history.length > 1) {
+      history.back();
+    } else {
+      window.location.href = '/yama-reco/records/';
+    }
+  });
 
 });
