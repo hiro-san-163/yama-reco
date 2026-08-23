@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       searchApplied = false;
       pager.setPage(1);
       renderResults();
+      saveSearchState();
     });
 
     if (mobileQuery.addEventListener) {
