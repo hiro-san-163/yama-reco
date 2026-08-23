@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       searchApplied = true;
       pager.setPage(1);
       renderResults();
+      saveSearchState();
     });
 
     recordsResetButton.addEventListener('click', () => {
