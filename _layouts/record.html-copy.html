@@ -1,1 +1,298 @@
+---
+layout: default
+---
 
+<article class="record-page container">
+
+  <!-- ======================================
+       TITLE
+  ======================================= -->
+
+  <header class="record-header">
+
+    <h1 class="record-title">
+      {{ page.title }}
+    </h1>
+
+    <div class="record-meta">
+
+      {% if page.date_s %}
+        <span>{{ page.date_s }}</span>
+      {% endif %}
+
+      {% if page.date_e %}
+        <span>｜ {{ page.date_e }}</span>
+      {% endif %}
+
+      {% if page.duration %}
+
+        <span>｜
+
+        {% assign duration = page.duration | plus: 0 %}
+
+        {% if duration == 1 %}
+
+         日帰り
+
+      {% elsif duration > 1 %}
+
+       {{ duration | minus: 1 }}泊{{ duration }}日
+
+      {% endif %}
+
+      </span>
+
+     {% endif %}
+      
+      {% if page.area %}
+        <span>｜ {{ page.area }}</span>
+      {% endif %}
+
+      {% if page.genre %}
+        <span>｜ {{ page.genre }}</span>
+      {% endif %}
+
+      {% if page.members %}
+        <span>｜ {{ page.members }}</span>
+      {% endif %}
+
+      {% if page.weather %}
+        <span>｜ {{ page.weather }}</span>
+      {% endif %}
+
+    </div>
+
+  </header>
+
+  <!-- ======================================
+       MAIN IMAGE
+  ======================================= -->
+
+  {% if page.tm %}
+
+  <section class="record-main-image">
+
+    <img
+      src="{{ page.tm | relative_url }}"
+      alt="{{ page.title }}">
+
+    {% if page.tmfg %}
+
+      <p class="image-caption">
+        {{ page.tmfg }}
+      </p>
+
+    {% endif %}
+
+  </section>
+
+  {% endif %}
+
+  <!-- ======================================
+       SUMMARY
+  ======================================= -->
+
+  {% if page.sm2 %}
+
+  <section class="record-section">
+
+    <h2>山行概要</h2>
+
+    <div class="record-summary">
+      {{ page.sm2 | markdownify }}
+    </div>
+
+  </section>
+
+  {% endif %}
+
+  <!-- ======================================
+       COURSE
+  ======================================= -->
+
+  {% if page.course_time or page.course_note or page.map %}
+
+  <section class="record-section">
+
+    <h2>コース情報</h2>
+
+    {% if page.course_time %}
+
+      <p>
+        <strong>コースタイム：</strong>
+        {{ page.course_time }}
+      </p>
+
+    {% endif %}
+
+    {% if page.course_note %}
+
+      <div class="course-note">
+        {{ page.course_note | markdownify }}
+      </div>
+
+    {% endif %}
+
+    {% if page.map %}
+
+      <p>
+
+        <a
+          href="{{ page.map }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button">
+
+          地図を見る
+
+        </a>
+
+      </p>
+
+    {% endif %}
+
+  </section>
+
+  {% endif %}
+
+  <!-- ======================================
+       GALLERY
+  ======================================= -->
+
+  {% if page.gp1 or page.gp2 or page.gp3 %}
+
+  <section class="record-section">
+
+    <h2>ギャラリー</h2>
+
+    <div class="gallery-grid">
+
+      {% if page.gp1 %}
+
+      <figure class="gallery-item">
+
+        <img
+          src="{{ page.gp1 | relative_url }}"
+          alt="{{ page.title }}">
+
+        {% if page.gpfg1 %}
+          <figcaption>{{ page.gpfg1 }}</figcaption>
+        {% endif %}
+
+      </figure>
+
+      {% endif %}
+
+      {% if page.gp2 %}
+
+      <figure class="gallery-item">
+
+        <img
+          src="{{ page.gp2 | relative_url }}"
+          alt="{{ page.title }}">
+
+        {% if page.gpfg2 %}
+          <figcaption>{{ page.gpfg2 }}</figcaption>
+        {% endif %}
+
+      </figure>
+
+      {% endif %}
+
+      {% if page.gp3 %}
+
+      <figure class="gallery-item">
+
+        <img
+          src="{{ page.gp3 | relative_url }}"
+          alt="{{ page.title }}">
+
+        {% if page.gpfg3 %}
+          <figcaption>{{ page.gpfg3 }}</figcaption>
+        {% endif %}
+
+      </figure>
+
+      {% endif %}
+
+    </div>
+
+  </section>
+
+  {% endif %}
+
+  <!-- ======================================
+       EXTERNAL LINK
+  ======================================= -->
+
+  {% if page.yamareco_url %}
+
+  <section class="record-section">
+
+    <h2>外部リンク</h2>
+
+    <p>
+
+      <a
+        href="{{ page.yamareco_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="button">
+
+        ヤマレコを見る
+
+      </a>
+
+    </p>
+
+  </section>
+
+  {% endif %}
+
+  <div class="record-return">
+
+  <a
+    href="{{ '/records/' | relative_url }}"
+    id="recordsReturnButton"
+    class="button">
+
+    ← 検索結果へ戻る
+
+  </a>
+
+</div>
+
+  <!-- ======================================
+       PREV / NEXT
+  ======================================= -->
+
+  <nav class="record-navigation">
+
+
+    <div class="record-nav-prev">
+
+      {% if page.previous %}
+
+        <a href="{{ page.previous.url | relative_url }}">
+          ← 前の山行
+        </a>
+
+      {% endif %}
+
+    </div>
+
+    <div class="record-nav-next">
+
+      {% if page.next %}
+
+        <a href="{{ page.next.url | relative_url }}">
+          次の山行 →
+        </a>
+
+      {% endif %}
+
+    </div>
+
+  </nav>
+
+</article>
