@@ -111,6 +111,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     pager.setData(filtered);
 
+    if (restoredPage !== null) {
+      pager.setPage(restoredPage);
+      restoredPage = null;
+    }
+
     const pageItems = pager.getCurrentPageItems();
 
     recordsCount.textContent = `${pager.getTotalItems()}件中 ${pageItems.length}件表示`;
