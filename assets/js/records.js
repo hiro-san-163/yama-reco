@@ -128,7 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
       recordsList.appendChild(card);
     });
 
-    renderPagination(pager, paginationContainer, renderResults);
+    renderPagination(
+      pager,
+      paginationContainer,
+      () => {
+        renderResults();
+        saveSearchState(); 
+      }
+    );
    
     renderConditionSummary();
     syncPanelVisibility();
