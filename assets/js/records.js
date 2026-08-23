@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupPageSize(pageSizeSelect, pager, () => {
       pager.setPage(1);
       renderResults();
+      saveSearchState();
     });
    
   restoreSearchState();
