@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   returnButton.addEventListener('click', (event) => {
     event.preventDefault();
 
-        window.location.href = '/yama-reco/records/';
+    window.location.href = returnButton.href;
+    
     }
   });
 
