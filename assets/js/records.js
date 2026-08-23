@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let searchApplied = false;
 
+  // sessionStorageから復元するページ番号
+  let restoredPage = null;
+
   initialize();
 
   function initialize() {
@@ -175,6 +178,51 @@ document.addEventListener('DOMContentLoaded', () => {
       recordsConditionSummary.textContent = summaryParts.length ? summaryParts.join(' / ') : '条件指定なし';
       recordsConditionSummary.hidden = !(shouldShowSummary && summaryParts.length);
     }
+  }
+
+  function saveSearchState() {
+
+    const state = {
+
+      area: areaFilter.value,
+      genre: genreFilter.value,
+      year: yearFilter.value,
+
+      page: pager.getCurrentPage(),
+      pageSize: pager.getPageSize()
+
+    };
+
+    sessionStorage.setItem(
+      'recordsSearchState',
+      JSON.stringify(state)
+    );
+
+  }
+ 
+  function restoreSearchState() {
+
+    const savedState =
+      sessionStorage.getItem('recordsSearchState');
+
+    if (!savedState) return;
+
+    const state = JSON.parse(savedState);
+
+    areaFilter.value = state.area ?? '';
+    genreFilter.value = state.genre ?? '';
+    yearFilter.value = state.year ?? '';
+
+    pageSizeSelect.value = state.pageSize ?? 10;
+
+    pager.setPageSize(
+      state.pageSize ?? 10
+    );
+
+    restoredPage = state.page ?? 1;
+
+    searchApplied = true;
+
   }
 
 });
