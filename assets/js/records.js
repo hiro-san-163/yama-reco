@@ -36,6 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
       pager.setPage(1);
       renderResults();
     });
+   
+  restoreSearchState();
+
+
 
     searchButton.addEventListener('click', () => {
       searchApplied = true;
@@ -52,44 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (mobileQuery.addEventListener) {
-      mobileQuery.addEventListener('change', syncPanelVisibility);
+      mobileQuery.addEventListener(
+       'change', 
+       syncPanelVisibility);
+     
     } else if (mobileQuery.addListener) {
       mobileQuery.addListener(syncPanelVisibility);
     }
-
- function initialize() {
-  populateFilters();
-
-  restoreSearchState();
-
-  setupPageSize(pageSizeSelect, pager, () => {
-    pager.setPage(1);
-    renderResults();
-  });
-
-  searchButton.addEventListener('click', () => {
-    searchApplied = true;
-    pager.setPage(1);
-    renderResults();
-  });
-
-  recordsResetButton.addEventListener('click', () => {
-    resetFilters();
-
-    searchApplied = false;
-    pager.setPage(1);
-    renderResults();
-  });
-
-  if (mobileQuery.addEventListener) {
-    mobileQuery.addEventListener('change', syncPanelVisibility);
-  } else if (mobileQuery.addListener) {
-    mobileQuery.addListener(syncPanelVisibility);
-  }
-
+   
   renderResults();
-    
+
 }
+
   function populateFilters() {
     populateSelect(areaFilter, getUniqueValues('recordArea'));
     populateSelect(genreFilter, getUniqueValues('recordGenre'));
