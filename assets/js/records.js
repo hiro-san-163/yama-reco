@@ -69,6 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (mobileQuery.addListener) {
       mobileQuery.addListener(syncPanelVisibility);
     }
+
+   cards.forEach(card => {
+  card.addEventListener('click', () => {
+    sessionStorage.setItem(
+      'restoreRecordsSearch',
+      'true'
+    );
+  });
+});
    
   renderResults();
 
