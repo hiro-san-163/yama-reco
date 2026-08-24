@@ -38,10 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
       saveSearchState();
     });
    
+  if (sessionStorage.getItem('restoreRecordsSearch') === 'true') {
+
   restoreSearchState();
 
+  sessionStorage.removeItem('restoreRecordsSearch');
 
-
+}
     searchButton.addEventListener('click', () => {
       searchApplied = true;
       pager.setPage(1);
