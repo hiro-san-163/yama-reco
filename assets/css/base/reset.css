@@ -33,7 +33,7 @@ body {
   /* 背景画像 */
   background-color: var(--color-bg);
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.48)),
+    linear-gradient(rgba(255, 255, 255, 0.40), rgba(255, 255, 255, 0.46)),
     url("../../images/IMG_2539.webp");
   background-repeat: no-repeat;
   background-position: center center;
