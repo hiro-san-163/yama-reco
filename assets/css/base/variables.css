@@ -16,7 +16,7 @@
   /* Text */
 
   --color-text: #333333;
-  --color-text-light: #666666;
+  --color-text-light: #555555;
   --color-heading: #144b33;
 
   /* Background */
@@ -39,7 +39,7 @@
 
   /* Card */
 
-  --color-card: rgba(255,255,255,0.90);
+  --color-card: rgba(252,250,245,0.92);
   --shadow-card: 0 8px 24px rgba(0,0,0,.10);
   --shadow-menu: 0 12px 36px rgba(0,0,0,.18);
 
