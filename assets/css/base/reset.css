@@ -26,13 +26,14 @@ body {
     "Hiragino Sans",
     "Yu Gothic",
     sans-serif;
-
-  line-height: 1.7;
+   
+  font-size: 17px;
+  line-height: 1.8;
 
   /* 背景画像 */
   background-color: var(--color-bg);
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.34)),
+    linear-gradient(rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.48)),
     url("../../images/IMG_2539.webp");
   background-repeat: no-repeat;
   background-position: center center;
