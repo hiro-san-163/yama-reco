@@ -1,4 +1,4 @@
----
+    ---
 layout: default
 title: HOME
 ---
@@ -77,6 +77,20 @@ title: HOME
 
               {% if post.date_s %}
                 <span>{{ post.date_s }}</span>
+              {% endif %}
+
+              {% if post.duration %}
+                <span>｜
+                  {% case post.duration %}
+                    {% when "1" %}日帰り
+                    {% when "2" %}1泊2日
+                    {% when "3" %}2泊3日
+                    {% when "4" %}3泊4日
+                    {% when "5" %}4泊5日
+                    {% when "6" %}5泊6日
+                    {% else %}{{ post.duration }}
+                  {% endcase %}
+                </span>
               {% endif %}
 
               {% if post.area %}
