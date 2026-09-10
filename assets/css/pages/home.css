@@ -112,19 +112,19 @@
 
 .home-record-image {
 
-  flex: 0 0 240px;
+  flex: 0 0 220px;
 
 }
 
 .home-record-image img {
 
-  width: 100%;
+  width:100%;
 
-  height: 100%;
+  aspect-ratio:4 / 3;
 
-  object-fit: cover;
+  object-fit:cover;
 
-  border-radius: var(--radius-sm);
+  display:block;
 
 }
 
@@ -132,14 +132,14 @@
 
   flex: 1;
 
+  min-width: 0;
+
   display: flex;
 
   flex-direction: column;
 
   justify-content: center;
 
-  padding: 0;
-   
 }
 
 .home-record-content h3 {
