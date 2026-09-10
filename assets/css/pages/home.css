@@ -76,16 +76,6 @@
 
 }
 
-.home-record-card a {
-
-  display: flex;
-
-  gap: 1.25rem;
-
-  align-items: stretch;
-
-}
-
 .home-record-card {
 
   background: var(--color-card);
