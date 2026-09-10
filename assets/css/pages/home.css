@@ -69,10 +69,13 @@
 
   display: grid;
 
-  grid-template-columns:
-    repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: 1fr;
 
-  gap: 1.5rem;
+  gap: 1.25rem;
+
+  max-width: 960px;
+
+  margin: 0 auto;
 
 }
 
@@ -118,7 +121,7 @@
 
 .home-record-image {
 
-  flex: 0 0 220px;
+  flex: 0 0 200px;
 
 }
 
