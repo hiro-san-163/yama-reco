@@ -14,16 +14,21 @@
   margin: 0 auto;
 }
 
-.home-records-list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+.home-records-list,
+.records-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-records-list > * + *,
+.records-list > * + * {
+  margin-top: 1rem;
 }
 
 /* HOMEだけ概要3行 */
 .home-record-card .home-record-summary {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
