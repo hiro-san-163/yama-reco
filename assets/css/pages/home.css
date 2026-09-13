@@ -20,11 +20,6 @@
   flex-direction: column;
 }
 
-.home-records-list > * + *,
-.records-list > * + * {
-  margin-top: 1rem;
-}
-
 /* HOMEだけ概要3行 */
 .home-record-card .home-record-summary {
   display: -webkit-box;
