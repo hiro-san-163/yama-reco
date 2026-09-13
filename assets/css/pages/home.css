@@ -18,6 +18,7 @@
 .records-list {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
 /* HOMEだけ概要3行 */
