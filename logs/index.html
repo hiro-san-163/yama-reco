@@ -19,145 +19,88 @@ title: 山行検索
     id="logsFilterPanel"
     class="logs-filter">
 
-    <div class="form-group">
-
-      <label>対象データ</label>
-
-      <div class="checkbox-group">
-
-        <label>
-          <input
-            type="checkbox"
-            id="sourceHiro"
-            value="hiro"
-            checked>
-          hiro-san
-        </label>
-
-        <label>
-          <input
-            type="checkbox"
-            id="sourceSB"
-            value="sb"
-            checked>
-          silverboy
-        </label>
-
-        <label>
-          <input
-            type="checkbox"
-            id="sourceST"
-            value="st"
-            checked>
-          ショウタン
-        </label>
-
+    <div class="logs-filter-sources">
+      <div class="form-group">
+        <label>対象データ</label>
+        <div class="checkbox-group">
+          <label>
+            <input
+              type="checkbox"
+              id="sourceHiro"
+              value="hiro"
+              checked>
+            hiro-san
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              id="sourceSB"
+              value="sb"
+              checked>
+            silverboy
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              id="sourceST"
+              value="st"
+              checked>
+            ショウタン
+          </label>
+        </div>
       </div>
-
     </div>
 
-    <div class="form-group">
-
-      <label for="keywordFilter">
-        キーワード
-      </label>
-
-      <input
-        type="search"
-        id="keywordFilter"
-        placeholder="タイトル・概要を検索">
-
+    <div class="logs-filter-fields">
+      <div class="form-group">
+        <label for="keywordFilter">キーワード</label>
+        <input type="search" id="keywordFilter" placeholder="タイトル・概要を検索">
+      </div>
+      <div class="form-group">
+        <label for="areaFilter">エリア</label>
+        <select id="areaFilter">
+          <option value="">すべて</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="genreFilter">ジャンル</label>
+        <select id="genreFilter">
+          <option value="">すべて</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="yearFilter">年</label>
+        <select id="yearFilter">
+          <option value="">すべて</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="monthFilter">月</label>
+        <select id="monthFilter">
+          <option value="">すべて</option>
+        </select>
+      </div>
     </div>
 
-    <div class="form-group">
-
-      <label for="areaFilter">
-        エリア
-      </label>
-
-      <select id="areaFilter">
-        <option value="">すべて</option>
-      </select>
-
+    <div class="logs-filter-actions">
+      <div class="form-group-buttons">
+        <button type="button" id="searchButton">検索</button>
+        <button type="button" id="resetButton">リセット</button>
+      </div>
+      <div class="form-group">
+        <label for="sortFilter">並び順</label>
+        <select id="sortFilter">
+          <option value="date_desc">日付降順</option>
+          <option value="date_asc">日付昇順</option>
+          <option value="title_asc">タイトル昇順</option>
+          <option value="title_desc">タイトル降順</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="pageSize">表示件数</label>
+        <select id="pageSize"></select>
+      </div>
     </div>
-
-    <div class="form-group">
-
-      <label for="genreFilter">
-        ジャンル
-      </label>
-
-      <select id="genreFilter">
-        <option value="">すべて</option>
-      </select>
-
-    </div>
-
-    <div class="form-group">
-
-      <label for="yearFilter">
-        年
-      </label>
-
-      <select id="yearFilter">
-        <option value="">すべて</option>
-      </select>
-
-    </div>
-
-    <div class="form-group">
-
-      <label for="monthFilter">
-        月
-      </label>
-
-      <select id="monthFilter">
-        <option value="">すべて</option>
-      </select>
-
-    </div>
-
-    <div class="form-group form-group-buttons">
-
-      <button
-        type="button"
-        id="searchButton">
-        検索
-      </button>
-
-      <button
-        type="button"
-        id="resetButton">
-        リセット
-      </button>
-
-    </div>
-
-    <div class="form-group">
-
-      <label for="sortFilter">
-        並び順
-      </label>
-
-      <select id="sortFilter">
-        <option value="date_desc">日付降順</option>
-        <option value="date_asc">日付昇順</option>
-        <option value="title_asc">タイトル昇順</option>
-        <option value="title_desc">タイトル降順</option>
-      </select>
-
-    </div>
-
-    <div class="form-group">
-
-      <label for="pageSize">
-        表示件数
-      </label>
-
-      <select id="pageSize"></select>
-
-    </div>
-
   </section>
 
   <div
@@ -171,14 +114,12 @@ title: 山行検索
     </div>
 
     <div class="logs-condition-actions">
-
       <button
         type="button"
-        id="logsResetButton"
+        id="logsShowFiltersButton"
         class="button button-outline">
-        リセット
+        条件を変更
       </button>
-
     </div>
 
   </div>

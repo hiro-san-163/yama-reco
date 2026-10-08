@@ -9,22 +9,45 @@
 }
 
 .logs-filter {
-
   display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(180px, 1fr));
-
+  grid-template-columns: 1fr;
   gap: 1rem;
-
   margin-bottom: 2rem;
-
   padding: 1rem;
-
-  background: --color-panel-bg
-   
+  background: var(--color-panel-bg);
   border-radius: var(--radius-md);
+}
 
+.logs-filter .form-group {
+  margin-bottom: 0;
+}
+
+.logs-filter-sources,
+.logs-filter-fields,
+.logs-filter-actions {
+  display: grid;
+  align-items: end;
+  gap: 1rem;
+}
+
+.logs-filter-sources {
+  grid-template-columns: 1fr;
+}
+
+.logs-filter-fields {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.logs-filter-actions {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.logs-filter .form-group-buttons {
+  display: contents;
+}
+
+.logs-filter-actions > button {
+  width: 100%;
 }
 
 .logs-count {
@@ -50,7 +73,7 @@
 
   background: var(--color-card);
 
-  border: 1px solid --color-card-border
+  border: 1px solid var(--color-card-border);
 
   border-radius: var(--radius-md);
 
@@ -123,22 +146,6 @@
   color: #8b4b1a;
 }
 
-.checkbox-group {
-
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 1rem;
-
-}
-
-.checkbox-group input {
-
-  margin-right: 0.35rem;
-
-}
-
 /* Shared: Condition summary and condition bar */
 
 .logs-condition-summary {
@@ -147,7 +154,7 @@
   padding: 0.9rem 1rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: --color-condition-bg
+  background: var(--color-condition-bg);
   color: var(--color-text-light);
   overflow-wrap: anywhere;
 
@@ -164,19 +171,19 @@
 }
 
 .logs-condition-actions {
-
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-
 }
 
 @media (max-width: 768px) {
 
-  .logs-filter {
+  .logs-filter-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 
-    grid-template-columns: 1fr;
-
+  .logs-filter-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .logs-page.is-search-active .logs-filter {
@@ -195,12 +202,6 @@
 
     align-items: stretch;
     flex-direction: column;
-
-  }
-
-  .logs-condition-actions {
-
-    justify-content: flex-start;
 
   }
 

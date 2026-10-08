@@ -8,14 +8,6 @@
   padding-bottom: 2rem;
 }
 
-.page-header {
-  margin-bottom: 2rem;
-}
-
-.page-description {
-  color: var(--color-text-light);
-}
-
 .records-filter {
 
   display: grid;

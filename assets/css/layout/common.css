@@ -20,6 +20,16 @@
 
 }
 
+/* Shared page heading block */
+
+.page-header {
+  margin-bottom: 2rem;
+}
+
+.page-description {
+  color: var(--color-text-light);
+}
+
 .section {
 
   padding-top: 2rem;

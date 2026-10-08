@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const logsFilterPanel = document.getElementById('logsFilterPanel');
   const logsConditionBar = document.getElementById('logsConditionBar');
   const logsConditionSummary = document.getElementById('logsConditionSummary');
+  const logsShowFiltersButton = document.getElementById('logsShowFiltersButton');
   const paginationContainer = document.getElementById('pagination');
 
   const sourceHiro = document.getElementById('sourceHiro');
@@ -22,7 +23,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const searchButton = document.getElementById('searchButton');
   const resetButton = document.getElementById('resetButton');
-  const logsResetButton = document.getElementById('logsResetButton');
 
   const pager = new Pagination(10);
   const mobileQuery = window.matchMedia('(max-width: 768px)');
@@ -83,7 +83,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     resetButton.addEventListener('click', resetAndShowFilters);
-    logsResetButton.addEventListener('click', resetAndShowFilters);
+    logsShowFiltersButton.addEventListener('click', () => {
+      searchApplied = false;
+      syncSearchPanelVisibility();
+    });
 
     sortFilter.addEventListener('change', () => {
       pager.setPage(1);
