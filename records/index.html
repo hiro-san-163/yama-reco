@@ -140,6 +140,19 @@ title: 山行記録
 
       <div class="record-card-meta">
         <span>{{ post.date_s }}</span>
+        {% if post.duration %}
+        <span>｜
+          {% case post.duration %}
+            {% when "1" %}日帰り
+            {% when "2" %}1泊2日
+            {% when "3" %}2泊3日
+            {% when "4" %}3泊4日
+            {% when "5" %}4泊5日
+            {% when "6" %}5泊6日
+            {% else %}{{ post.duration }}
+          {% endcase %}
+        </span>
+        {% endif %}
         {% if post.area and post.area != '' %}
         <span>｜ {{ post.area }}</span>
         {% endif %}

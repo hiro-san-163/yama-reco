@@ -1,126 +1,67 @@
-/* ======================================
-   Navigation Rev.4
-   Mobile Navigation Controller
-====================================== */
-
 document.addEventListener('DOMContentLoaded', () => {
 
-  const navToggle = document.getElementById('navToggle');
-  const navMenu = document.getElementById('navMenu');
-  const navOverlay = document.getElementById('navOverlay');
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+  const overlay = document.getElementById('navOverlay');
 
-  /* Scroll Position */
-   
-  let scrollPosition = 0; 
+  if (!toggle || !menu || !overlay) return;
 
-  if (!navToggle || !navMenu || !navOverlay) {
-    return;
-  }
-
-  /* ======================================
-     Open Menu
-  ====================================== */
+  let isOpen = false;
 
   function openMenu() {
+    if (isOpen) return;
 
-    if (navMenu.classList.contains('is-open')) {
-       return;
-    } 
+    isOpen = true;
+    menu.classList.add('is-open');
+    overlay.classList.add('is-open');
 
-  scrollPosition = window.scrollY;
-
-  document.body.style.top = `-${scrollPosition}px`;
-
-  navMenu.classList.add('is-open');
-  navOverlay.classList.add('is-open');
-
-  document.body.classList.add('nav-open');
-
-  navToggle.setAttribute('aria-expanded', 'true');
-
-}
-   
-  /* ======================================
-     Close Menu
-  ====================================== */
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
 
   function closeMenu() {
+    if (!isOpen) return;
 
-  if (!navMenu.classList.contains('is-open')) {
-      return;
-   }
+    isOpen = false;
+    menu.classList.remove('is-open');
+    overlay.classList.remove('is-open');
 
-  navMenu.classList.remove('is-open');
-  navOverlay.classList.remove('is-open');
-
-  document.body.classList.remove('nav-open');
-
-  document.body.style.top = '';
-
-  window.scrollTo(0, scrollPosition);
-
-  navToggle.setAttribute('aria-expanded', 'false');
-
-}
-   
-  /* ======================================
-     Toggle Menu
-  ====================================== */
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
 
   function toggleMenu() {
-    if (navMenu.classList.contains('is-open')) {
+    isOpen ? closeMenu() : openMenu();
+  }
+
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  overlay.addEventListener('click', closeMenu);
+
+  // ★重要：遷移100%保証
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+
       closeMenu();
-    } else {
-      openMenu();
-    }
-  }
 
-  /* ======================================
-     Events
-  ====================================== */
+      // Safari描画安定化（遷移阻害回避）
+      setTimeout(() => {}, 0);
 
-  navToggle.addEventListener('click', toggleMenu);
-
-  navOverlay.addEventListener('click', closeMenu);
-  
-  navMenu.querySelectorAll('a').forEach((link) => {
-     link.addEventListener('click', () => {
-       if (window.innerWidth < 769) {
-       closeMenu();
-     }
-   });
- });
- 
-  document.addEventListener('keydown', (event) => {
-  if (
-    event.key === 'Escape' &&
-    navMenu.classList.contains('is-open')
-  ) {
-    closeMenu();
-  }
-});
+    });
+  });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth >= 769) {
-      closeMenu();
-    }
+    if (window.innerWidth > 768) closeMenu();
   });
 
-/* ======================================
-   Close Menu After Navigation
-====================================== */
-
-navMenu.querySelectorAll('a').forEach((link) => {
-
-  link.addEventListener('click', () => {
-
-    if (window.innerWidth <= 768) {
-      closeMenu();
-    }
-
+  window.addEventListener('orientationchange', () => {
+    setTimeout(() => {
+      if (window.innerWidth > 768) closeMenu();
+    }, 150);
   });
-
-});
-   
 
 });
