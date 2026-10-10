@@ -19,6 +19,6 @@
 ├─ assets/
 │   ├─ css/
 │   └─ js/
-│
+|
 └─ docs/
     └─ V5_SPEC.md
