@@ -22,7 +22,7 @@
   padding: 1rem;
 
   background: var(--color-panel-bg);
-   
+
   border-radius: var(--radius-md);
 
 }
@@ -157,6 +157,41 @@
 
   margin: 0 0 1rem;
   color: var(--color-text-light);
+
+}
+
+@media (min-width: 769px) {
+
+  .records-page {
+    padding-top: var(--density-page-padding-y-pc);
+    padding-bottom: var(--density-page-padding-y-pc);
+  }
+
+  .records-filter {
+    gap: var(--density-filter-gap-pc);
+    margin-bottom: var(--density-filter-margin-pc);
+    padding: var(--density-filter-padding-pc);
+  }
+
+  .records-list {
+    gap: var(--density-records-list-gap-pc);
+  }
+
+  .record-card {
+    gap: var(--density-filter-gap-pc);
+  }
+
+  .record-card-content {
+    padding: var(--density-card-padding-pc);
+  }
+
+  .record-card-title {
+    margin-bottom: var(--density-card-heading-margin-pc);
+  }
+
+  .record-card-meta {
+    margin-bottom: var(--density-record-card-meta-margin-pc);
+  }
 
 }
 

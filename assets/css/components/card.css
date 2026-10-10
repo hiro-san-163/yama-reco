@@ -151,6 +151,21 @@
   overflow: hidden;
 }
 
+@media (min-width: 769px) {
+
+  .home-record-content,
+  .record-card-content {
+    padding: var(--density-card-padding-pc);
+    gap: var(--density-card-content-gap-pc);
+  }
+
+  .home-record-summary,
+  .record-card-summary {
+    line-height: var(--density-card-text-line-height-pc);
+  }
+
+}
+
 /* ------------------------------
    Responsive
 ------------------------------ */

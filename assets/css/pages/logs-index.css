@@ -179,6 +179,40 @@
   display: none;
 }
 
+@media (min-width: 769px) {
+
+  .logs-page {
+    padding-top: var(--density-page-padding-y-pc);
+    padding-bottom: var(--density-page-padding-y-pc);
+  }
+
+  .logs-filter {
+    gap: var(--density-filter-gap-pc);
+    margin-bottom: var(--density-filter-margin-pc);
+    padding: var(--density-filter-padding-pc);
+  }
+
+  .logs-filter-sources,
+  .logs-filter-fields,
+  .logs-filter-actions {
+    gap: var(--density-filter-gap-pc);
+  }
+
+  .logs-list {
+    gap: var(--density-list-gap-pc);
+  }
+
+  .log-card {
+    padding: var(--density-filter-padding-pc);
+  }
+
+  .log-card-meta,
+  .log-card-source {
+    margin-bottom: var(--density-card-meta-margin-pc);
+  }
+
+}
+
 @media (max-width: 768px) {
 
   .logs-filter-sources .checkbox-group {

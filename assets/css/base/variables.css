@@ -33,7 +33,7 @@
 
   /* Border */
 
-  --color-border: #dddddd; 
+  --color-border: #dddddd;
   --color-card-border: rgba(0,0,0,0.05);
   --color-menu-border: rgba(20,75,51,0.12);
 
@@ -46,6 +46,23 @@
   /* Layout */
 
   --container-width: 1200px;
+
+  /* Desktop density */
+
+  --density-body-line-height-pc: 1.62;
+  --density-page-padding-y-pc: 1.7rem;
+  --density-page-header-margin-pc: 1.6rem;
+  --density-list-gap-pc: 0.85rem;
+  --density-records-list-gap-pc: 1.2rem;
+  --density-card-padding-pc: 0.85rem 1rem;
+  --density-card-content-gap-pc: 0.425rem;
+  --density-card-text-line-height-pc: 1.5;
+  --density-filter-padding-pc: 0.85rem;
+  --density-filter-gap-pc: 0.85rem;
+  --density-filter-margin-pc: 1.6rem;
+  --density-card-heading-margin-pc: 0.6rem;
+  --density-card-meta-margin-pc: 0.6rem;
+  --density-record-card-meta-margin-pc: 0.8rem;
 
   /* Radius */
 

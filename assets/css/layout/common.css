@@ -44,3 +44,16 @@
 .text-right {
   text-align: right;
 }
+
+@media (min-width: 769px) {
+
+  .page-header {
+    margin-bottom: var(--density-page-header-margin-pc);
+  }
+
+  .section {
+    padding-top: var(--density-page-padding-y-pc);
+    padding-bottom: var(--density-page-padding-y-pc);
+  }
+
+}

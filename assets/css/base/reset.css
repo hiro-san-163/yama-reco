@@ -26,7 +26,7 @@ body {
     "Hiragino Sans",
     "Yu Gothic",
     sans-serif;
-   
+
   font-size: 18px;
   line-height: 1.8;
 
@@ -54,6 +54,14 @@ body::before {
   pointer-events: none;
 
   z-index: -1;
+
+}
+
+@media (min-width: 769px) {
+
+  body {
+    line-height: var(--density-body-line-height-pc);
+  }
 
 }
 
