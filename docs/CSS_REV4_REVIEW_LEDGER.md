@@ -32,6 +32,7 @@
 | CSS-R4-014 | Record Detail | `pages/record.css`、`_layouts/record.html` | `.record-*`、`.gallery-*`、`.course-note`、`.image-caption` | detail レイアウト、画像、gallery grid、prev/next を record.css が一元定義。768px 以下で余白、grid、navigation を変更。 | すべて record detail 固有。 | 100% | ◎ | desktop は record.css、mobile は responsive.css の Record 節へ移管。 | 中 |
 | CSS-R4-015 | Other Pages | `pages/about.css`、`pages/blog.css`、`pages/others.css`、`pages/error.css` | `.about-*`、`.post-*`、`.other-*`、`.link-*`、`.error-*` | 各ページの固有コンテンツ構造を定義。各 file の `@media` は対象ページのみに作用し、Component と同名の再定義は確認されない。 | Page 固有責務として妥当。集中 responsive 方針のみ未達。 | 100% | ◎ | 個別の mobile rules を responsive.css の About/Blog/Others/Error 節へ移管。 | 中 |
 | CSS-R4-016 | Historical / Backup CSS | `legacy_v4/css/*.css`、`assets/css/style.css.old`、`assets/css/style.css.backup` | legacy の `.pc-nav`、`.mobile-nav`、`.record-thumb`、`#pagination` 等、backup の旧 `.records-*`、`.logs-*` 等 | `legacy_v4` は旧 HTML が相対 `CSS/` を参照。V5 layout はこれらを参照しない。`.old`／`.backup` は参照元未検出。よって現行 cascade とのプロパティ競合は発生しない。 | 歴史資料・退避ファイルであり、Rev.4 の実行 CSS ではない。 | 0% | × | Rev.4 import に追加しない。削除は本レビューの範囲外。保管方針は変更管理台帳で明示する。 | 低 |
+| CSS-R4-017 | PC Density Tokens | `base/variables.css`、`base/reset.css`、`layout/common.css`、`components/card.css`、`pages/home.css`、`pages/records-index.css`、`pages/logs-index.css` | `--density-*`、`body`、`.page-header`、`.section`、`.home-record-content`、`.record-card-content`、`.home-page`、`.records-page`、`.logs-page`、`.records-filter`、`.logs-filter`、`.log-card` | PC 表示限定の情報密度調整として、Design Tokens に `--density-*` を追加し、769px 以上の `@media` で本文行間、ページ余白、カード内余白、カード間隔、検索エリア余白を 10～20% 程度圧縮。HTML/JS/機能変更はなし。 | 値は Base token に集約し、適用は共通 CSS → page CSS の順に限定。スマートフォン・タブレット向け既存規則は変更しない。 | 100% | ◎ | PC 版の可読性を維持しつつ表示密度を上げる実装済み変更として記録。今後のレスポンシブ調整時に token 値との整合を再確認する。 | 中 |
 
 ## 総評
 
@@ -45,3 +46,7 @@ Rev.4 の目標構成は既にファイル構造と import 順で成立してい
 | 保守性 | 中 | 台帳と集中 responsive への移管が完了すれば高。現状は Card と responsive が調査コストを増やす。 |
 | 可読性 | 中 | ファイル名は明快だが、実行時の最終値は import 順と重複定義の確認が必要。 |
 | 拡張性 | 高 | page CSS と component CSS の受け皿はある。新規追加時に本台帳の配置ルールを守ることが条件。 |
+
+## 追補: 2026-10-10 PC 密度調整レビュー
+
+PC 版の情報密度向上を目的に、CSS-R4-017 として Design Tokens ベースの調整を実施済み。変更は CSS のみで、HTML 構造、JavaScript、機能追加・削除は行っていない。適用範囲は `@media (min-width: 769px)` に限定し、スマートフォン・タブレット向けの既存 responsive 規則は対象外とした。

@@ -8,6 +8,7 @@
 4. 同じプロパティを同じ selector に後段で再定義するときは、変更管理台帳に理由と最終責務を記録する。
 5. 色、shadow、radius、transition、共通寸法の新規値は、先に `base/variables.css` への追加可否を確認する。
 6. legacy と backup は `style.css` に import しない。削除・移動・復帰は CSS-R4-016 の変更管理を起票してから実施する。
+7. PC 版の情報密度調整は `--density-*` token を優先し、769px 以上の `@media` に限定して行う。スマートフォン・タブレット向け調整は別管理番号で扱う。
 
 ## 修正先判定表
 
@@ -18,6 +19,7 @@
 | Component 追加 | `assets/css/components/<component>.css`、`assets/css/style.css`、必要なら `layout/responsive.css` | 1 ページ専用であれば Components に置かない | 使用ページが 2 以上かを確認 |
 | Responsive 追加 | `assets/css/layout/responsive.css` | 各 `pages/*.css`、`components/*.css`、`layout/header.css` 等に `@media` を追加しない | Header→Error の節名、breakpoint、影響ページを記録 |
 | 変数追加 | `assets/css/base/variables.css` | 各 CSS に同じ色・shadow・radius を直書きしない | 既存 token と重複しないか検索 |
+| PC 版情報密度調整 | `assets/css/base/variables.css` の `--density-*`、必要に応じて共通 CSS と対象 page CSS | HTML/JS を変更しない。クリック領域を縮小しない。モバイル用 `@media (max-width: 768px)` に混在させない | 1920px幅、1366px幅、ブラウザ100%で可読性・横スクロール・重なりを確認 |
 | Layout 変更 | `assets/css/layout/common.css`、`header.css`、`navigation.css`、`footer.css` の責務に応じて選択 | 特定ページのみの要望を Layout に置かない | 全ページへの影響を確認 |
 | Page 追加 | `assets/css/pages/<page>.css`、`style.css`、`responsive.css` の該当 page 節 | 既存 page CSS を流用して名前だけ変えない | 新規 page selector に page prefix を付ける |
 | 削除 | 対象 CSS と対象 HTML/JS の両方を検索してから削除候補を変更管理へ記録 | 参照未確認での削除禁止 | import、HTML class、JS classList/querySelector を確認 |

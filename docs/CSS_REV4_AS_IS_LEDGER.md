@@ -253,3 +253,37 @@
 | 213 | `assets/css/style.css.backup` | 参照対象外 | なし | backup | 現行 layout の参照先ではない |
 
 非現行 CSS はワークスペース検索の対象に含めたが、V5 の entry point から読み込まれず、現行 selector の最終 computed value に作用しない。このため 001～206 の selector-level comparison と混在させず、CSS-R4-016 で保管・削除判断を管理する。
+
+## 追補: 2026-10-10 PC 密度調整 As-Is
+
+CSS-R4-017 の実装により、PC 版表示密度を管理する `--density-*` token と 769px 以上の上書き規則が追加された。既存番号 001～213 は初回台帳作成時点の記録として維持し、以下を追補として管理する。
+
+| No | セレクタ | ファイル | レイヤー | 責務 | Responsive有無 | 備考 |
+|---:|---|---|---|---|---|---|
+| 214 | `:root` | `base/variables.css` | Base | `--density-*` による PC 版の本文行間、ページ余白、カード余白、検索エリア余白、カード間隔の token 定義 | なし | CSS-R4-017。769px 以上の上書きで参照 |
+| 215 | `body` | `base/reset.css` | Base | PC 版のみ `line-height` を `--density-body-line-height-pc` へ変更 | あり | `@media (min-width: 769px)` |
+| 216 | `.page-header` | `layout/common.css` | Layout | PC 版のみページ見出し下余白を token 化 | あり | Records、Logs |
+| 217 | `.section` | `layout/common.css` | Layout | PC 版のみ共通 section 上下余白を token 化 | あり | 共通 section |
+| 218 | `.home-record-content` | `components/card.css` | Components | PC 版のみ record card 本文 padding/gap を token 化 | あり | HOME |
+| 219 | `.record-card-content` | `components/card.css` | Components | PC 版のみ record card 本文 padding/gap を token 化 | あり | Records |
+| 220 | `.home-record-summary` | `components/card.css` | Components | PC 版のみカード説明文 line-height を token 化 | あり | HOME |
+| 221 | `.record-card-summary` | `components/card.css` | Components | PC 版のみカード説明文 line-height を token 化 | あり | Records |
+| 222 | `.home-page` | `pages/home.css` | Pages | PC 版のみ HOME 上下余白を token 化 | あり | HOME |
+| 223 | `.home-records-list` | `pages/home.css` | Pages | PC 版のみ HOME card gap を token 化 | あり | HOME |
+| 224 | `.home-concept` | `pages/home.css` | Pages | PC 版のみ concept 下余白を 2rem に縮小 | あり | HOME |
+| 225 | `.concept-text` | `pages/home.css` | Pages | PC 版のみ concept text line-height を 1.7 に縮小 | あり | HOME |
+| 226 | `.records-page` | `pages/records-index.css` | Pages | PC 版のみ Records 上下余白を token 化 | あり | Records |
+| 227 | `.records-filter` | `pages/records-index.css` | Pages | PC 版のみ filter gap、margin、padding を token 化 | あり | Records |
+| 228 | `.records-list` | `pages/records-index.css` | Pages | PC 版のみ record card gap を token 化 | あり | Records |
+| 229 | `.record-card` | `pages/records-index.css` | Pages | PC 版のみ card 内 gap を token 化 | あり | Records |
+| 230 | `.record-card-title` | `pages/records-index.css` | Pages | PC 版のみ title 下余白を token 化 | あり | Records |
+| 231 | `.record-card-meta` | `pages/records-index.css` | Pages | PC 版のみ meta 下余白を token 化 | あり | Records |
+| 232 | `.logs-page` | `pages/logs-index.css` | Pages | PC 版のみ Logs 上下余白を token 化 | あり | Logs |
+| 233 | `.logs-filter` | `pages/logs-index.css` | Pages | PC 版のみ filter gap、margin、padding を token 化 | あり | Logs |
+| 234 | `.logs-filter-sources` | `pages/logs-index.css` | Pages | PC 版のみ filter grid gap を token 化 | あり | Logs |
+| 235 | `.logs-filter-fields` | `pages/logs-index.css` | Pages | PC 版のみ filter grid gap を token 化 | あり | Logs |
+| 236 | `.logs-filter-actions` | `pages/logs-index.css` | Pages | PC 版のみ filter grid gap を token 化 | あり | Logs |
+| 237 | `.logs-list` | `pages/logs-index.css` | Pages | PC 版のみ log card gap を token 化 | あり | Logs |
+| 238 | `.log-card` | `pages/logs-index.css` | Pages | PC 版のみ log card padding を token 化 | あり | Logs |
+| 239 | `.log-card-meta` | `pages/logs-index.css` | Pages | PC 版のみ meta 下余白を token 化 | あり | Logs |
+| 240 | `.log-card-source` | `pages/logs-index.css` | Pages | PC 版のみ source badge 下余白を token 化 | あり | Logs |

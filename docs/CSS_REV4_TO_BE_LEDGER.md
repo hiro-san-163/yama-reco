@@ -20,6 +20,7 @@
 | CSS-R4-014 | Record Detail | `.record-*`、`.gallery-*`、`.course-note`、`.image-caption` | record.css に desktop/mobile が同居。 | desktop: `pages/record.css`、mobile: `layout/responsive.css` Record 節 | 既存値を変えず mobile rule を移管。 | Page 固有の responsive である。 | 中 | 山行詳細 | `/* Record */` 節 |
 | CSS-R4-015 | About / Blog / Others / Error | `.about-*`、`.post-*`、`.other-*`、`.link-*`、`.error-*` | 各 Pages ファイルに対象 page の @media がある。 | desktop: 各 Pages、mobile: `layout/responsive.css` 各 page 節 | 既存値を変えず全 mobile rule を移管。 | 集中管理方針の対象。 | 中 | 各固定ページ | `/* About */`、`/* Blog */`、`/* Others */`、`/* Error */` 節 |
 | CSS-R4-016 | Historical / Backup CSS | legacy と backup の全 selector | V5 entry point から未参照。 | import 対象外のまま | Rev.4 CSS への取り込みを行わない。削除・移動は別承認で扱う。 | 参照関係がなく、現行 cascade に作用しないため。 | 低 | legacy_v4 と履歴ファイルのみ | 対象外 |
+| CSS-R4-017 | PC Density Tokens | `--density-*`、`body`、`.page-header`、`.section`、`.home-record-*`、`.record-card*`、`.records-filter`、`.logs-filter`、`.log-card` | PC 版の余白・行間・カード間隔が各 CSS に直値で分散していた。 | `base/variables.css`、共通 CSS、対象 page CSS | `--density-*` token を追加し、769px 以上の PC 表示だけ本文行間、ページ余白、カード内余白、カード間隔、検索エリア余白を調整済み。 | Design Tokens 優先の方針に沿い、HTML/JS を変更せず PC 版の情報密度を高めるため。 | 中 | HOME、Records、Logs、共通本文行間 | PC: `@media (min-width: 769px)`、mobile/tablet は対象外 |
 
 ## Rev.4 最終 import 順
 
