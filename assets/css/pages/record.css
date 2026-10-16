@@ -1,0 +1,227 @@
+/* ======================================
+   PAGES LAYER: RECORD (DETAIL)
+   Record detail page styles
+====================================== */
+
+.record-page {
+
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+}
+
+.record-header {
+
+  margin-bottom: 2rem;
+
+}
+
+.record-title {
+
+  margin-bottom: 1rem;
+
+}
+
+.record-meta {
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  color: var(--color-text-light);
+
+  font-size: 0.95rem;
+
+}
+
+.record-main-image {
+
+  margin-bottom: 3rem;
+
+}
+
+.record-main-image img {
+
+  width: 100%;
+
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-card);
+
+}
+
+.image-caption {
+
+  margin-top: 0.75rem;
+
+  font-size: 0.9rem;
+
+  color: var(--color-text-light);
+
+  text-align: center;
+
+}
+
+.record-section {
+
+  margin-bottom: 3rem;
+
+}
+
+.record-section:last-of-type {
+
+  margin-bottom: 2rem;
+
+}
+
+.record-section h2 {
+
+  margin-bottom: 1rem;
+
+  padding-bottom: 0.5rem;
+
+  border-bottom: 2px solid var(--color-border);
+
+}
+
+.record-summary {
+
+  line-height: 1.9;
+
+}
+
+.course-note {
+
+  margin-top: 1rem;
+
+  line-height: 1.9;
+
+}
+
+.gallery-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
+
+  gap: 1.5rem;
+
+}
+
+.gallery-item {
+
+  margin: 0;
+
+}
+
+.gallery-item img {
+
+  width: 100%;
+
+  border-radius: var(--radius-md);
+
+  box-shadow: var(--shadow-card);
+
+}
+
+.gallery-item figcaption {
+
+  margin-top: 0.75rem;
+
+  font-size: 0.9rem;
+
+  color: var(--color-text-light);
+
+  text-align: center;
+
+}
+
+.record-navigation {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-top: 3rem;
+
+  padding-top: 2rem;
+
+  border-top: 1px solid var(--color-border);
+
+}
+
+.record-nav-prev,
+.record-nav-next {
+
+  flex: 1;
+
+}
+
+.record-nav-next {
+
+  text-align: right;
+
+}
+
+.record-navigation a {
+
+  color: var(--color-primary);
+
+  font-weight: 600;
+
+}
+
+.record-navigation a:hover {
+
+  text-decoration: underline;
+
+}
+
+@media (max-width: 768px) {
+
+  .record-page {
+
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+
+  }
+
+  .record-main-image {
+
+    margin-bottom: 2rem;
+
+  }
+
+  .record-section {
+
+    margin-bottom: 2rem;
+
+  }
+
+  .gallery-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .record-navigation {
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+  }
+
+  .record-nav-prev,
+  .record-nav-next {
+
+    text-align: left;
+
+  }
+
+}
