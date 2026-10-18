@@ -121,8 +121,8 @@ records_master.json はV5の基幹データである。
 
 ただし
 
-* DATA_SPEC.md
-* V5_SPEC.md
+* DATA_SPEC_V1-rev1.md
+* V5_SPEC_1-1.md
 
 を更新すること
 
