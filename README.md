@@ -36,8 +36,8 @@ GitHub Pages + Jekyll で運用する。
 
 詳細は以下を参照。
 
-- docs/V5_SPEC.md
+- docs/V5_SPEC_1-1.md
 - docs/CODEX_RULES.md
-- docs/DATA_SPEC.md
+- docs/DATA_SPEC_V1-rev1.md
 - docs/DIRECTORY_STRUCTURE.md
 - docs/CSS_ARCHITECTURE.md - CSS設計（モジュールアーキテクチャ）
