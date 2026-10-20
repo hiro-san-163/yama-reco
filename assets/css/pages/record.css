@@ -182,6 +182,87 @@
 
 }
 
+@media (min-width: 769px) {
+
+  .record-overview {
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+
+    margin-bottom: 3rem;
+
+  }
+
+  .record-overview.has-media-column {
+
+    grid-template-columns: 300px minmax(0, 1fr);
+
+  }
+
+  .record-main-column {
+
+    width: 300px;
+
+  }
+
+  .record-main-image {
+
+    margin-bottom: 1rem;
+
+  }
+
+  .record-main-image img {
+
+    display: block;
+
+  }
+
+  .image-caption {
+
+    text-align: left;
+
+  }
+
+  .record-meta {
+
+    gap: 0;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+
+  }
+
+  .record-meta span {
+
+    margin-right: 0.75rem;
+    padding-right: 0.75rem;
+    border-right: 1px solid var(--color-border);
+
+  }
+
+  .record-meta span:last-child {
+
+    margin-right: 0;
+    padding-right: 0;
+    border-right: 0;
+
+  }
+
+  .record-info .record-section {
+
+    margin-bottom: 1.5rem;
+
+  }
+
+  .record-info .record-section:last-child {
+
+    margin-bottom: 0;
+
+  }
+
+}
+
 @media (max-width: 768px) {
 
   .record-page {

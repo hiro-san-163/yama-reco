@@ -14,146 +14,127 @@ layout: default
       {{ page.title }}
     </h1>
 
-    <div class="record-meta">
-
-      {% if page.date_s %}
-        <span>{{ page.date_s }}</span>
-      {% endif %}
-
-      {% if page.date_e %}
-        <span>｜ {{ page.date_e }}</span>
-      {% endif %}
-
-      {% if page.duration %}
-
-        <span>｜
-
-        {% assign duration = page.duration | plus: 0 %}
-
-        {% if duration == 1 %}
-
-         日帰り
-
-      {% elsif duration > 1 %}
-
-       {{ duration | minus: 1 }}泊{{ duration }}日
-
-      {% endif %}
-
-      </span>
-
-     {% endif %}
-      
-      {% if page.area %}
-        <span>｜ {{ page.area }}</span>
-      {% endif %}
-
-      {% if page.genre %}
-        <span>｜ {{ page.genre }}</span>
-      {% endif %}
-
-      {% if page.members %}
-        <span>｜ {{ page.members }}</span>
-      {% endif %}
-
-      {% if page.weather %}
-        <span>｜ {{ page.weather }}</span>
-      {% endif %}
-
-    </div>
-
   </header>
 
-  <!-- ======================================
-       MAIN IMAGE
-  ======================================= -->
-
-  {% if page.tm %}
-
-  <section class="record-main-image">
-
-    <img
-      src="{{ page.tm | relative_url }}"
-      alt="{{ page.title }}">
-
-    {% if page.tmfg %}
-
-      <p class="image-caption">
-        {{ page.tmfg }}
-      </p>
-
-    {% endif %}
-
-  </section>
-
+  {% assign has_media_column = false %}
+  {% if page.tm and page.tm != "" %}
+    {% assign has_media_column = true %}
+  {% endif %}
+  {% if page.map and page.map != "" %}
+    {% assign has_media_column = true %}
   {% endif %}
 
-  <!-- ======================================
-       SUMMARY
-  ======================================= -->
+  <div class="record-overview{% if has_media_column %} has-media-column{% endif %}">
 
-  {% if page.sm2 %}
+    {% if has_media_column %}
+    <div class="record-main-column">
 
-  <section class="record-section">
+      {% if page.tm and page.tm != "" %}
+      <section class="record-main-image">
 
-    <h2>山行概要</h2>
+        <img
+          src="{{ page.tm | relative_url }}"
+          alt="{{ page.title }}">
 
-    <div class="record-summary">
-      {{ page.sm2 | markdownify }}
-    </div>
+        {% if page.tmfg %}
+        <p class="image-caption">
+          {{ page.tmfg }}
+        </p>
+        {% endif %}
 
-  </section>
+      </section>
+      {% endif %}
 
-  {% endif %}
-
-  <!-- ======================================
-       COURSE
-  ======================================= -->
-
-  {% if page.course_time or page.course_note or page.map %}
-
-  <section class="record-section">
-
-    <h2>コース情報</h2>
-
-    {% if page.course_time %}
-
-      <p>
-        <strong>コースタイム：</strong>
-        {{ page.course_time }}
-      </p>
-
-    {% endif %}
-
-    {% if page.course_note %}
-
-      <div class="course-note">
-        {{ page.course_note | markdownify }}
-      </div>
-
-    {% endif %}
-
-    {% if page.map %}
-
-      <p>
-
+      {% if page.map and page.map != "" %}
+      <section class="record-map">
         <a
           href="{{ page.map }}"
           target="_blank"
           rel="noopener noreferrer"
           class="button">
-
           地図を見る
-
         </a>
+      </section>
+      {% endif %}
 
-      </p>
-
+    </div>
     {% endif %}
 
-  </section>
+    <div class="record-info">
 
-  {% endif %}
+      <div class="record-meta">
+
+        {% if page.date_s %}
+        <span>{{ page.date_s }}</span>
+        {% endif %}
+
+        {% if page.date_e %}
+        <span>{{ page.date_e }}</span>
+        {% endif %}
+
+        {% if page.duration %}
+          {% assign duration = page.duration | plus: 0 %}
+          {% if duration == 1 %}
+          <span>日帰り</span>
+          {% elsif duration > 1 %}
+          <span>{{ duration | minus: 1 }}泊{{ duration }}日</span>
+          {% endif %}
+        {% endif %}
+
+        {% if page.area %}
+        <span>{{ page.area }}</span>
+        {% endif %}
+
+        {% if page.genre %}
+        <span>{{ page.genre }}</span>
+        {% endif %}
+
+        {% if page.members %}
+        <span>{{ page.members }}</span>
+        {% endif %}
+
+        {% if page.weather %}
+        <span>{{ page.weather }}</span>
+        {% endif %}
+
+      </div>
+
+      {% if page.sm2 %}
+      <section class="record-section">
+
+        <h2>山行概要</h2>
+
+        <div class="record-summary">
+          {{ page.sm2 | markdownify }}
+        </div>
+
+      </section>
+      {% endif %}
+
+      {% if page.course_time or page.course_note %}
+      <section class="record-section">
+
+        <h2>コース情報</h2>
+
+        {% if page.course_time %}
+        <p>
+          <strong>コースタイム：</strong>
+          {{ page.course_time }}
+        </p>
+        {% endif %}
+
+        {% if page.course_note %}
+        <div class="course-note">
+          {{ page.course_note | markdownify }}
+        </div>
+        {% endif %}
+
+      </section>
+      {% endif %}
+
+    </div>
+
+  </div>
 
   <!-- ======================================
        GALLERY
