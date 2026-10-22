@@ -59,6 +59,7 @@
 ====================================== */
 
 @import "pages/home.css";
+@import "pages/records.css";
 @import "pages/records-index.css";
 @import "pages/record.css";
 @import "pages/logs-index.css";
