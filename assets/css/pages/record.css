@@ -719,3 +719,18 @@
  
 
 }
+/* Detail overview: keep the main photo column compact on desktop and tablet. */
+@media (min-width: 641px) {
+  .record-overview.has-media-column {
+    display: grid;
+    grid-template-columns: minmax(300px, 350px) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .record-main-column {
+    width: 100%;
+    max-width: 350px;
+    min-width: 0;
+  }
+}
