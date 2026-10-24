@@ -282,11 +282,53 @@
 
 .record-summary {
 
- 
-
   line-height: 1.9;
 
- 
+}
+
+.record-expand-button {
+
+  margin-top: 0.5rem;
+
+  padding: 0;
+
+  border: 0;
+
+  background: none;
+
+  color: var(--color-primary);
+
+  font: inherit;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+}
+
+.record-expand-button:hover {
+
+  text-decoration: underline;
+
+}
+
+.record-info-yamareco {
+
+  margin-top: 1.5rem;
+
+  font-weight: 600;
+
+}
+
+.record-info-yamareco a {
+
+  color: var(--color-primary);
+
+}
+
+.record-info-yamareco a:hover {
+
+  text-decoration: underline;
 
 }
 
@@ -572,15 +614,9 @@
 
   .record-overview.has-media-column {
 
- 
-
     display: grid;
 
- 
-
-    grid-template-columns: 350px minmax(0, 1fr);
-
- 
+    grid-template-columns: minmax(350px, 400px) minmax(0, 1fr);
 
     gap: 2rem;
 
@@ -596,11 +632,9 @@
 
   .record-main-column {
 
- 
+    width: 100%;
 
-    width: 350px;
-
- 
+    max-width: 400px;
 
   }
 
@@ -732,5 +766,70 @@
     width: 100%;
     max-width: 350px;
     min-width: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .record-expandable-text.is-collapsed {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .record-summary.is-collapsed {
+    -webkit-line-clamp: 3;
+  }
+
+  .record-course-time.is-collapsed {
+    -webkit-line-clamp: 2;
+  }
+
+  .course-note.is-collapsed {
+    -webkit-line-clamp: 2;
+  }
+
+  .record-overview.has-media-column {
+    grid-template-columns: minmax(350px, 400px) minmax(0, 1fr);
+  }
+
+  .record-main-column {
+    max-width: 400px;
+  }
+
+  .record-main-image img {
+    border: 4px solid #fff;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
+  }
+
+  .record-meta {
+    gap: 0.35rem 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .record-info .record-section {
+    margin-bottom: 1rem;
+  }
+
+  .record-info .record-section h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .record-info .record-summary,
+  .record-info .course-note {
+    line-height: 1.6;
+  }
+
+  .record-info .record-expand-button {
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+  }
+
+  .record-info-yamareco {
+    margin-top: 1rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 900px;
   }
 }

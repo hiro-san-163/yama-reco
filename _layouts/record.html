@@ -3,7 +3,6 @@ layout: default
 ---
 
 <article class="record-page container">
-  <!-- record-layout-check: 2026-10-24 -->
 
   <!-- ======================================
        TITLE
@@ -105,9 +104,17 @@ layout: default
 
         <h2>山行概要</h2>
 
-        <div class="record-summary">
+        <div class="record-summary record-expandable-text" id="recordSummary">
           {{ page.sm2 | markdownify }}
         </div>
+        <button
+          class="record-expand-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="recordSummary"
+          hidden>
+          続きを読む
+        </button>
 
       </section>
       {% endif %}
@@ -118,19 +125,46 @@ layout: default
         <h2>コース情報</h2>
 
         {% if page.course_time %}
-        <p>
+        <p class="record-course-time record-expandable-text" id="recordCourseTime">
           <strong>コースタイム：</strong>
           {{ page.course_time }}
         </p>
+        <button
+          class="record-expand-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="recordCourseTime"
+          hidden>
+          続きを読む
+        </button>
         {% endif %}
 
         {% if page.course_note %}
-        <div class="course-note">
+        <div class="course-note record-expandable-text" id="recordCourseNote">
           {{ page.course_note | markdownify }}
         </div>
+        <button
+          class="record-expand-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="recordCourseNote"
+          hidden>
+          続きを読む
+        </button>
         {% endif %}
 
       </section>
+      {% endif %}
+
+      {% if page.yamareco_url %}
+      <p class="record-info-yamareco">
+        <a
+          href="{{ page.yamareco_url }}"
+          target="_blank"
+          rel="noopener noreferrer">
+          ヤマレコで詳細を見る
+        </a>
+      </p>
       {% endif %}
 
     </div>
