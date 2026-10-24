@@ -1,308 +1,736 @@
 /* ======================================
-   PAGES LAYER: RECORD (DETAIL)
-   Record detail page styles
+
+   RECORD DETAIL PAGE
+
+   山行記録詳細ページ
+
 ====================================== */
+
+ 
+
+/* ページ全体 */
+
+ 
 
 .record-page {
 
+ 
+
   padding-top: 2rem;
+
   padding-bottom: 2rem;
 
+ 
+
 }
+
+ 
+
+ 
+
+/* --------------------------------------
+
+   タイトル
+
+-------------------------------------- */
+
+ 
 
 .record-header {
 
+ 
+
   margin-bottom: 2rem;
 
+ 
+
 }
+
+ 
 
 .record-title {
 
+ 
+
   margin-bottom: 1rem;
 
+ 
+
 }
+
+ 
+
+ 
+
+/* --------------------------------------
+
+   メインエリア
+
+ 
+
+   PC時
+
+   ┌────350────┬────残り────┐
+
+   │ 写真       │ meta       │
+
+   │ 地図       │ 山行概要   │
+
+   │           │ コース情報 │
+
+   └─────────┴──────────┘
+
+-------------------------------------- */
+
+ 
+
+.record-overview {
+
+ 
+
+  margin-bottom: 3rem;
+
+ 
+
+}
+
+ 
+
+ 
+
+/* --------------------------------------
+
+   メタ情報
+
+-------------------------------------- */
+
+ 
 
 .record-meta {
 
+ 
+
   display: flex;
+
   flex-wrap: wrap;
-  gap: 0.5rem;
+
+ 
+
+  gap: 0.5rem 1rem;
+
+ 
+
+  margin-bottom: 1.5rem;
+
+ 
 
   color: var(--color-text-light);
+
+ 
 
   font-size: 0.95rem;
 
+ 
+
 }
+
+ 
+
+ 
+
+/* --------------------------------------
+
+   メイン写真
+
+-------------------------------------- */
+
+ 
 
 .record-main-image {
 
-  margin-bottom: 3rem;
-
-}
-
-.record-main-image img {
-
-  width: 100%;
-
-  border-radius: var(--radius-md);
-
-  box-shadow: var(--shadow-card);
-
-}
-
-.image-caption {
-
-  margin-top: 0.75rem;
-
-  font-size: 0.9rem;
-
-  color: var(--color-text-light);
-
-  text-align: center;
-
-}
-
-.record-section {
-
-  margin-bottom: 3rem;
-
-}
-
-.record-section:last-of-type {
-
-  margin-bottom: 2rem;
-
-}
-
-.record-section h2 {
+ 
 
   margin-bottom: 1rem;
 
-  padding-bottom: 0.5rem;
-
-  border-bottom: 2px solid var(--color-border);
+ 
 
 }
 
-.record-summary {
+ 
 
-  line-height: 1.9;
+.record-main-image img {
 
-}
+ 
 
-.course-note {
+  display: block;
 
-  margin-top: 1rem;
-
-  line-height: 1.9;
-
-}
-
-.gallery-grid {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(280px, 1fr));
-
-  gap: 1.5rem;
-
-}
-
-.gallery-item {
-
-  margin: 0;
-
-}
-
-.gallery-item img {
+ 
 
   width: 100%;
 
+ 
+
+  height: auto;
+
+ 
+
   border-radius: var(--radius-md);
+
+ 
 
   box-shadow: var(--shadow-card);
 
+ 
+
 }
 
-.gallery-item figcaption {
+ 
+
+.image-caption {
+
+ 
 
   margin-top: 0.75rem;
 
-  font-size: 0.9rem;
+ 
 
   color: var(--color-text-light);
 
-  text-align: center;
+ 
+
+  font-size: 0.9rem;
+
+ 
 
 }
+
+ 
+
+ 
+
+/* --------------------------------------
+
+   地図ボタン
+
+-------------------------------------- */
+
+ 
+
+.record-map {
+
+ 
+
+  margin-top: 1rem;
+
+ 
+
+}
+
+ 
+
+ 
+
+/* --------------------------------------
+
+   セクション共通
+
+-------------------------------------- */
+
+ 
+
+.record-section {
+
+ 
+
+  margin-bottom: 2rem;
+
+ 
+
+}
+
+ 
+
+.record-section h2 {
+
+ 
+
+  margin-bottom: 1rem;
+
+ 
+
+  padding-bottom: 0.5rem;
+
+ 
+
+  border-bottom: 2px solid var(--color-border);
+
+ 
+
+}
+
+ 
+
+ 
+
+/* --------------------------------------
+
+   山行概要
+
+-------------------------------------- */
+
+ 
+
+.record-summary {
+
+ 
+
+  line-height: 1.9;
+
+ 
+
+}
+
+ 
+
+ 
+
+/* --------------------------------------
+
+   コース情報
+
+-------------------------------------- */
+
+ 
+
+.course-note {
+
+ 
+
+  margin-top: 1rem;
+
+ 
+
+  line-height: 1.9;
+
+ 
+
+}
+
+ 
+
+ 
+
+/* --------------------------------------
+
+   ギャラリー
+
+-------------------------------------- */
+
+ 
+
+.gallery-grid {
+
+ 
+
+  display: grid;
+
+ 
+
+  grid-template-columns:
+
+    repeat(auto-fit, minmax(280px, 1fr));
+
+ 
+
+  gap: 1.5rem;
+
+ 
+
+}
+
+ 
+
+.gallery-item {
+
+ 
+
+  margin: 0;
+
+ 
+
+}
+
+ 
+
+.gallery-item img {
+
+ 
+
+  width: 100%;
+
+ 
+
+  display: block;
+
+ 
+
+  border-radius: var(--radius-md);
+
+ 
+
+  box-shadow: var(--shadow-card);
+
+ 
+
+}
+
+ 
+
+.gallery-item figcaption {
+
+ 
+
+  margin-top: 0.75rem;
+
+ 
+
+  text-align: center;
+
+ 
+
+  color: var(--color-text-light);
+
+ 
+
+  font-size: 0.9rem;
+
+ 
+
+}
+
+ 
+
+ 
+
+/* --------------------------------------
+
+   戻るボタン
+
+-------------------------------------- */
+
+ 
+
+.record-return {
+
+ 
+
+  margin: 2rem 0;
+
+ 
+
+}
+
+ 
+
+ 
+
+/* --------------------------------------
+
+   前後の山行リンク
+
+-------------------------------------- */
+
+ 
 
 .record-navigation {
 
+ 
+
   display: flex;
+
+ 
 
   justify-content: space-between;
 
+ 
+
   align-items: center;
+
+ 
 
   gap: 1rem;
 
+ 
+
   margin-top: 3rem;
+
+ 
 
   padding-top: 2rem;
 
+ 
+
   border-top: 1px solid var(--color-border);
+
+ 
 
 }
 
+ 
+
 .record-nav-prev,
+
 .record-nav-next {
+
+ 
 
   flex: 1;
 
+ 
+
 }
+
+ 
 
 .record-nav-next {
 
+ 
+
   text-align: right;
 
+ 
+
 }
+
+ 
 
 .record-navigation a {
 
+ 
+
   color: var(--color-primary);
+
+ 
 
   font-weight: 600;
 
+ 
+
 }
+
+ 
 
 .record-navigation a:hover {
 
+ 
+
   text-decoration: underline;
 
+ 
+
 }
+
+ 
+
+ 
+
+/* ======================================
+
+   PC表示
+
+====================================== */
+
+ 
 
 @media (min-width: 769px) {
 
-  .record-overview {
+ 
 
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2rem;
-    align-items: start;
+  /*
 
-    margin-bottom: 3rem;
+ 
 
-  }
+     左350px
+
+     右残り
+
+ 
+
+     1200px幅なら
+
+ 
+
+     左 350px
+
+     右 約850px
+
+ 
+
+  */
+
+ 
 
   .record-overview.has-media-column {
 
-    grid-template-columns: 300px minmax(0, 1fr);
+ 
+
+    display: grid;
+
+ 
+
+    grid-template-columns: 350px minmax(0, 1fr);
+
+ 
+
+    gap: 2rem;
+
+ 
+
+    align-items: start;
+
+ 
 
   }
+
+ 
 
   .record-main-column {
 
-    width: 300px;
+ 
+
+    width: 350px;
+
+ 
 
   }
 
-  .record-main-image {
+ 
 
-    margin-bottom: 1rem;
+  .record-info {
 
-  }
+ 
 
-  .record-main-image img {
+    min-width: 0;
 
-    display: block;
-
-  }
-
-  .image-caption {
-
-    text-align: left;
+ 
 
   }
 
-  .record-meta {
-
-    gap: 0;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-
-  }
-
-  .record-meta span {
-
-    margin-right: 0.75rem;
-    padding-right: 0.75rem;
-    border-right: 1px solid var(--color-border);
-
-  }
-
-  .record-meta span:last-child {
-
-    margin-right: 0;
-    padding-right: 0;
-    border-right: 0;
-
-  }
-
-  .record-info .record-section {
-
-    margin-bottom: 1.5rem;
-
-  }
-
-  .record-info .record-section:last-child {
-
-    margin-bottom: 0;
-
-  }
+ 
 
 }
 
+ 
+
+ 
+
+/* ======================================
+
+   スマホ表示
+
+====================================== */
+
+ 
+
 @media (max-width: 768px) {
+
+ 
 
   .record-page {
 
+ 
+
     padding-top: 1.5rem;
+
+ 
+
     padding-bottom: 1.5rem;
 
+ 
+
   }
+
+ 
 
   .record-main-image {
 
-    margin-bottom: 2rem;
+ 
+
+    margin-bottom: 1rem;
+
+ 
 
   }
+
+ 
 
   .record-section {
 
+ 
+
     margin-bottom: 2rem;
 
+ 
+
   }
+
+ 
 
   .gallery-grid {
 
+ 
+
     grid-template-columns: 1fr;
 
+ 
+
   }
+
+ 
 
   .record-navigation {
 
+ 
+
     flex-direction: column;
+
+ 
 
     align-items: stretch;
 
+ 
+
   }
 
+ 
+
   .record-nav-prev,
+
   .record-nav-next {
+
+ 
 
     text-align: left;
 
+ 
+
   }
 
+ 
+
+}
+/* Detail overview: keep the main photo column compact on desktop and tablet. */
+@media (min-width: 641px) {
+  .record-overview.has-media-column {
+    display: grid;
+    grid-template-columns: minmax(300px, 350px) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .record-main-column {
+    width: 100%;
+    max-width: 350px;
+    min-width: 0;
+  }
 }
