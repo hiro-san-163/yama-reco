@@ -87,6 +87,23 @@
 
 @media (max-width: 768px) {
 
+  .home-record-card > a {
+    flex-direction: column;
+  }
+
+  .home-record-card .home-record-image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .home-record-card .home-record-image.is-square {
+    aspect-ratio: 1;
+  }
+
+  .home-record-card .home-record-image img {
+    height: 100%;
+    object-fit: cover;
+  }
+
   .home-recent .section-header {
     display: flex;
     align-items: center;

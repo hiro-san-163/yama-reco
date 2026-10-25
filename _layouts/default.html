@@ -64,6 +64,9 @@
   {% include footer.html %}
 
     <script src="{{ '/assets/js/navigation.js' | relative_url }}"></script>
+  {% if page.title == "HOME" %}
+    <script src="{{ '/assets/js/home-images.js' | relative_url }}"></script>
+  {% endif %}
   <script src="{{ '/assets/js/record-detail.js' | relative_url }}"></script>
 
 </body>
