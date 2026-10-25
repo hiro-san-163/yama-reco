@@ -187,42 +187,99 @@
   }
 
   .logs-filter {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
     gap: var(--density-filter-gap-pc);
     margin-bottom: var(--density-filter-margin-pc);
     padding: var(--density-filter-padding-pc);
   }
 
   .logs-filter-sources,
-  .logs-filter-fields,
+  .logs-filter-fields {
+    gap: 0.6rem;
+  }
+
   .logs-filter-actions {
+    display: flex;
+    align-items: center;
     gap: var(--density-filter-gap-pc);
   }
 
-  .logs-filter-actions {
-    grid-template-columns: max-content max-content max-content max-content;
-    justify-content: start;
+  .logs-filter-options {
+    display: flex;
+    align-items: center;
+    gap: var(--density-filter-gap-pc);
   }
 
-  .logs-filter-actions > .form-group {
+  .logs-filter-options > .form-group {
     display: flex;
     align-items: center;
     gap: 0.4rem;
     white-space: nowrap;
   }
 
-  .logs-filter-actions > .form-group label {
+  .logs-filter-options > .form-group label {
     margin-bottom: 0;
   }
 
-  .logs-filter-actions > .form-group select {
+  .logs-filter-options select {
     width: auto;
     min-width: 0;
     padding: 0.55rem;
   }
 
+  .logs-filter-options #sortFilter {
+    min-width: 9rem;
+  }
+
+  .logs-filter-options #pageSize {
+    min-width: 6rem;
+  }
+
+  .logs-filter .form-group-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+
   .logs-filter .form-group-buttons button {
-    width: auto;
-    padding: 0.65rem 0.9rem;
+    width: 6.5rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .logs-filter-fields {
+    grid-template-columns:
+      minmax(190px, 2fr)
+      minmax(112px, 1fr)
+      minmax(112px, 1fr)
+      82px
+      74px;
+  }
+
+}
+
+@media (min-width: 1024px) {
+
+  .logs-filter {
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+
+  .logs-filter-sources .checkbox-group {
+    gap: 0.55rem;
+  }
+
+  .logs-filter-fields {
+    grid-template-columns:
+      minmax(190px, 2fr)
+      minmax(120px, 1fr)
+      minmax(120px, 1fr)
+      82px
+      74px;
+  }
+
+  .logs-filter-fields select {
+    padding: 0.55rem 0.45rem;
   }
 
   .logs-list {
@@ -241,6 +298,22 @@
 }
 
 @media (max-width: 768px) {
+
+  .logs-filter-options {
+    display: contents;
+  }
+
+  .logs-filter .form-group-buttons {
+    display: contents;
+  }
+
+  .logs-filter-options > .form-group {
+    order: 1;
+  }
+
+  .logs-filter .form-group-buttons button {
+    order: 0;
+  }
 
   .logs-filter-sources .checkbox-group {
     flex-wrap: wrap;

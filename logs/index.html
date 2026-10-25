@@ -83,22 +83,24 @@ title: 山行検索
     </div>
 
     <div class="logs-filter-actions">
+      <div class="logs-filter-options">
+        <div class="form-group">
+          <label for="sortFilter">並び順</label>
+          <select id="sortFilter">
+            <option value="date_desc">日付降順</option>
+            <option value="date_asc">日付昇順</option>
+            <option value="title_asc">タイトル昇順</option>
+            <option value="title_desc">タイトル降順</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="pageSize">表示件数</label>
+          <select id="pageSize"></select>
+        </div>
+      </div>
       <div class="form-group-buttons">
         <button type="button" id="searchButton">検索</button>
         <button type="button" id="resetButton">リセット</button>
-      </div>
-      <div class="form-group">
-        <label for="sortFilter">並び順</label>
-        <select id="sortFilter">
-          <option value="date_desc">日付降順</option>
-          <option value="date_asc">日付昇順</option>
-          <option value="title_asc">タイトル昇順</option>
-          <option value="title_desc">タイトル降順</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="pageSize">表示件数</label>
-        <select id="pageSize"></select>
       </div>
     </div>
   </section>
