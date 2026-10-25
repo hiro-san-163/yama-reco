@@ -21,7 +21,7 @@
   gap: 1rem;
 }
 
-/* HOMEだけ概要3行 */
+/* HOMEだけ概要4行 */
 .home-record-card .home-record-summary {
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -81,6 +81,37 @@
 
   .concept-text {
     line-height: 1.7;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .home-recent .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .home-recent .section-header h2 {
+    margin-bottom: 0;
+  }
+
+  .home-recent .home-records-link {
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--color-primary);
+    background: transparent;
+    color: var(--color-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .home-recent .home-records-link:hover,
+  .home-recent .home-records-link:focus-visible {
+    background: var(--color-primary);
+    color: #ffffff;
   }
 
 }
