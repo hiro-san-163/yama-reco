@@ -200,10 +200,16 @@
     gap: 0.6rem;
   }
 
+  .logs-filter-fields,
+  .logs-filter-fields > .form-group {
+    min-width: 0;
+  }
+
   .logs-filter-actions {
     display: flex;
     align-items: center;
     gap: var(--density-filter-gap-pc);
+    width: 100%;
   }
 
   .logs-filter-options {
@@ -250,11 +256,11 @@
 
   .logs-filter-fields {
     grid-template-columns:
-      minmax(190px, 2fr)
-      minmax(112px, 1fr)
-      minmax(112px, 1fr)
-      82px
-      74px;
+      minmax(140px, 1.6fr)
+      minmax(82px, 1fr)
+      minmax(82px, 1fr)
+      minmax(76px, 0.7fr)
+      minmax(76px, 0.65fr);
   }
 
 }
@@ -271,15 +277,25 @@
 
   .logs-filter-fields {
     grid-template-columns:
-      minmax(190px, 2fr)
-      minmax(120px, 1fr)
-      minmax(120px, 1fr)
-      82px
-      74px;
+      minmax(140px, 1.6fr)
+      minmax(82px, 1fr)
+      minmax(82px, 1fr)
+      minmax(76px, 0.7fr)
+      minmax(76px, 0.65fr);
   }
 
+  .logs-filter-fields input,
   .logs-filter-fields select {
+    width: 100%;
+    min-width: 0;
     padding: 0.55rem 0.45rem;
+  }
+
+  .logs-filter-fields #yearFilter,
+  .logs-filter-fields #monthFilter {
+    font-size: 0.9rem;
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
   }
 
   .logs-list {
