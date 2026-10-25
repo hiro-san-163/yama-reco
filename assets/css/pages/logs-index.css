@@ -206,6 +206,7 @@
   }
 
   .logs-filter-actions {
+    grid-column: 1 / -1;
     display: flex;
     align-items: center;
     gap: var(--density-filter-gap-pc);
@@ -268,7 +269,7 @@
 @media (min-width: 1024px) {
 
   .logs-filter {
-    grid-template-columns: max-content minmax(0, 1fr);
+    grid-template-columns: minmax(250px, 0.75fr) minmax(0, 1.25fr);
   }
 
   .logs-filter-sources .checkbox-group {
@@ -293,7 +294,6 @@
 
   .logs-filter-fields #yearFilter,
   .logs-filter-fields #monthFilter {
-    font-size: 0.9rem;
     padding-right: 0.25rem;
     padding-left: 0.25rem;
   }
