@@ -198,6 +198,33 @@
     gap: var(--density-filter-gap-pc);
   }
 
+  .logs-filter-actions {
+    grid-template-columns: max-content max-content max-content max-content;
+    justify-content: start;
+  }
+
+  .logs-filter-actions > .form-group {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+  }
+
+  .logs-filter-actions > .form-group label {
+    margin-bottom: 0;
+  }
+
+  .logs-filter-actions > .form-group select {
+    width: auto;
+    min-width: 0;
+    padding: 0.55rem;
+  }
+
+  .logs-filter .form-group-buttons button {
+    width: auto;
+    padding: 0.65rem 0.9rem;
+  }
+
   .logs-list {
     gap: var(--density-list-gap-pc);
   }

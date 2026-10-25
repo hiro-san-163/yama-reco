@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pageSizeSelect = document.getElementById('pageSize');
   const searchButton = document.getElementById('searchButton');
   const recordsResetButton = document.getElementById('recordsResetButton');
+  const recordsFilterResetButton = document.getElementById('recordsFilterResetButton');
 
   const recordsList = document.getElementById('recordsList');
   const recordsCount = document.getElementById('recordsCount');
@@ -52,14 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
       saveSearchState();
     });
 
-    recordsResetButton.addEventListener('click', () => {
+    const resetSearch = () => {
       resetFilters();
 
       searchApplied = false;
       pager.setPage(1);
       renderResults();
       saveSearchState();
-    });
+    };
+
+    recordsResetButton.addEventListener('click', resetSearch);
+    recordsFilterResetButton.addEventListener('click', resetSearch);
 
     if (mobileQuery.addEventListener) {
       mobileQuery.addEventListener(

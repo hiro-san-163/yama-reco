@@ -27,6 +27,15 @@
 
 }
 
+.records-filter-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#recordsFilterResetButton {
+  display: none;
+}
+
 .records-count {
 
   margin-bottom: 1rem;
@@ -169,8 +178,32 @@
 
   .records-filter {
     gap: var(--density-filter-gap-pc);
-    margin-bottom: var(--density-filter-margin-pc);
+    margin-bottom: 0.75rem;
     padding: var(--density-filter-padding-pc);
+  }
+
+  .records-filter-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  #recordsFilterResetButton {
+    display: inline-block;
+  }
+
+  .records-filter-actions button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+
+  #recordsResetButton {
+    display: none;
+  }
+
+  .records-count {
+    margin-bottom: 0.5rem;
   }
 
   .records-list {

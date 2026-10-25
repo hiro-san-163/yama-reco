@@ -59,6 +59,17 @@
     padding-bottom: var(--density-page-padding-y-pc);
   }
 
+  .home-recent .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .home-recent .section-header h2 {
+    margin-bottom: 0;
+  }
+
   .home-records-list,
   .records-list {
     gap: var(--density-list-gap-pc);

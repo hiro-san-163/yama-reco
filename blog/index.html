@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: ブログ
 ---
 
@@ -7,9 +7,11 @@ title: ブログ
 
 <header class="page-header">
 
-<p class="page-description">
-日々の出来事や山歩き以外の話題を気軽に綴っています。
-</p>
+  <h1>ブログ</h1>
+
+  <p class="page-description">
+    日々の出来事や山歩き以外の話題を気軽に綴っています。
+  </p>
 
 </header>
 
@@ -21,43 +23,38 @@ title: ブログ
 
   {% for post in posts %}
 
-  <article class="card">
+  <a class="blog-card-link" href="{{ post.url | relative_url }}">
+    <article class="card">
 
-  <div class="card-body">
+      <div class="card-body">
 
-    <h2>
-      <a href="{{ post.url | relative_url }}">
-        {{ post.title }}
-      </a>
-    </h2>
+        <h2>
+          {{ post.title }}
+        </h2>
 
-    <div class="card-meta">
-      {{ post.date | date: "%Y-%m-%d" }}
+        <div class="card-meta">
+          {{ post.date | date: "%Y-%m-%d" }}
 
-      {% if post.tags %}
-      <span class="tags">
-        {% for tag in post.tags %}
-          <span class="tag">{{ tag }}</span>
-        {% endfor %}
-      </span>
-      {% endif %}
-    </div>
+          {% if post.tags %}
+          <span class="tags">
+            {% for tag in post.tags %}
+              <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </span>
+          {% endif %}
+        </div>
 
-    {% if post.excerpt %}
-    <p class="card-summary">
-      {{ post.excerpt | strip_html | truncate: 120 }}
-    </p>
-    {% endif %}
+        {% if post.excerpt %}
+        <p class="card-summary">
+          {{ post.excerpt | strip_html | truncate: 120 }}
+        </p>
+        {% endif %}
 
-    <p>
-      <a href="{{ post.url | relative_url }}">
-        続きを読む →
-      </a>
-    </p>
-    
-  </div>
-    
-  </article>
+        <p class="blog-card-read-more">続きを読む →</p>
+
+      </div>
+    </article>
+  </a>
 
   {% endfor %}
 
