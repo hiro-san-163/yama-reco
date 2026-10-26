@@ -219,11 +219,12 @@
   }
 
   .record-card-title {
-    margin-bottom: var(--density-card-heading-margin-pc);
+    margin: 0;
+    color: var(--color-text);
   }
 
   .record-card-meta {
-    margin-bottom: var(--density-record-card-meta-margin-pc);
+    margin: 0;
   }
 
 }

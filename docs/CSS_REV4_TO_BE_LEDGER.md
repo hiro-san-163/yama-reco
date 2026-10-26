@@ -1,6 +1,6 @@
 # CSS Rev.4 To-Be 台帳
 
-この台帳は CSS-R4-001 ～ CSS-R4-016 の実測レビューを根拠にした最終配置案である。ここでいう「実装内容」は、将来実施する変更内容であり、本資料の作成では CSS を変更していない。
+この台帳は CSS-R4-001 以降の実測レビューを根拠にした最終配置案である。ここでいう「実装内容」は、各管理番号で実施または予定する変更内容を示す。
 
 | 管理番号 | Component | セレクタ | 現状 | 最終配置 | 実装内容 | 理由 | 優先度 | 影響範囲 | Responsive対応 |
 |---|---|---|---|---|---|---|---|---|---|
@@ -21,6 +21,7 @@
 | CSS-R4-015 | About / Blog / Others / Error | `.about-*`、`.post-*`、`.other-*`、`.link-*`、`.error-*` | 各 Pages ファイルに対象 page の @media がある。 | desktop: 各 Pages、mobile: `layout/responsive.css` 各 page 節 | 既存値を変えず全 mobile rule を移管。 | 集中管理方針の対象。 | 中 | 各固定ページ | `/* About */`、`/* Blog */`、`/* Others */`、`/* Error */` 節 |
 | CSS-R4-016 | Historical / Backup CSS | legacy と backup の全 selector | V5 entry point から未参照。 | import 対象外のまま | Rev.4 CSS への取り込みを行わない。削除・移動は別承認で扱う。 | 参照関係がなく、現行 cascade に作用しないため。 | 低 | legacy_v4 と履歴ファイルのみ | 対象外 |
 | CSS-R4-017 | PC Density Tokens | `--density-*`、`body`、`.page-header`、`.section`、`.home-record-*`、`.record-card*`、`.records-filter`、`.logs-filter`、`.log-card` | PC 版の余白・行間・カード間隔が各 CSS に直値で分散していた。 | `base/variables.css`、共通 CSS、対象 page CSS | `--density-*` token を追加し、769px 以上の PC 表示だけ本文行間、ページ余白、カード内余白、カード間隔、検索エリア余白を調整済み。 | Design Tokens 優先の方針に沿い、HTML/JS を変更せず PC 版の情報密度を高めるため。 | 中 | HOME、Records、Logs、共通本文行間 | PC: `@media (min-width: 769px)`、mobile/tablet は対象外 |
+| CSS-R4-018 | Record Card Typography | `.home-record-content h3`、`.record-card-title`、`.record-card-meta` | PC版ではHOMEの見出しが標準`h3`、Records側ではタイトル・メタ情報にページ固有の余白と色が適用され、共通カード基準と一致していない。 | `components/card.css`、`pages/records-index.css`、`base/variables.css` | 769px以上でHOMEタイトルを山行カード共通の文字設定に揃え、Records側のタイトル・メタ情報の個別余白を解除する。不要になった専用margin tokenを削除する。 | 同じ役割の山行カード間で文字階層と要素間隔を統一し、既存の可読性・情報一覧性を維持するため。 | 高 | HOMEの新着山行、山行記録一覧 | PC: `@media (min-width: 769px)`。スマートフォン・タブレットの既存表示は維持 |
 
 ## Rev.4 最終 import 順
 

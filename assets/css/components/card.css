@@ -153,6 +153,14 @@
 
 @media (min-width: 769px) {
 
+  .home-record-content h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.45;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
   .home-record-content,
   .record-card-content {
     padding: var(--density-card-padding-pc);

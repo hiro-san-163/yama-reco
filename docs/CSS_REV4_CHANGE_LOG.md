@@ -1,6 +1,6 @@
 # CSS Rev.4 変更管理台帳
 
-本台帳は将来の CSS 変更に使用する。管理番号はレビュー台帳・To-Be 台帳の管理番号を参照する。今回の作成作業は CSS を変更していないため、初期登録だけを記録する。
+本台帳は CSS 変更の管理状況を記録する。管理番号はレビュー台帳・To-Be 台帳の管理番号を参照する。
 
 | 管理番号 | 変更日 | 変更内容 | 対象ファイル | 対象セレクタ | 変更理由 | 実施者 | 確認者 | GitHub反映 | 動作確認 | 備考 |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -17,3 +17,4 @@
 | CSS-R4-015 | 未実施 | 固定ページ mobile rule の移管予定 | About/Blog/Others/Error の各 CSS、`responsive.css` | 各 page selector | Rev.4 responsive 集中管理 | 未定 | 未定 | 未反映 | 未実施 | To-Be 台帳 CSS-R4-015 を参照 |
 | CSS-R4-016 | 2026-10-01 | legacy／backup CSS の現状登録 | `legacy_v4/css/*.css`、`assets/css/style.css.old`、`assets/css/style.css.backup` | 当該ファイルの全 selector | 現行 V5 entry point から未参照であることを記録 | Codex | 未確認 | 未反映 | 参照検索済み | CSS の変更なし |
 | CSS-R4-017 | 2026-10-10 | PC 版情報密度調整用 Design Tokens 追加と適用 | `assets/css/base/variables.css`、`assets/css/base/reset.css`、`assets/css/layout/common.css`、`assets/css/components/card.css`、`assets/css/pages/home.css`、`assets/css/pages/records-index.css`、`assets/css/pages/logs-index.css` | `--density-*`、`body`、`.page-header`、`.section`、`.home-record-content`、`.record-card-content`、`.home-page`、`.records-page`、`.logs-page`、`.records-filter`、`.logs-filter`、`.log-card` | PC 版で 1 画面内に表示できるコンテンツ量を増やすため | Codex | hiro-san | 未反映 | CSS 差分確認、対象ファイル確認、波括弧数確認。実ブラウザ確認は未実施 | HTML/JS 変更なし。769px 以上のみ対象 |
+| CSS-R4-018 | 2026-10-26 | PC版のHOME／山行記録カードの文字と要素間隔を基準化 | `assets/css/base/variables.css`、`assets/css/components/card.css`、`assets/css/pages/records-index.css` | `.home-record-content h3`、`.record-card-title`、`.record-card-meta`、`--density-card-heading-margin-pc`、`--density-record-card-meta-margin-pc` | HOMEと山行記録一覧でタイトル・メタ情報・概要の文字階層と縦間隔を揃えるため | Codex | 未確認 | 未反映 | CSS差分と769px以上限定の適用を確認。実ブラウザ確認は未実施 | スマートフォン用ルール、カード構造、画像寸法、概要の表示行数は変更しない |
