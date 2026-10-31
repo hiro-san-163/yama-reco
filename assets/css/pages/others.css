@@ -112,22 +112,6 @@
 
 }
 
-.link-title {
-
-  margin-bottom: 0.5rem;
-
-  font-weight: 600;
-
-  color: var(--color-heading);
-
-}
-
-.link-desc {
-
-  line-height: 1.8;
-
-}
-
 .coming-soon {
 
   padding: 1.5rem;
@@ -140,18 +124,6 @@
 
 }
 
-.coming-soon p {
-
-  margin-bottom: 0.75rem;
-
-}
-
-.coming-soon p:last-child {
-
-  margin-bottom: 0;
-
-}
-
 @media (max-width: 768px) {
 
   .other-page {
@@ -159,6 +131,24 @@
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 
+  }
+
+  .link-title {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+
+  .link-desc {
+    line-height: 1.8;
+  }
+
+  .coming-soon p {
+    margin-bottom: 0.75rem;
+  }
+
+  .coming-soon p:last-child {
+    margin-bottom: 0;
   }
 
   .other-nav {

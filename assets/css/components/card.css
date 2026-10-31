@@ -33,6 +33,47 @@
   margin-top: 0.75rem;
 }
 
+@media (min-width: 769px) {
+
+  .card-content-standard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--density-card-content-gap-pc);
+  }
+
+  .card-content-standard > .card-title-standard {
+    margin: 0;
+    color: var(--color-text);
+    font-size: var(--card-title-size);
+    line-height: var(--card-title-line-height);
+    font-weight: var(--card-title-weight);
+  }
+
+  .card-content-standard > .card-meta-standard {
+    margin: 0;
+    color: var(--color-text-light);
+    font-size: var(--card-meta-size);
+    line-height: var(--card-meta-line-height);
+  }
+
+  .card-content-standard > .card-text-standard {
+    margin: 0;
+    color: var(--color-text);
+    font-size: var(--card-text-size);
+    line-height: var(--density-card-text-line-height-pc);
+  }
+
+  .card-content-standard > .card-text-standard:last-child {
+    margin-bottom: 0;
+  }
+
+  .card-content-standard > .card-source-label {
+    align-self: flex-start;
+    margin: 0;
+  }
+
+}
+
 /* ------------------------------
    Record cards
    HOME / 山行記録 共通
@@ -116,9 +157,9 @@
 .home-record-title,
 .record-card-title {
   margin: 0;
-  font-size: 1.15rem;
-  line-height: 1.45;
-  font-weight: 600;
+  font-size: var(--card-title-size);
+  line-height: var(--card-title-line-height);
+  font-weight: var(--card-title-weight);
   color: var(--color-text);
 }
 
@@ -126,8 +167,8 @@
 .home-record-meta,
 .record-card-meta {
   margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: var(--card-meta-size);
+  line-height: var(--card-meta-line-height);
   color: var(--color-text-light);
   display: flex;
   flex-wrap: wrap;
@@ -138,8 +179,8 @@
 .home-record-summary,
 .record-card-summary {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.7;
+  font-size: var(--card-text-size);
+  line-height: var(--card-text-line-height);
   color: var(--color-text);
 }
 
@@ -152,14 +193,6 @@
 }
 
 @media (min-width: 769px) {
-
-  .home-record-content h3 {
-    margin: 0;
-    font-size: 1.15rem;
-    line-height: 1.45;
-    font-weight: 600;
-    color: var(--color-text);
-  }
 
   .home-record-content,
   .record-card-content {

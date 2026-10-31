@@ -332,15 +332,11 @@ Pagination
 
 ## 管理しないもの
 
-HOME専用カード
+HOME／Blog／Records のページ固有レイアウト・構造・専用装飾は各 Pages で管理する。
 
-Blog専用カード
-
-Records専用デザイン
+カード内の共通文字階層と要素間隔はページ固有ではないため、`components/card.css` と Design Token で管理し、Page CSS に重複定義しない。
 
 ページ固有色
-
-ページ固有レイアウト
 
 ---
 

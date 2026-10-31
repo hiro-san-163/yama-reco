@@ -9,6 +9,7 @@
 5. 色、shadow、radius、transition、共通寸法の新規値は、先に `base/variables.css` への追加可否を確認する。
 6. legacy と backup は `style.css` に import しない。削除・移動・復帰は CSS-R4-016 の変更管理を起票してから実施する。
 7. PC 版の情報密度調整は `--density-*` token を優先し、769px 以上の `@media` に限定して行う。スマートフォン・タブレット向け調整は別管理番号で扱う。
+8. カードの共通タイポグラフィと内容間隔は `base/variables.css` の `--card-*` / `--density-card-*` と `components/card.css` の `.card-content-standard`、`.card-title-standard`、`.card-meta-standard`、`.card-text-standard`、`.card-source-label` で管理する。各ページの HTML／JS は役割クラスを付与し、ページ CSS に共通文字値や適用ルールを重複定義しない。
 
 ## 修正先判定表
 
@@ -26,7 +27,7 @@
 | 共通化 | `components/*.css` または `layout/*.css` | 見た目が似るだけで、利用箇所・プロパティ・状態が異なる selector を共通化しない | Component→Selector→Property 比較をレビュー台帳に追記 |
 | 責務変更 | 移管元と移管先の両方、`style.css`、`responsive.css` | 移管中に値まで同時変更しない。値変更は別管理番号にする | before/after の computed style を desktop/mobile で確認 |
 | Button の変更 | `components/button.css`、mobile は `responsive.css` Button 節 | Records/Logs の page CSS に `.button` を追加しない | Record、Error、Home、Logs、Records を確認 |
-| Card の変更 | generic は `components/card.css`、Home/Records 固有は各 Pages | `.record-card` と `.home-record-card` の共有値を Pages で再定義しない | CSS-R4-008 の責務表を更新 |
+| Card の変更 | 共通の文字階層・内容間隔は `components/card.css` と `base/variables.css`、ページ固有のカード外観・レイアウトは各 Pages | 共通文字値や適用ルールを Pages に複製しない。Home/Records の要素には共通役割クラスを付与する | CSS-R4-008、CSS-R4-018、CSS-R4-019 と役割クラスの利用箇所を確認 |
 | Form の変更 | `components/form.css`、Logs 固有は `pages/logs-index.css` | generic `.checkbox-group` を Logs で再定義しない | CSS-R4-009 と検索画面の keyboard 操作を確認 |
 | Pagination の変更 | `components/pagination.css`、mobile は `responsive.css` Pagination 節 | Records/Logs 個別 CSS に pager の共通値を置かない | JS 生成 class、active、disabled、dots を確認 |
 | Header / Navigation / Footer の変更 | 各 Layout CSS、mobile は responsive.css の該当節 | Page CSS から共通 Header/Nav/Footer を変更しない | desktop/mobile と navigation.js state を確認 |

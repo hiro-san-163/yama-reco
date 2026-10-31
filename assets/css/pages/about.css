@@ -4,67 +4,49 @@
 ====================================== */
 
 .about-page {
-
   padding-top: 2rem;
   padding-bottom: 2rem;
-
 }
 
 .about-page section {
-
   margin-bottom: 3rem;
-
 }
 
 .about-page h2 {
-
-  margin-bottom: 1rem;
-
   padding-bottom: 0.5rem;
-
   border-bottom: 2px solid var(--color-border);
-
-}
-
-.about-page p {
-
-  margin-bottom: 1rem;
-
-  line-height: 1.9;
-
-}
-
-.about-page p:last-child {
-
-  margin-bottom: 0;
-
 }
 
 @media (max-width: 768px) {
-
   .about-page {
-
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-
   }
 
   .about-page section {
-
     margin-bottom: 2rem;
-
   }
 
+  .about-section-card h2 {
+    margin-bottom: 1rem;
+  }
+
+  .about-page p {
+    margin-bottom: 1rem;
+    line-height: 1.9;
+  }
+
+  .about-page > .about-section-card > p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 @media (min-width: 769px) {
-
-  .about-page > section:not(.page-header) {
+  .about-section-card {
     padding: 1.25rem 1.5rem;
     background: var(--color-card);
     border: 1px solid var(--color-card-border);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-card);
   }
-
 }

@@ -112,32 +112,6 @@
 
 }
 
-.record-card-title {
-
-  margin-bottom: 0.75rem;
-
-  color: var(--color-heading);
-
-}
-
-.record-card-meta {
-
-  margin-bottom: 1rem;
-
-  font-size: 0.9rem;
-
-  color: var(--color-text-light);
-
-}
-
-.record-card-summary {
-
-  margin-bottom: 0;
-
-  color: var(--color-text);
-
-}
-
 /* Shared: Condition summary and condition bar */
 
 .records-condition-summary {
@@ -253,6 +227,17 @@
 
     aspect-ratio: 16 / 9;
 
+  }
+
+  .record-card-title {
+    margin-bottom: 0.75rem;
+    color: var(--color-heading);
+  }
+
+  .record-card-meta {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
   }
 
   .records-page.is-search-active .records-filter {

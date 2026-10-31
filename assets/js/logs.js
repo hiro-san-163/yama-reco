@@ -323,15 +323,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     card.className = `log-card source-${record.source}`;
 
     card.innerHTML = `
-      <div class="log-card-content">
-        <div class="log-card-source">${sourceLabel}</div>
-        <h2 class="log-card-title">${record.title || ''}</h2>
-        <div class="log-card-meta">
+      <div class="log-card-content card-content-standard">
+        <div class="log-card-source card-source-label">${sourceLabel}</div>
+        <h2 class="log-card-title card-title-standard">${record.title || ''}</h2>
+        <div class="log-card-meta card-meta-standard">
           ${record.date_s || ''}
           ｜ ${record.area || ''}
           ｜ ${record.genre || ''}
         </div>
-        <p class="log-card-summary">
+        <p class="log-card-summary card-text-standard">
           ${truncateSummary(record.summary)}
         </p>
       </div>

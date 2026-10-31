@@ -102,9 +102,9 @@
 | 072 | `.btn-outline:hover` | `components/button.css` | Components | outline hover | なし |  |
 | 073 | `.card` | `components/card.css` | Components | generic card surface/border/shadow | なし | Blog が利用 |
 | 074 | `.card-body` | `components/card.css` | Components | card content padding | なし |  |
-| 075 | `.card-title` | `components/card.css` | Components | title margin/font | なし |  |
-| 076 | `.card-meta` | `components/card.css` | Components | meta font/color | なし |  |
-| 077 | `.card-summary` | `components/card.css` | Components | summary 上余白 | なし |  |
+| 075 | `.card-title` | `components/card.css` | Components | Generic Card title の既定 margin/font | なし | 標準Record Card役割クラスとは別の既定スタイル |
+| 076 | `.card-meta` | `components/card.css` | Components | Generic Card meta の既定 font/color | なし | `.card-meta-standard` を併用して共通PC基準を適用 |
+| 077 | `.card-summary` | `components/card.css` | Components | Generic Card summary の既定上余白 | なし | `.card-text-standard` を併用して共通PC基準を適用 |
 | 078 | `.home-record-card` | `components/card.css` | Components | Record Card 共通 flex/surface/shadow/transition | あり | pages/home.css が summary を上書き |
 | 079 | `.record-card` | `components/card.css` | Components | Record Card 共通 flex/surface/shadow/transition | あり | pages/records-index.css が同 selector を上書き |
 | 080 | `.home-record-card:hover` | `components/card.css` | Components | card hover translate/shadow/border | なし | 081～083 と同一宣言を展開 |
@@ -120,10 +120,10 @@
 | 090 | `.record-card-image img` | `components/card.css` | Components | image fill/object-fit | あり | records page が aspect-ratio を追加 |
 | 091 | `.home-record-content` | `components/card.css` | Components | content flex/padding/gap | あり | 092 と同一宣言を展開 |
 | 092 | `.record-card-content` | `components/card.css` | Components | content flex/padding/gap | あり | records page が padding/flex を上書き |
-| 093 | `.home-record-title` | `components/card.css` | Components | card title typography | なし | current HOME は h3 class なし |
-| 094 | `.record-card-title` | `components/card.css` | Components | card title typography | なし | records page が margin/color を上書き |
+| 093 | `.home-record-title` | `components/card.css` | Components | card title typography | なし | HOME HTML h3 が共通クラスを使用 |
+| 094 | `.record-card-title` | `components/card.css` | Components | card title typography | なし | Records mobile presentation is page-specific |
 | 095 | `.home-record-meta` | `components/card.css` | Components | meta flex/font/color | なし | 096 と同一宣言を展開 |
-| 096 | `.record-card-meta` | `components/card.css` | Components | meta flex/font/color | なし | records page が margin を上書き |
+| 096 | `.record-card-meta` | `components/card.css` | Components | meta flex/font/color | なし | Records mobile margin is page-specific |
 | 097 | `.home-record-summary` | `components/card.css` | Components | summary font/line/color | なし | 098 と同一宣言を展開 |
 | 098 | `.record-card-summary` | `components/card.css` | Components | summary font/line/color | なし | records page が margin を上書き |
 | 099 | `.home-record-card .home-record-summary` | `components/card.css` | Components | home summary 3-line clamp | なし | home.css が 4 行に上書き |
@@ -174,9 +174,9 @@
 | 139 | `.record-card-image` | `pages/records-index.css` | Pages | image column 280px | あり | component は 240px |
 | 140 | `.record-card-image img` | `pages/records-index.css` | Pages | image size/object-fit/aspect ratio | あり |  |
 | 141 | `.record-card-content` | `pages/records-index.css` | Pages | content flex/padding | なし | component padding と異なる |
-| 142 | `.record-card-title` | `pages/records-index.css` | Pages | title margin/color | なし | component font/line/weight と併存 |
-| 143 | `.record-card-meta` | `pages/records-index.css` | Pages | meta margin/font/color | なし | component flex/gap と併存 |
-| 144 | `.record-card-summary` | `pages/records-index.css` | Pages | summary margin/color | なし | component font/line と併存 |
+| 142 | `.record-card-title` | `pages/records-index.css` | Pages | mobile時のみ既存タイトル色・下余白を維持 | あり | PC共通タイポグラフィは `components/card.css` |
+| 143 | `.record-card-meta` | `pages/records-index.css` | Pages | mobile時のみ既存meta寸法・下余白を維持 | あり | PC共通タイポグラフィは `components/card.css` |
+| 144 | `.record-card-summary` | `components/card.css` | Components | summary margin/font/line/color | あり | PC行間はdensity token。Page重複指定なし |
 | 145 | `.records-condition-summary` | `pages/records-index.css` | Pages | selected condition panel | なし | HTML はあるが JS は text 設定なし |
 | 146 | `.records-condition-bar` | `pages/records-index.css` | Pages | reset action bar alignment | あり | mobile left align |
 | 147 | `.record-empty-message` | `pages/records-index.css` | Pages | empty text margin/color | なし |  |
@@ -191,10 +191,10 @@
 | 156 | `.logs-list` | `pages/logs-index.css` | Pages | logs list flex/gap | なし | logs.js が card を追加 |
 | 157 | `.log-card` | `pages/logs-index.css` | Pages | log card surface/padding/transition | なし | `border: 1px solid --color-card-border` は無効 |
 | 158 | `.log-card:hover` | `pages/logs-index.css` | Pages | hover translate | なし |  |
-| 159 | `.log-card-title` | `pages/logs-index.css` | Pages | title margin/color | なし | JS が生成 |
-| 160 | `.log-card-meta` | `pages/logs-index.css` | Pages | meta margin/font/color | なし | JS が生成 |
-| 161 | `.log-card-summary` | `pages/logs-index.css` | Pages | summary margin | なし | JS が生成 |
-| 162 | `.log-card-source` | `pages/logs-index.css` | Pages | source badge layout/typography | なし | JS が生成 |
+| 159 | `.log-card-title` | `pages/logs-index.css` | Pages | mobile時のみ既存title margin/colorを維持 | あり | PC共通ルールは `components/card.css`。JSが役割クラスを付与 |
+| 160 | `.log-card-meta` | `pages/logs-index.css` | Pages | mobile時のみ既存meta margin/font/colorを維持 | あり | PC共通ルールは `components/card.css`。JSが役割クラスを付与 |
+| 161 | `.log-card-summary` | `pages/logs-index.css` | Pages | mobile時のみ既存summary marginを維持 | あり | PC共通ルールは `components/card.css`。JSが役割クラスを付与 |
+| 162 | `.log-card-source` | `pages/logs-index.css` | Pages | source badge 固有の外観・文字 | あり | JSが生成。共通PCの配置・余白は `components/card.css` |
 | 163 | `.log-card.source-hiro .log-card-source` | `pages/logs-index.css` | Pages | hiro source badge 色 | なし | JS class source-hiro |
 | 164 | `.log-card.source-sb .log-card-source` | `pages/logs-index.css` | Pages | sb source badge 色 | なし | JS class source-sb |
 | 165 | `.log-card.source-st .log-card-source` | `pages/logs-index.css` | Pages | st source badge 色 | なし | JS class source-st |
@@ -260,7 +260,7 @@ CSS-R4-017 の実装により、PC 版表示密度を管理する `--density-*` 
 
 | No | セレクタ | ファイル | レイヤー | 責務 | Responsive有無 | 備考 |
 |---:|---|---|---|---|---|---|
-| 214 | `:root` | `base/variables.css` | Base | `--density-*` による PC 版の本文行間、ページ余白、カード余白、検索エリア余白、カード間隔の token 定義 | なし | CSS-R4-017。769px 以上の上書きで参照 |
+| 214 | `:root` | `base/variables.css` | Base | `--density-*` と `--card-*` による PC版密度・カード文字のtoken定義 | なし | CSS-R4-017～019。769px以上の上書きで参照 |
 | 215 | `body` | `base/reset.css` | Base | PC 版のみ `line-height` を `--density-body-line-height-pc` へ変更 | あり | `@media (min-width: 769px)` |
 | 216 | `.page-header` | `layout/common.css` | Layout | PC 版のみページ見出し下余白を token 化 | あり | Records、Logs |
 | 217 | `.section` | `layout/common.css` | Layout | PC 版のみ共通 section 上下余白を token 化 | あり | 共通 section |
@@ -276,8 +276,8 @@ CSS-R4-017 の実装により、PC 版表示密度を管理する `--density-*` 
 | 227 | `.records-filter` | `pages/records-index.css` | Pages | PC 版のみ filter gap、margin、padding を token 化 | あり | Records |
 | 228 | `.records-list` | `pages/records-index.css` | Pages | PC 版のみ record card gap を token 化 | あり | Records |
 | 229 | `.record-card` | `pages/records-index.css` | Pages | PC 版のみ card 内 gap を token 化 | あり | Records |
-| 230 | `.record-card-title` | `pages/records-index.css` | Pages | PC 版のみ title 下余白を token 化 | あり | Records |
-| 231 | `.record-card-meta` | `pages/records-index.css` | Pages | PC 版のみ meta 下余白を token 化 | あり | Records |
+| 230 | `.record-card-title` | `pages/records-index.css` | Pages | mobile時のみ既存タイトル色・下余白を維持 | あり | Records。PC文字ルールは `components/card.css` |
+| 231 | `.record-card-meta` | `pages/records-index.css` | Pages | mobile時のみ既存meta寸法・下余白を維持 | あり | Records。PC文字ルールは `components/card.css` |
 | 232 | `.logs-page` | `pages/logs-index.css` | Pages | PC 版のみ Logs 上下余白を token 化 | あり | Logs |
 | 233 | `.logs-filter` | `pages/logs-index.css` | Pages | PC 版のみ filter gap、margin、padding を token 化 | あり | Logs |
 | 234 | `.logs-filter-sources` | `pages/logs-index.css` | Pages | PC 版のみ filter grid gap を token 化 | あり | Logs |
@@ -285,5 +285,11 @@ CSS-R4-017 の実装により、PC 版表示密度を管理する `--density-*` 
 | 236 | `.logs-filter-actions` | `pages/logs-index.css` | Pages | PC 版のみ filter grid gap を token 化 | あり | Logs |
 | 237 | `.logs-list` | `pages/logs-index.css` | Pages | PC 版のみ log card gap を token 化 | あり | Logs |
 | 238 | `.log-card` | `pages/logs-index.css` | Pages | PC 版のみ log card padding を token 化 | あり | Logs |
-| 239 | `.log-card-meta` | `pages/logs-index.css` | Pages | PC 版のみ meta 下余白を token 化 | あり | Logs |
-| 240 | `.log-card-source` | `pages/logs-index.css` | Pages | PC 版のみ source badge 下余白を token 化 | あり | Logs |
+| 239 | `.log-card-meta` | `pages/logs-index.css` | Pages | mobile時のみ既存meta寸法・色・下余白を維持 | あり | Logs。PC文字ルールは `components/card.css` |
+| 240 | `.log-card-source` | `pages/logs-index.css` | Pages | source badge の固有表示とmobile下余白 | あり | PC配置・余白は `components/card.css` |
+| 241 | `--card-*` | `base/variables.css` | Base | 共通カードタイトル・meta・本文の文字サイズ、太さ、行間、色 | なし | CSS-R4-019。Record Cardと共通役割クラスが参照 |
+| 242 | `.card-content-standard` | `components/card.css` | Components | PC共通カード本文の縦積みと要素間隔 | あり | HOME/Records/Logs/About/Blog/Others の役割クラスから適用 |
+| 243 | `.card-title-standard` | `components/card.css` | Components | PC共通カードタイトルの文字階層と余白 | あり | PC共通適用ルール |
+| 244 | `.card-meta-standard` | `components/card.css` | Components | PC共通カードmetaの文字階層と余白 | あり | PC共通適用ルール |
+| 245 | `.card-text-standard` | `components/card.css` | Components | PC共通カード本文の文字階層、行間、余白 | あり | PC共通適用ルール |
+| 246 | `.card-source-label` | `components/card.css` | Components | PC共通カード内ラベルの配置・余白 | あり | Logsのsource badgeが利用。色・背景・形状はLogs固有 |

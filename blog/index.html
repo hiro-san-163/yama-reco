@@ -26,13 +26,13 @@ title: ブログ
   <a class="blog-card-link" href="{{ post.url | relative_url }}">
     <article class="card">
 
-      <div class="card-body">
+      <div class="card-body card-content-standard">
 
-        <h2>
+        <h2 class="card-title-standard">
           {{ post.title }}
         </h2>
 
-        <div class="card-meta">
+        <div class="card-meta card-meta-standard">
           {{ post.date | date: "%Y-%m-%d" }}
 
           {% if post.tags %}
@@ -45,12 +45,12 @@ title: ブログ
         </div>
 
         {% if post.excerpt %}
-        <p class="card-summary">
+        <p class="card-summary card-text-standard">
           {{ post.excerpt | strip_html | truncate: 120 }}
         </p>
         {% endif %}
 
-        <p class="blog-card-read-more">続きを読む →</p>
+        <p class="blog-card-read-more card-text-standard">続きを読む →</p>
 
       </div>
     </article>

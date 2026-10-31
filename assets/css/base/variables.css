@@ -43,6 +43,16 @@
   --shadow-card: 0 8px 24px rgba(0,0,0,.10);
   --shadow-menu: 0 12px 36px rgba(0,0,0,.18);
 
+  /* Card typography */
+
+  --card-title-size: 1.15rem;
+  --card-title-line-height: 1.45;
+  --card-title-weight: 600;
+  --card-meta-size: 0.9rem;
+  --card-meta-line-height: 1.5;
+  --card-text-size: 1rem;
+  --card-text-line-height: 1.7;
+
   /* Layout */
 
   --container-width: 1200px;
@@ -60,7 +70,6 @@
   --density-filter-padding-pc: 0.85rem;
   --density-filter-gap-pc: 0.85rem;
   --density-filter-margin-pc: 1.6rem;
-  --density-card-meta-margin-pc: 0.6rem;
 
   /* Radius */
 

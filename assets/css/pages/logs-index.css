@@ -96,36 +96,11 @@
 
 }
 
-.log-card-title {
-
-  margin-bottom: 0.5rem;
-
-  color: var(--color-heading);
-
-}
-
-.log-card-meta {
-
-  margin-bottom: 0.75rem;
-
-  font-size: 0.9rem;
-
-  color: var(--color-text-light);
-
-}
-
-.log-card-summary {
-
-  margin-bottom: 0;
-
-}
-
 .log-card-source {
 
   display: inline-flex;
   align-items: center;
 
-  margin-bottom: 0.75rem;
   padding: 0.25rem 0.65rem;
 
   border-radius: 999px;
@@ -306,14 +281,28 @@
     padding: var(--density-filter-padding-pc);
   }
 
-  .log-card-meta,
-  .log-card-source {
-    margin-bottom: var(--density-card-meta-margin-pc);
-  }
-
 }
 
 @media (max-width: 768px) {
+
+  .log-card-title {
+    margin-bottom: 0.5rem;
+    color: var(--color-heading);
+  }
+
+  .log-card-meta {
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+  }
+
+  .log-card-summary {
+    margin-bottom: 0;
+  }
+
+  .log-card-source {
+    margin-bottom: 0.75rem;
+  }
 
   .logs-filter-options {
     display: contents;
