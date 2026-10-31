@@ -326,10 +326,91 @@
 
   .logs-filter-fields {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "keyword keyword"
+      "genre area"
+      "year month";
+  }
+
+  .logs-filter-fields > .form-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .logs-filter-fields > .form-group label {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  .logs-filter-fields > .form-group input,
+  .logs-filter-fields > .form-group select {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    padding: 0.55rem;
+  }
+
+  .logs-filter-fields #keywordFilter {
+    grid-area: keyword;
+  }
+
+  .logs-filter-fields #genreFilter {
+    grid-area: genre;
+  }
+
+  .logs-filter-fields #areaFilter {
+    grid-area: area;
+  }
+
+  .logs-filter-fields #yearFilter {
+    grid-area: year;
+  }
+
+  .logs-filter-fields #monthFilter {
+    grid-area: month;
   }
 
   .logs-filter-actions {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .logs-filter-options {
+    display: contents;
+  }
+
+  .logs-filter-options > .form-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .logs-filter-options > .form-group label {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  .logs-filter-options select {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    padding: 0.55rem;
+  }
+
+  .logs-filter .form-group-buttons {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .logs-filter .form-group-buttons button {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 2px 6px;
   }
 
   .logs-page.is-search-active .logs-filter {
