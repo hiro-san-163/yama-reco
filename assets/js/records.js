@@ -33,11 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function initialize() {
     populateFilters();
 
-    setupPageSize(pageSizeSelect, pager, () => {
-      pager.setPage(1);
-      renderResults();
-      saveSearchState();
-    });
+    setupPageSize(pageSizeSelect, pager, undefined, false);
    
   if (sessionStorage.getItem('restoreRecordsSearch') === 'true') {
 
@@ -48,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 }
     searchButton.addEventListener('click', () => {
       searchApplied = true;
+      pager.setPageSize(Number(pageSizeSelect.value));
       pager.setPage(1);
       renderResults();
       saveSearchState();
@@ -57,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
       resetFilters();
 
       searchApplied = false;
+      pager.setPageSize(Number(pageSizeSelect.value));
       pager.setPage(1);
       renderResults();
       saveSearchState();

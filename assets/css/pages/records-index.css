@@ -207,7 +207,61 @@
 
   .records-filter {
 
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+
+  }
+
+  .records-filter > .form-group:nth-child(-n+4) {
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    margin-bottom: 0;
+
+  }
+
+  .records-filter > .form-group:nth-child(-n+4) label {
+
+    flex: 0 0 auto;
+    margin-bottom: 0;
+    white-space: nowrap;
+
+  }
+
+  .records-filter > .form-group:nth-child(-n+4) select {
+
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.55rem;
+
+  }
+
+  .records-filter > .form-group:last-child {
+
+    grid-column: 1 / -1;
+    min-width: 0;
+    margin-bottom: 0;
+
+  }
+
+  .records-filter-actions {
+
+    width: 100%;
+
+  }
+
+  .records-filter-actions button {
+
+    flex: 1 1 0;
+    min-width: 0;
+
+  }
+
+  #recordsFilterResetButton {
+
+    display: inline-block;
 
   }
 

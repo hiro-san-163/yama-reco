@@ -91,7 +91,7 @@ window.Pagination = Pagination;
  * @param {Pagination} pager Paginationインスタンス
  * @param {Function} onChange 表示件数変更時のコールバック
  */
-function setupPageSize(selectElement, pager, onChange) {
+function setupPageSize(selectElement, pager, onChange, updatePager = true) {
 
   const pageSizes = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
 
@@ -117,7 +117,9 @@ function setupPageSize(selectElement, pager, onChange) {
 
     const pageSize = Number(event.target.value);
 
-    pager.setPageSize(pageSize);
+    if (updatePager) {
+      pager.setPageSize(pageSize);
+    }
 
     if (typeof onChange === "function") {
       onChange();
