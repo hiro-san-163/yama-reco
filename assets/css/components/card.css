@@ -41,7 +41,7 @@
     gap: var(--density-card-content-gap-pc);
   }
 
-  .card-content-standard > .card-title-standard {
+  .card-content-standard .card-title-standard {
     margin: 0;
     color: var(--color-text);
     font-size: var(--card-title-size);
@@ -49,25 +49,33 @@
     font-weight: var(--card-title-weight);
   }
 
-  .card-content-standard > .card-meta-standard {
+  .card-content-standard .card-meta-standard {
     margin: 0;
     color: var(--color-text-light);
     font-size: var(--card-meta-size);
     line-height: var(--card-meta-line-height);
   }
 
-  .card-content-standard > .card-text-standard {
+  .card-content-standard .card-text-standard {
     margin: 0;
     color: var(--color-text);
     font-size: var(--card-text-size);
     line-height: var(--density-card-text-line-height-pc);
   }
 
+  .card-content-standard .card-text-standard > :first-child {
+    margin-top: 0;
+  }
+
+  .card-content-standard .card-text-standard > :last-child {
+    margin-bottom: 0;
+  }
+
   .card-content-standard > .card-text-standard:last-child {
     margin-bottom: 0;
   }
 
-  .card-content-standard > .card-source-label {
+  .card-content-standard .card-source-label {
     align-self: flex-start;
     margin: 0;
   }

@@ -9,7 +9,7 @@
 5. 色、shadow、radius、transition、共通寸法の新規値は、先に `base/variables.css` への追加可否を確認する。
 6. legacy と backup は `style.css` に import しない。削除・移動・復帰は CSS-R4-016 の変更管理を起票してから実施する。
 7. PC 版の情報密度調整は `--density-*` token を優先し、769px 以上の `@media` に限定して行う。スマートフォン・タブレット向け調整は別管理番号で扱う。
-8. カードの共通タイポグラフィと内容間隔は `base/variables.css` の `--card-*` / `--density-card-*` と `components/card.css` の `.card-content-standard`、`.card-title-standard`、`.card-meta-standard`、`.card-text-standard`、`.card-source-label` で管理する。各ページの HTML／JS は役割クラスを付与し、ページ CSS に共通文字値や適用ルールを重複定義しない。
+8. カードの共通タイポグラフィと内容間隔は `base/variables.css` の `--card-*` / `--density-card-*` と `components/card.css` の `.card-content-standard`、`.card-title-standard`、`.card-meta-standard`、`.card-text-standard`、`.card-source-label` で管理する。各ページの HTML／JS は役割クラスを付与し、ページ CSS に共通文字値や適用ルールを重複定義しない。山行詳細の写真横情報欄も `.card`、`.card-body` と共通役割クラスを利用する。
 
 ## 修正先判定表
 

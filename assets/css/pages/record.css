@@ -803,20 +803,23 @@
 
   .record-meta {
     gap: 0.35rem 0.75rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
   }
 
   .record-info .record-section {
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--density-card-content-gap-pc);
+    margin-bottom: 0;
   }
 
   .record-info .record-section h2 {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0;
+    border-bottom: 0;
   }
 
-  .record-info .record-summary,
-  .record-info .course-note {
-    line-height: 1.6;
+  .record-info-yamareco {
+    margin-top: 0;
   }
 
   .record-info .record-expand-button {

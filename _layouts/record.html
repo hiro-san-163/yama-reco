@@ -60,9 +60,9 @@ layout: default
     </div>
     {% endif %}
 
-    <div class="record-info">
+    <div class="record-info card card-body card-content-standard">
 
-      <div class="record-meta">
+      <div class="record-meta card-meta-standard">
 
         {% if page.date_s %}
         <span>{{ page.date_s }}</span>
@@ -102,9 +102,9 @@ layout: default
       {% if page.sm2 %}
       <section class="record-section">
 
-        <h2>山行概要</h2>
+        <h2 class="card-title-standard">山行概要</h2>
 
-        <div class="record-summary record-expandable-text" id="recordSummary">
+        <div class="record-summary card-text-standard record-expandable-text" id="recordSummary">
           {{ page.sm2 | markdownify }}
         </div>
         <button
@@ -122,10 +122,10 @@ layout: default
       {% if page.course_time or page.course_note %}
       <section class="record-section">
 
-        <h2>コース情報</h2>
+        <h2 class="card-title-standard">コース情報</h2>
 
         {% if page.course_time %}
-        <p class="record-course-time record-expandable-text" id="recordCourseTime">
+        <p class="record-course-time card-text-standard record-expandable-text" id="recordCourseTime">
           <strong>コースタイム：</strong>
           {{ page.course_time }}
         </p>
@@ -140,7 +140,7 @@ layout: default
         {% endif %}
 
         {% if page.course_note %}
-        <div class="course-note record-expandable-text" id="recordCourseNote">
+        <div class="course-note card-text-standard record-expandable-text" id="recordCourseNote">
           {{ page.course_note | markdownify }}
         </div>
         <button
