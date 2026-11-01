@@ -14,12 +14,17 @@
   gap: 1rem;
   margin-bottom: 2rem;
   padding: 1rem;
-  background: var(--color-panel-bg);
+  background: var(--color-filter-bg);
   border-radius: var(--radius-md);
 }
 
 .logs-filter .form-group {
   margin-bottom: 0;
+}
+
+.logs-filter input,
+.logs-filter select {
+  background: #ffffff;
 }
 
 .logs-filter-sources,
@@ -40,19 +45,51 @@
 }
 
 .logs-filter-fields {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "keyword keyword"
+    "area genre"
+    "year month";
 }
 
 .logs-filter-actions {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.logs-filter-fields > .form-group:nth-child(1) {
+  grid-area: keyword;
+}
+
+.logs-filter-fields > .form-group:nth-child(2) {
+  grid-area: area;
+}
+
+.logs-filter-fields > .form-group:nth-child(3) {
+  grid-area: genre;
+}
+
+.logs-filter-fields > .form-group:nth-child(4) {
+  grid-area: year;
+}
+
+.logs-filter-fields > .form-group:nth-child(5) {
+  grid-area: month;
+}
+
+.logs-filter-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
 }
 
 .logs-filter .form-group-buttons {
-  display: contents;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
 }
 
-.logs-filter-actions > button {
-  width: 100%;
+.logs-filter .form-group-buttons button {
+  min-width: 6.5rem;
 }
 
 .logs-count {
@@ -162,9 +199,6 @@
   }
 
   .logs-filter {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    align-items: start;
     gap: var(--density-filter-gap-pc);
     margin-bottom: var(--density-filter-margin-pc);
     padding: var(--density-filter-padding-pc);
@@ -175,22 +209,11 @@
     gap: 0.6rem;
   }
 
-  .logs-filter-fields,
   .logs-filter-fields > .form-group {
     min-width: 0;
   }
 
-  .logs-filter-actions {
-    grid-column: 1 / -1;
-    display: flex;
-    align-items: center;
-    gap: var(--density-filter-gap-pc);
-    width: 100%;
-  }
-
   .logs-filter-options {
-    display: flex;
-    align-items: center;
     gap: var(--density-filter-gap-pc);
   }
 
@@ -206,8 +229,6 @@
   }
 
   .logs-filter-options select {
-    width: auto;
-    min-width: 0;
     padding: 0.55rem;
   }
 
@@ -219,58 +240,22 @@
     min-width: 6rem;
   }
 
-  .logs-filter .form-group-buttons {
-    display: flex;
-    gap: 0.5rem;
-    margin-left: auto;
-  }
-
   .logs-filter .form-group-buttons button {
-    width: 6.5rem;
     padding: 0.65rem 0.75rem;
-  }
-
-  .logs-filter-fields {
-    grid-template-columns:
-      minmax(140px, 1.6fr)
-      minmax(82px, 1fr)
-      minmax(82px, 1fr)
-      minmax(76px, 0.7fr)
-      minmax(76px, 0.65fr);
   }
 
 }
 
 @media (min-width: 1024px) {
 
-  .logs-filter {
-    grid-template-columns: minmax(250px, 0.75fr) minmax(0, 1.25fr);
-  }
-
   .logs-filter-sources .checkbox-group {
     gap: 0.55rem;
   }
 
-  .logs-filter-fields {
-    grid-template-columns:
-      minmax(140px, 1.6fr)
-      minmax(82px, 1fr)
-      minmax(82px, 1fr)
-      minmax(76px, 0.7fr)
-      minmax(76px, 0.65fr);
-  }
-
   .logs-filter-fields input,
   .logs-filter-fields select {
-    width: 100%;
     min-width: 0;
     padding: 0.55rem 0.45rem;
-  }
-
-  .logs-filter-fields #yearFilter,
-  .logs-filter-fields #monthFilter {
-    padding-right: 0.25rem;
-    padding-left: 0.25rem;
   }
 
   .logs-list {
@@ -304,32 +289,8 @@
     margin-bottom: 0.75rem;
   }
 
-  .logs-filter-options {
-    display: contents;
-  }
-
-  .logs-filter .form-group-buttons {
-    display: contents;
-  }
-
-  .logs-filter-options > .form-group {
-    order: 1;
-  }
-
-  .logs-filter .form-group-buttons button {
-    order: 0;
-  }
-
   .logs-filter-sources .checkbox-group {
     flex-wrap: wrap;
-  }
-
-  .logs-filter-fields {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas:
-      "keyword keyword"
-      "genre area"
-      "year month";
   }
 
   .logs-filter-fields > .form-group {
@@ -353,34 +314,6 @@
     padding: 0.55rem;
   }
 
-  .logs-filter-fields #keywordFilter {
-    grid-area: keyword;
-  }
-
-  .logs-filter-fields #genreFilter {
-    grid-area: genre;
-  }
-
-  .logs-filter-fields #areaFilter {
-    grid-area: area;
-  }
-
-  .logs-filter-fields #yearFilter {
-    grid-area: year;
-  }
-
-  .logs-filter-fields #monthFilter {
-    grid-area: month;
-  }
-
-  .logs-filter-actions {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .logs-filter-options {
-    display: contents;
-  }
-
   .logs-filter-options > .form-group {
     display: flex;
     align-items: center;
@@ -394,23 +327,10 @@
     white-space: nowrap;
   }
 
-  .logs-filter-options select {
-    flex: 1 1 0;
-    width: auto;
-    min-width: 0;
-    padding: 0.55rem;
-  }
-
-  .logs-filter .form-group-buttons {
-    grid-column: 1 / -1;
-    display: flex;
-    gap: 0.5rem;
-  }
-
   .logs-filter .form-group-buttons button {
     flex: 1 1 0;
     min-width: 0;
-    padding: 2px 6px;
+    padding: 0.55rem 0.75rem;
   }
 
   .logs-page.is-search-active .logs-filter {

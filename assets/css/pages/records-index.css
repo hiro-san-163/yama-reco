@@ -21,10 +21,15 @@
 
   padding: 1rem;
 
-  background: var(--color-panel-bg);
+  background: var(--color-filter-bg);
 
   border-radius: var(--radius-md);
 
+}
+
+.records-filter input,
+.records-filter select {
+  background: #ffffff;
 }
 
 .records-filter-actions {
