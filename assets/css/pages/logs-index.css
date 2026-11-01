@@ -199,6 +199,9 @@
   }
 
   .logs-filter {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
     gap: var(--density-filter-gap-pc);
     margin-bottom: var(--density-filter-margin-pc);
     padding: var(--density-filter-padding-pc);
@@ -213,7 +216,31 @@
     min-width: 0;
   }
 
+  .logs-filter-fields {
+    grid-template-columns:
+      minmax(140px, 1.6fr)
+      minmax(82px, 1fr)
+      minmax(82px, 1fr)
+      minmax(76px, 0.7fr)
+      minmax(76px, 0.65fr);
+    grid-template-areas: none;
+  }
+
+  .logs-filter-fields > .form-group {
+    grid-area: auto;
+  }
+
+  .logs-filter-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: var(--density-filter-gap-pc);
+    width: 100%;
+  }
+
   .logs-filter-options {
+    display: flex;
+    align-items: center;
     gap: var(--density-filter-gap-pc);
   }
 
@@ -240,7 +267,14 @@
     min-width: 6rem;
   }
 
+  .logs-filter .form-group-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+
   .logs-filter .form-group-buttons button {
+    width: 6.5rem;
     padding: 0.65rem 0.75rem;
   }
 
@@ -248,8 +282,21 @@
 
 @media (min-width: 1024px) {
 
+  .logs-filter {
+    grid-template-columns: minmax(250px, 0.75fr) minmax(0, 1.25fr);
+  }
+
   .logs-filter-sources .checkbox-group {
     gap: 0.55rem;
+  }
+
+  .logs-filter-fields {
+    grid-template-columns:
+      minmax(140px, 1.6fr)
+      minmax(82px, 1fr)
+      minmax(82px, 1fr)
+      minmax(76px, 0.7fr)
+      minmax(76px, 0.65fr);
   }
 
   .logs-filter-fields input,
