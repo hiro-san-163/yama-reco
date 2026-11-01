@@ -46,34 +46,10 @@
 
 .logs-filter-fields {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-areas:
-    "keyword keyword"
-    "area genre"
-    "year month";
 }
 
 .logs-filter-actions {
   grid-template-columns: minmax(0, 1fr);
-}
-
-.logs-filter-fields > .form-group:nth-child(1) {
-  grid-area: keyword;
-}
-
-.logs-filter-fields > .form-group:nth-child(2) {
-  grid-area: area;
-}
-
-.logs-filter-fields > .form-group:nth-child(3) {
-  grid-area: genre;
-}
-
-.logs-filter-fields > .form-group:nth-child(4) {
-  grid-area: year;
-}
-
-.logs-filter-fields > .form-group:nth-child(5) {
-  grid-area: month;
 }
 
 .logs-filter-options {
@@ -223,11 +199,6 @@
       minmax(82px, 1fr)
       minmax(76px, 0.7fr)
       minmax(76px, 0.65fr);
-    grid-template-areas: none;
-  }
-
-  .logs-filter-fields > .form-group {
-    grid-area: auto;
   }
 
   .logs-filter-actions {
@@ -338,6 +309,34 @@
 
   .logs-filter-sources .checkbox-group {
     flex-wrap: wrap;
+  }
+
+  .logs-filter-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "keyword keyword"
+      "area genre"
+      "year month";
+  }
+
+  .logs-filter-fields > .form-group:nth-child(1) {
+    grid-area: keyword;
+  }
+
+  .logs-filter-fields > .form-group:nth-child(2) {
+    grid-area: area;
+  }
+
+  .logs-filter-fields > .form-group:nth-child(3) {
+    grid-area: genre;
+  }
+
+  .logs-filter-fields > .form-group:nth-child(4) {
+    grid-area: year;
+  }
+
+  .logs-filter-fields > .form-group:nth-child(5) {
+    grid-area: month;
   }
 
   .logs-filter-fields > .form-group {
