@@ -154,6 +154,24 @@
   .other-nav {
 
     margin: 1.5rem 0 2rem;
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+
+  }
+
+  .other-nav a {
+
+    display: flex;
+    flex: 0 1 auto;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 44px;
+    padding: 0.5rem clamp(0.25rem, 2vw, 0.75rem);
+    font-size: clamp(0.7rem, 3.6vw, 1rem);
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
 
   }
 
