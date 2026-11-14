@@ -63,6 +63,14 @@ logs系を site.posts 化してはならない。
 
 以下の構造を変更してはならない。
 
+records_master.xlsx
+
+↓
+
+Excel→JSON変換
+
+↓
+
 records_master.json
 
 ↓
@@ -103,9 +111,13 @@ logs/index
 
 ⸻
 
-JSONデータ保護
+正本・派生データ保護
 
-records_master.json はV5の基幹データである。
+records_master.xlsx は hiro-san の山行データを管理する唯一の正本である。
+
+records_master.json は records_master.xlsx から作成する派生データであり、正本として直接編集してはならない。
+
+山行データの追加・修正は records_master.xlsx に対して行う。JSON と Markdown は承認された手順で正本から同期する。
 
 ⸻
 
@@ -130,7 +142,9 @@ records_master.json はV5の基幹データである。
 
 md生成ルール
 
-records_master.json から md を生成する。
+records_master.xlsx を正本とし、そこから作成した records_master.json から md を生成する。
+
+Excel→JSON 変換は `excel_to_json.py` で行う。既定の出力先は `data/records_master.generated.json` とし、既存の `records_master.json` を自動で上書きしない。JSON→Markdown の生成スクリプトは現状のリポジトリ内では確認できていない。生成物の本番反映や運用手順の変更は別途承認を得る。
 
 ⸻
 

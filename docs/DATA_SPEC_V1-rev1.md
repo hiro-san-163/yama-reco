@@ -9,9 +9,11 @@ DATA_SPEC.md
 
 ## 概要
 
-V5では山行データをJSONで管理する。
+hiro-san の山行データの正本は `records_master.xlsx` とする。`records_master.json` は Excel 正本から作成する派生データで、サイトの検索および Markdown 生成に利用する。
 
-主データは records_master.json とし、md生成および records/index・logs/index のデータソースとして利用する。
+山行データの追加・修正は Excel 正本に対して行い、JSON や Markdown を正本として直接編集しない。
+
+Excel→JSON 変換は `excel_to_json.py` で行う。JSON→Markdown の生成スクリプトは現在のリポジトリ内では確認できていない。
 
 外部協力者データとして SBrecords.json および STrecords.json を利用する。
 
@@ -19,15 +21,22 @@ V5では山行データをJSONで管理する。
 
 ### データファイル一覧
 
+records_master.xlsx
+
+hiro-san の山行データを管理する唯一の正本（Single Source of Truth）。
+
+⸻
+
 records_master.json
 
-hiro-san の山行データ。
+records_master.xlsx から作成する派生データ。
 
 用途
 
-* md生成元データ
-* records/index表示元
+* Markdown生成用データ
 * logs/index検索対象
+
+records/index および record.html は、この JSON から生成された Markdown（site.posts）を利用する。
 
 ⸻
 
@@ -66,7 +75,7 @@ STrecords.json
 {
   "date_s": "",
   "date_e": "",
-  "duration": "",
+  "duration": 1,
   "record_id": "",
   "title": "",
   "area": "",
@@ -88,6 +97,8 @@ STrecords.json
   "gp3": "",
   "gpfg3": "",
 }
+
+上記はJSONの項目構成を示す。`duration` の `1` は整数型の例であり、実際の保存値は各山行の日数とする。
 
 ⸻
 
@@ -129,13 +140,13 @@ YYYY-MM-DD
 
 ### duration  rev2
 
-**型**
+**ExcelおよびJSONでの型**
 
-string
+整数
 
 **説明**
 
-山行日数を数値で保持する。
+山行日数を整数で保持する。1以上の値を使用する。
 
 表示時は表示仕様に従って山行期間へ変換する。
 
@@ -159,7 +170,7 @@ string
 
 この表示仕様は `record.html` および `logs.js` など、山行期間を表示するすべての画面で共通とする。
 
-データは表示用文字列ではなく数値として保持し、表示時に変換を行う。
+ExcelおよびJSONでは数値として保持し、表示時に変換を行う。MarkdownのFront Matterでは既存のLiquidテンプレートとの互換性を保つため、`duration` を引用符付き文字列として出力する。
 
 ⸻
 
@@ -450,6 +461,8 @@ front matter
 records_master.json の全項目を front matter へ出力する。
 あわせて固定値として layout: record および tags: 山行記録 を付加する。
 
+JSONの整数項目 `duration` は、既存のHOMEページのLiquid分岐との互換性を保つため、Markdownでは引用符付き文字列として出力する。
+
 ⸻
 
 ## 利用ルール
@@ -556,7 +569,38 @@ date_s から生成する。
 
 ## データ管理ルール
 
-records_master.json はV5の基幹データである。
+records_master.xlsx はV5の基幹データである。山行データの追加・修正はこの Excel 正本に対して行う。
+
+records_master.json は Excel 正本から作成する派生データであり、records/index・record.html 用の Markdown 生成と logs/index 検索に利用する。
+
+Excel→JSON 変換は `excel_to_json.py` で行う。JSON→Markdown の自動生成処理は現状のリポジトリ内では確認できていない。変換後は正本との整合性を確認し、承認された手順で各派生データを更新する。
+
+#### Excel→JSON変換の実行
+
+初回またはPython環境を再構築したときは、プロジェクトのルートで依存パッケージをインストールする。
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+変換を実行する。
+
+```powershell
+python excel_to_json.py
+```
+
+既定では `data/records_master.generated.json` に出力する。既存の `data/records_master.json` は上書きしない。出力内容を確認してから、承認された手順で本番用JSONを更新する。入力・出力先を変える場合は `--input` と `--output` を指定する。
+
+### Excel→JSON変換時の取扱い
+
+* 仕様で定義された名前のある列だけを読み込む。見出しが空の列は読み飛ばし、JSONに `None` などのキーを作らない。
+* 全項目が空の行は読み飛ばす。データがあるのに `record_id` が空の行、または `record_id` が重複する場合はエラーとして扱い、生成を完了しない。
+* `record_id` は文字列として保持する。先頭のゼロを含むIDも数値に変換しない。
+* `duration` はExcel・JSONとも整数とし、Markdown Front Matterでは引用符付き文字列として出力する。
+* 文字列項目の空セルはJSONで空文字列 `""` とする。`null` への置換や、空値の自動補完は行わない。
+* 変換対象となる項目は本書のスキーマに限定し、書式設定だけがある余分な行・列をデータとして扱わない。
+
+旧版の `records_master.json` には全レコードにスキーマ外の `"None": ""` 項目が含まれていた。この項目は正本Excelの定義列に存在しないため、`excel_to_json.py` は出力しない。仕様書や変換処理の更新のみでは既存JSONを変更しない。
 
 ⸻
 
@@ -580,6 +624,14 @@ records_master.json はV5の基幹データである。
 ⸻
 
 # 最重要ルール
+
+records_master.xlsx
+
+↓
+
+Excel→JSON変換
+
+↓
 
 records_master.json
 

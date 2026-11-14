@@ -32,17 +32,20 @@ logs系
 * site.posts は利用しない。
 * 横断検索・山行データ検索を担当する。
 
-## JSONデータの役割
+## 山行データの役割
 
 データ	用途
-records_master.json	hiro-san 山行データのマスターデータ
+records_master.xlsx	hiro-san 山行データの唯一の正本（Single Source of Truth）
+
+records_master.json	records_master.xlsx から生成するサイト利用・検索用データ
 
 SBrecords.json	SilverBoy 山行データ
 
 STrecords.json	ショウタン 山行データ
 
-records_master.json は hiro-san の山行データを管理する唯一のマスターデータ（Single Source of Truth）とする。
-Markdown は本データから自動生成される派生データであり、山行データの追加・修正は records_master.json を更新して行う。
+山行データの追加・修正は records_master.xlsx に対して行う。records_master.json と Markdown は Excel 正本から作成する派生データであり、正本として直接編集しない。
+
+Excel→JSON 変換は `excel_to_json.py` で行う。既定の出力先は `data/records_master.generated.json` であり、既存の `records_master.json` は自動で上書きしない。JSON→Markdown の生成スクリプトは現在のリポジトリ内では確認できていない。
 
 ## Markdown生成
 
@@ -63,8 +66,9 @@ SBrecords.json および STrecords.json は Markdownへ変換しない。
 
 V5は GitHub Pages + Jekyll により構築する山行記録サイトである。
 
-データ駆動型設計を採用し、以下の3つのJSONファイルを中心に運用する。
+データ駆動型設計を採用する。hiro-san の山行データは Excel を正本とし、JSON をサイト利用向けの派生データとして運用する。
 
+* records_master.xlsx（正本）
 * records_master.json
 * SBrecords.json
 * STrecords.json
@@ -75,9 +79,11 @@ V5は GitHub Pages + Jekyll により構築する山行記録サイトである�
 
 ## データフロー
 
-hiro-san データ（CSV or EXCEL）
+records_master.xlsx（hiro-san 山行データの正本）
 
-records_master.json
+        │
+        ▼
+records_master.json（サイト利用向け派生データ）
 
         │
         ▼
@@ -162,7 +168,13 @@ records/index は、hiro-san の山行記録を写真付きカード形式で閲
 ### データ生成フロー
 
 ```text
-records_master.json
+records_master.xlsx（正本）
+        │
+        ▼
+ Excel → JSON 変換
+        │
+        ▼
+records_master.json（派生データ）
         │
         ▼
  Markdown生成
@@ -178,6 +190,8 @@ records_master.json
 ```
 
 records_master.json を直接検索してはならない。
+
+Excel→JSON 変換は `excel_to_json.py` で実行できる。JSON→Markdown の変換手段は、現在のリポジトリ内では確認できていない。生成物を本番データへ反映する前に内容を確認する。
 
 ---
 
@@ -828,7 +842,9 @@ records/index と役割を明確に分離し、全文検索およびキーワー
 
 ## 目的
 
-`records_master.json` のデータから Jekyll 用 Markdown ファイルを自動生成する。
+Excel 正本から作成した `records_master.json` のデータを基に、Jekyll 用 Markdown ファイルを生成する。
+
+生成処理の自動化スクリプトは現在のリポジトリ内では確認できていない。
 
 生成された Markdown は `site.posts` のデータソースとなり、records系ページで利用する。
 
@@ -901,7 +917,7 @@ Markdown本文（`{{ content }}`）は主コンテンツとして利用しない
 * record.html の表示データ
 * logs/index の検索対象
 
-hiro-san の山行データを管理するマスターデータとする。
+`records_master.json` は `records_master.xlsx` から作成する派生データであり、サイトの検索および Markdown 生成に利用する。山行データの正本は `records_master.xlsx` とする。
 
 ---
 
@@ -1043,7 +1059,7 @@ V5アーキテクチャの範囲内で実装を行う。
 
 ### Markdown生成
 
-Markdown化するのは `records_master.json` のみとする。
+`records_master.xlsx` を正本とし、そこから作成した `records_master.json` のみを Markdown 化する。
 
 SBrecords.json および STrecords.json は Markdown化しない。
 
@@ -1073,6 +1089,4 @@ SBrecords.json および STrecords.json は Markdown化しない。
 * 開発ルールを整理
 * 将来拡張方針を追加
 * 重複記述を削除し、保守性を向上
-
-
 
