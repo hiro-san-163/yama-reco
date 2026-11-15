@@ -113,11 +113,11 @@ logs/index
 
 正本・派生データ保護
 
-records_master.xlsx は hiro-san の山行データを管理する唯一の正本である。
+records_master.xlsx は hiro-san の山行データを管理する唯一の正本である。現在の運用対象は新規山行記録の追加とし、既存記録の訂正・更新は個別の承認なしに行わない。
 
 records_master.json は records_master.xlsx から作成する派生データであり、正本として直接編集してはならない。
 
-山行データの追加・修正は records_master.xlsx に対して行う。JSON と Markdown は承認された手順で正本から同期する。
+新規山行データは records_master.xlsx に追加する。JSON と Markdown は承認された手順で正本から同期する。既存投稿を生成処理で上書きしてはならない。
 
 ⸻
 
@@ -144,7 +144,7 @@ md生成ルール
 
 records_master.xlsx を正本とし、そこから作成した records_master.json から md を生成する。
 
-Excel→JSON 変換は `excel_to_json.py` で行う。既定の出力先は `data/records_master.generated.json` とし、既存の `records_master.json` を自動で上書きしない。JSON→Markdown の生成スクリプトは現状のリポジトリ内では確認できていない。生成物の本番反映や運用手順の変更は別途承認を得る。
+Excel→JSON 変換は `excel_to_json.py` で行う。既定の出力先は `data/records_master.generated.json` とし、既存の `records_master.json` を自動で上書きしない。生成結果を確認して承認された場合のみ、本番JSONへ反映する。JSON→Markdown の生成スクリプトは現状のリポジトリ内では確認できていない。既存投稿の変更、生成物の本番反映、運用手順の変更は別途承認を得る。
 
 ⸻
 

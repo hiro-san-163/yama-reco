@@ -2,6 +2,7 @@ DATA_SPEC.md
 
 改訂日：2026-06-24 Version：Ver.1(Rev1)
        2026-07-23 Version：Ver.1(Rev2)
+       2026-11-15 Version：Ver.1(Rev3)
 
 # hiro-sanの山歩きサイト V5 データ仕様書
 
@@ -569,11 +570,30 @@ date_s から生成する。
 
 ## データ管理ルール
 
-records_master.xlsx はV5の基幹データである。山行データの追加・修正はこの Excel 正本に対して行う。
+records_master.xlsx はV5の基幹データである。山行データの新規追加はこの Excel 正本に対して行う。登録済み記録の訂正・更新は今回の運用範囲外とし、別途確認・承認を得る。
 
 records_master.json は Excel 正本から作成する派生データであり、records/index・record.html 用の Markdown 生成と logs/index 検索に利用する。
 
 Excel→JSON 変換は `excel_to_json.py` で行う。JSON→Markdown の自動生成処理は現状のリポジトリ内では確認できていない。変換後は正本との整合性を確認し、承認された手順で各派生データを更新する。
+
+## 現状と運用範囲（As-Is / To-Be）
+
+### 現状（2026-11-15確認）
+
+* `records_master.xlsx` は名前付き23項目、441件の山行データを持つ正本である。空行および空見出しの列があるため、変換時は無視する。
+* `records_master.json` は正本と同じ441件・23項目に更新済みで、`record_id` は全件一意、スキーマ外の `"None"` 項目は含まない。
+* 山行記録のMarkdown投稿は441件あり、JSONの各記録IDに対応する投稿がある。復元した13件はJSONとの一致を確認済みである。
+* 投稿側だけにあった空の `slug` 9件は削除済みである。
+* 既存投稿とJSONの値の差が4件残っている。`map` は `9714193`、`9720749`、`9696034` の3件、`title` は `5851831` の1件である。内容の確認は未了のため、これらの既存投稿はJSONに合わせて自動修正しない。
+
+### 今回の運用範囲
+
+* 今回のデータ追加フローは新規山行記録の追加を対象とする。登録済み記録の訂正・更新は対象外とし、別途確認・承認を得る。
+* ヤマレコからの取得、AIによる項目整理・概要作成、写真・コメント・地図URLのExcel入力は手動で行う。
+* ExcelからJSONへの変換と形式検証は `excel_to_json.py` で行う。生成先は既定で `data/records_master.generated.json` とし、本番JSONを自動上書きしない。
+* 生成JSONの内容・件数・IDを確認し、承認後に `data/records_master.json` へ反映する。
+* 新規IDのMarkdown投稿は既存ファイルを上書きせずに追加する。JSONからMarkdownを生成する自動処理は未実装のため、現状はこの工程を自動化済みと扱わない。
+* Jekyllのビルドと、JSONの全IDに対応する投稿が存在することを確認してから公開する。GitHubへの反映は手動で行う。
 
 #### Excel→JSON変換の実行
 

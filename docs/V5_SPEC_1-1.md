@@ -1,9 +1,11 @@
 V5_SPEC.md
 
-改訂日：2026-06-24
-Version：Ver.1.1
+改訂日：2026-11-15
+Version：Ver.1.2
 
 本書はV5システム全体の最上位仕様書であり、各詳細仕様書（DATA_SPEC、DIRECTORY_STRUCTURE等）は本書を基準とする。
+
+2026-11-15改訂：山行データの正本をExcelとする方針、およびExcel→JSONの変換範囲を反映。
 
 ⸻
 
@@ -43,9 +45,9 @@ SBrecords.json	SilverBoy 山行データ
 
 STrecords.json	ショウタン 山行データ
 
-山行データの追加・修正は records_master.xlsx に対して行う。records_master.json と Markdown は Excel 正本から作成する派生データであり、正本として直接編集しない。
+山行データの新規追加は records_master.xlsx に対して行う。今回の運用範囲に既存記録の訂正・更新は含めない。records_master.json と Markdown は Excel 正本から作成する派生データであり、正本として直接編集しない。
 
-Excel→JSON 変換は `excel_to_json.py` で行う。既定の出力先は `data/records_master.generated.json` であり、既存の `records_master.json` は自動で上書きしない。JSON→Markdown の生成スクリプトは現在のリポジトリ内では確認できていない。
+Excel→JSON 変換は `excel_to_json.py` で行う。既定の出力先は `data/records_master.generated.json` であり、既存の `records_master.json` は自動で上書きしない。生成結果の確認・本番JSONへの反映およびGitHubへの公開は手動で行う。JSON→Markdown の生成スクリプトは現在のリポジトリ内では確認できていない。
 
 ## Markdown生成
 
