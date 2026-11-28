@@ -750,17 +750,23 @@
   }
 
   .record-external-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    flex-wrap: nowrap;
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   .record-external-actions .record-external-links h2 {
-    font-size: 1.1rem;
+    display: none;
   }
 
   .record-external-actions .button {
-    padding: 0.65rem 0.8rem;
+    padding: 0.65rem 0.7rem;
+    font-size: 0.82rem;
+  }
+
+  .record-external-actions .record-return {
+    justify-self: end;
   }
 
 }
@@ -787,16 +793,10 @@
     overflow: hidden;
   }
 
-  .record-summary.is-collapsed {
-    -webkit-line-clamp: 3;
-  }
-
-  .record-course-time.is-collapsed {
-    -webkit-line-clamp: 2;
-  }
-
+  .record-summary.is-collapsed,
+  .record-course-time.is-collapsed,
   .course-note.is-collapsed {
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
   }
 
   .record-overview.has-media-column {
