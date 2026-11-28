@@ -169,7 +169,85 @@
 
 ---
 
-## 4. ディレクトリ構成（参考構成）
+## 4. スクリプト実行例
+
+以下はリポジトリのルートフォルダで PowerShell を使う場合の例である。`yyyymmdd` は実際の作業用ファイル名に置き換える。候補ファイルは工程ごとに確認し、`--apply` を付ける操作は承認後にのみ実行する。
+
+```powershell
+New-Item -ItemType Directory -Force work | Out-Null
+
+# 工程2-A: Excelを正規化し、Copilot Chat用入力を作成
+python -m scripts.record_workflow.prepare `
+  --input work\records20261128.xlsx `
+  --output work\prepared.xlsx `
+  --copilot-output work\sm2-input.json
+```
+
+`work\sm2-input.json` の内容を Copilot Chat に渡し、指示されたJSON形式の回答を `work\sm2-output.json` として保存する。工程2-Bの内容とJSON構造を確認した後、工程2-Cで取り込む。
+
+```powershell
+# 工程2-C: 要約IDと180〜230文字を検証
+python -m scripts.record_workflow.import_sm2 `
+  --input work\prepared.xlsx `
+  --summaries work\sm2-output.json `
+  --output work\with-sm2.xlsx
+
+# 工程3: with-sm2.xlsx に写真・コメント・mapを手動登録して保存した後に実行
+# 工程4: map列をURLに正規化（入力ファイルは変更しない）
+python -m scripts.record_workflow.clean_map `
+  --input work\with-media.xlsx `
+  --output work\map-cleaned.xlsx
+
+# 工程5: 正本への追加候補を作成
+python -m scripts.record_workflow.merge_master `
+  --input work\map-cleaned.xlsx `
+  --master data\records_master.xlsx `
+  --output work\records-master-candidate.xlsx
+
+# 候補を確認した後、正本が候補作成時から変わっていないことを検証
+python -m scripts.record_workflow.promote_master `
+  --input work\map-cleaned.xlsx `
+  --master data\records_master.xlsx `
+  --candidate work\records-master-candidate.xlsx
+
+# 上の検証結果と候補を承認した場合のみ、バックアップ付きで正本を更新
+python -m scripts.record_workflow.promote_master `
+  --input work\map-cleaned.xlsx `
+  --master data\records_master.xlsx `
+  --candidate work\records-master-candidate.xlsx `
+  --apply
+```
+
+```powershell
+# 工程6: 候補Excelから候補JSONを生成し、まず差分を確認
+python excel_to_json.py `
+  --input work\records-master-candidate.xlsx `
+  --output work\records-master-candidate.json
+python -m scripts.record_workflow.publish_json `
+  --candidate work\records-master-candidate.json `
+  --production data\records_master.json
+
+# 差分を承認した場合のみ本番JSONへ反映（バックアップを作成）
+python -m scripts.record_workflow.publish_json `
+  --candidate work\records-master-candidate.json `
+  --production data\records_master.json `
+  --apply
+
+# 工程7: 新規記事をレビュー用フォルダに生成し、ID・日付の対応を検証
+python -m scripts.record_workflow.generate_posts `
+  --records data\records_master.json `
+  --posts-dir _posts `
+  --output-dir work\generated_posts
+python -m scripts.record_workflow.validate_posts `
+  --records data\records_master.json `
+  --posts-dir _posts `
+  --candidate-dir work\generated_posts
+ridk exec bundle exec jekyll build
+```
+
+`work\generated_posts` の記事を目視確認してから `_posts` へ追加する。既存記事を含むJSON項目の変更が差分に出た場合は内容を確認し、承認できる変更に限り `publish_json` に `--allow-existing-changes` を追加する。
+
+## 5. ディレクトリ構成（参考構成）
 ※以下は本ワークフローにおける標準的なファイル配置の**参考構成**である。実際の実装・適用にあたっては、既存のローカル環境およびGitHubリポジトリのディレクトリ構造との整合性を確認し、既存パスに合わせて読み替えること。
 
 ```text
