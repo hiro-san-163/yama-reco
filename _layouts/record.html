@@ -47,14 +47,14 @@ layout: default
 
       {% if page.map and page.map != "" %}
       <section class="record-map">
-        <button
-          type="button"
-          class="button record-map-toggle"
-          aria-expanded="false"
-          aria-controls="recordYamarecoMap">
+        <a
+          href="{{ page.map }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button record-map-button"
+          data-map-url="{{ page.map | escape }}">
           地図を見る
-        </button>
-        {% include yamareco_map.html url=page.map id="recordYamarecoMap" %}
+        </a>
       </section>
       {% endif %}
 
@@ -230,20 +230,23 @@ layout: default
        EXTERNAL LINK
   ======================================= -->
 
-  {% if page.yamareco_url %}
+  <div class="record-external-actions">
+    {% if page.yamareco_url %}
+    <section class="record-section record-external-links">
+      <h2>外部リンク</h2>
+      <p>
+        <a
+          href="{{ page.yamareco_url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button">
+          ヤマレコを見る
+        </a>
+      </p>
+    </section>
+    {% endif %}
 
-  <section class="record-section record-external-links">
-
-    <h2>外部リンク</h2>
-
-    <div class="record-external-link-row">
-      <a
-        href="{{ page.yamareco_url }}"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="button">
-        ヤマレコを見る
-      </a>
+    <div class="record-return">
       <a
         href="{{ '/records/' | relative_url }}"
         id="recordsReturnButton"
@@ -251,21 +254,7 @@ layout: default
         ← 検索結果へ戻る
       </a>
     </div>
-
-  </section>
-
-  {% else %}
-
-  <div class="record-return">
-    <a
-      href="{{ '/records/' | relative_url }}"
-      id="recordsReturnButton"
-      class="button">
-      ← 検索結果へ戻る
-    </a>
   </div>
-
-  {% endif %}
 
   <!-- ======================================
        PREV / NEXT

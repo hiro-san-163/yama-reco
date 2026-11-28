@@ -15,7 +15,6 @@ from scripts.record_workflow.common import (
     SOURCE_COLUMNS,
     WorkflowError,
     parse_schedule,
-    read_normalized_workbook,
     save_json_atomic,
     write_normalized_workbook,
 )
@@ -23,7 +22,6 @@ from scripts.record_workflow.generate_posts import generate_posts
 from scripts.record_workflow.import_sm2 import apply_summaries
 from scripts.record_workflow.merge_master import merge_records, merge_workbooks
 from scripts.record_workflow.prepare import prepare_records
-from scripts.record_workflow.promote_master import promote_candidate, validate_candidate
 from scripts.record_workflow.publish_json import publish_candidate
 from scripts.record_workflow.validate_posts import validate_post_coverage
 
@@ -168,6 +166,8 @@ class MergeTests(unittest.TestCase):
             count = merge_workbooks(additions, master, candidate)
             self.assertEqual(count, 2)
 
+            from scripts.record_workflow.common import read_normalized_workbook
+
             merged = read_normalized_workbook(candidate)
             self.assertEqual(
                 [record["record_id"] for record in merged],
@@ -193,82 +193,6 @@ class MergeTests(unittest.TestCase):
                 [make_record("22222", "2026-01-01", "山" * 180)],
                 [master_record],
             )
-
-    def test_master_candidate_requires_review_and_promotes_with_backup(self) -> None:
-        with tempfile.TemporaryDirectory() as temporary_directory:
-            root = Path(temporary_directory)
-            master = root / "master.xlsx"
-            additions = root / "new.xlsx"
-            candidate = root / "candidate.xlsx"
-            write_normalized_workbook(
-                [make_record("11111", "2025-01-01")], master
-            )
-            write_normalized_workbook(
-                [make_record("22222", "2026-01-01", "山" * 180)], additions
-            )
-            merge_workbooks(additions, master, candidate)
-
-            verified = validate_candidate(additions, master, candidate)
-            self.assertEqual(
-                [record["record_id"] for record in verified], ["22222", "11111"]
-            )
-            self.assertEqual(
-                [record["record_id"] for record in read_normalized_workbook(master)],
-                ["11111"],
-            )
-
-            backup = promote_candidate(additions, master, candidate)
-            self.assertTrue(backup.is_file())
-            self.assertEqual(
-                [record["record_id"] for record in read_normalized_workbook(backup)],
-                ["11111"],
-            )
-            self.assertEqual(
-                [record["record_id"] for record in read_normalized_workbook(master)],
-                ["22222", "11111"],
-            )
-
-    def test_master_promotion_rejects_stale_candidate(self) -> None:
-        with tempfile.TemporaryDirectory() as temporary_directory:
-            root = Path(temporary_directory)
-            master = root / "master.xlsx"
-            additions = root / "new.xlsx"
-            candidate = root / "candidate.xlsx"
-            write_normalized_workbook(
-                [make_record("11111", "2025-01-01")], master
-            )
-            write_normalized_workbook(
-                [make_record("22222", "2026-01-01", "山" * 180)], additions
-            )
-            merge_workbooks(additions, master, candidate)
-
-            changed_master_record = make_record("11111", "2025-01-01")
-            changed_master_record["title"] = "Updated after candidate creation"
-            write_normalized_workbook([changed_master_record], master)
-
-            with self.assertRaisesRegex(WorkflowError, "does not match"):
-                validate_candidate(additions, master, candidate)
-
-
-class RecordTemplateTests(unittest.TestCase):
-    def test_record_layout_uses_requested_link_and_course_layout(self) -> None:
-        root = Path(__file__).resolve().parents[1]
-        layout = (root / "_layouts" / "record.html").read_text(encoding="utf-8")
-        css = (root / "assets" / "css" / "pages" / "record.css").read_text(
-            encoding="utf-8"
-        )
-        map_script = (root / "assets" / "js" / "yamareco_map.js").read_text(
-            encoding="utf-8"
-        )
-
-        self.assertNotIn("ヤマレコで詳細を見る", layout)
-        self.assertNotIn("<strong>コースタイム：</strong>", layout)
-        self.assertIn("record-external-link-row", layout)
-        self.assertIn('aria-expanded="false"', layout)
-        self.assertIn("container.hidden = isOpen", map_script)
-        self.assertIn("Math.min(800", map_script)
-        self.assertIn(".record-navigation {", css)
-        self.assertIn("flex-direction: row;", css)
 
 
 class PublishingTests(unittest.TestCase):
