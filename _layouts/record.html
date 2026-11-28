@@ -47,14 +47,14 @@ layout: default
 
       {% if page.map and page.map != "" %}
       <section class="record-map">
-        <a
-          href="{{ page.map }}"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button">
+        <button
+          type="button"
+          class="button record-map-toggle"
+          aria-expanded="false"
+          aria-controls="recordYamarecoMap">
           地図を見る
-        </a>
-        {% include yamareco_map.html url=page.map %}
+        </button>
+        {% include yamareco_map.html url=page.map id="recordYamarecoMap" %}
       </section>
       {% endif %}
 
@@ -127,7 +127,6 @@ layout: default
 
         {% if page.course_time %}
         <p class="record-course-time card-text-standard record-expandable-text" id="recordCourseTime">
-          <strong>コースタイム：</strong>
           {{ page.course_time }}
         </p>
         <button
@@ -155,17 +154,6 @@ layout: default
         {% endif %}
 
       </section>
-      {% endif %}
-
-      {% if page.yamareco_url %}
-      <p class="record-info-yamareco">
-        <a
-          href="{{ page.yamareco_url }}"
-          target="_blank"
-          rel="noopener noreferrer">
-          ヤマレコで詳細を見る
-        </a>
-      </p>
       {% endif %}
 
     </div>
@@ -244,40 +232,40 @@ layout: default
 
   {% if page.yamareco_url %}
 
-  <section class="record-section">
+  <section class="record-section record-external-links">
 
     <h2>外部リンク</h2>
 
-    <p>
-
+    <div class="record-external-link-row">
       <a
         href="{{ page.yamareco_url }}"
         target="_blank"
         rel="noopener noreferrer"
         class="button">
-
         ヤマレコを見る
-
       </a>
-
-    </p>
+      <a
+        href="{{ '/records/' | relative_url }}"
+        id="recordsReturnButton"
+        class="button">
+        ← 検索結果へ戻る
+      </a>
+    </div>
 
   </section>
 
-  {% endif %}
+  {% else %}
 
   <div class="record-return">
+    <a
+      href="{{ '/records/' | relative_url }}"
+      id="recordsReturnButton"
+      class="button">
+      ← 検索結果へ戻る
+    </a>
+  </div>
 
-  <a
-    href="{{ '/records/' | relative_url }}"
-    id="recordsReturnButton"
-    class="button">
-
-    ← 検索結果へ戻る
-
-  </a>
-
-</div>
+  {% endif %}
 
   <!-- ======================================
        PREV / NEXT

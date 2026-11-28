@@ -195,6 +195,27 @@ class MergeTests(unittest.TestCase):
             )
 
 
+class RecordTemplateTests(unittest.TestCase):
+    def test_record_layout_uses_requested_link_and_course_layout(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        layout = (root / "_layouts" / "record.html").read_text(encoding="utf-8")
+        css = (root / "assets" / "css" / "pages" / "record.css").read_text(
+            encoding="utf-8"
+        )
+        map_script = (root / "assets" / "js" / "yamareco_map.js").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertNotIn("ヤマレコで詳細を見る", layout)
+        self.assertNotIn("<strong>コースタイム：</strong>", layout)
+        self.assertIn("record-external-link-row", layout)
+        self.assertIn('aria-expanded="false"', layout)
+        self.assertIn("container.hidden = isOpen", map_script)
+        self.assertIn("Math.min(800", map_script)
+        self.assertIn(".record-navigation {", css)
+        self.assertIn("flex-direction: row;", css)
+
+
 class PublishingTests(unittest.TestCase):
     def test_json_promotion_requires_explicit_apply_and_creates_backup(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_directory:
